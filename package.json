@@ -1,0 +1,42 @@
+{
+  "name": "nutritrack-yc",
+  "version": "1.0.0",
+  "description": "��#\u0000 \u0000N\u0000u\u0000t\u0000r\u0000i\u0000T\u0000r\u0000a\u0000c\u0000k\u0000\r\u0000 \u0000",
+  "main": "index.js",
+  "scripts": {
+    "dev": "node --watch ./src/app.js ",
+    "tailwind": "npx @tailwindcss/cli -i ./public/css/input.css -o ./public/css/output.css --watch"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Taha-mlaiki/NutriTrack.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Taha-mlaiki/NutriTrack/issues"
+  },
+  "homepage": "https://github.com/Taha-mlaiki/NutriTrack#readme",
+  "dependencies": {
+    "@google/generative-ai": "^0.24.1",
+    "@tailwindcss/cli": "^4.1.13",
+    "axios": "^1.12.2",
+    "bcryptjs": "^3.0.2",
+    "cookie-parser": "^1.4.7",
+    "dotenv": "^17.2.2",
+    "ejs": "^3.1.10",
+    "express": "^5.1.0",
+    "express-session": "^1.18.2",
+    "langchain": "^0.3.34",
+    "multer": "^2.0.2",
+    "mysql2": "^3.15.0",
+    "sharp": "^0.34.4",
+    "zod": "^4.1.11"
+  },
+  "devDependencies": {
+    "autoprefixer": "^10.4.21",
+    "postcss": "^8.5.6",
+    "tailwindcss": "^4.1.13"
+  }
+}
