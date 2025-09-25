@@ -1,0 +1,307 @@
+<%- include("../partials/header") %>
+<link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+/>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<!-- Header -->
+<header class="fixed top-0 w-full bg-white/95 backdrop-blur shadow-md z-50">
+  <nav class="flex justify-between items-center max-w-6xl mx-auto px-6 py-4">
+    <a
+      href="index.html"
+      class="flex items-center gap-2 text-green-600 text-xl font-bold"
+    >
+      <i class="fas fa-apple-alt text-orange-500"></i> NutriTrack
+    </a>
+    <div class="flex gap-6">
+      <a href="index.html" class="hover:text-green-600">Home</a>
+      <a
+        href="dashboard.html"
+        class="text-green-600 font-medium border-b-2 border-green-600"
+        >Dashboard</a
+      >
+      <a href="meals.html" class="hover:text-green-600">Meals</a>
+      <a href="reports.html" class="hover:text-green-600">Reports</a>
+      <a href="profile.html" class="hover:text-green-600">Profile</a>
+    </div>
+    <div class="flex items-center gap-3">
+      <div
+        class="w-10 h-10 rounded-full bg-green-600 flex items-center justify-center text-white font-bold"
+      >
+        DE
+      </div>
+      <span>Dounia Elgarrai</span>
+    </div>
+  </nav>
+</header>
+
+<!-- Dashboard -->
+<div class="pt-28 px-6 max-w-6xl mx-auto">
+  <!-- Welcome Section -->
+  <section
+    class="bg-white shadow rounded-xl p-6 flex justify-between items-center flex-wrap mb-6"
+  >
+    <div>
+      <h1 class="text-2xl font-bold">Welcome back, Dounia!</h1>
+      <p class="text-gray-600">
+        Here's your nutrition summary for today, October 15, 2023
+      </p>
+    </div>
+    <div
+      class="bg-green-50 border-l-4 border-green-600 rounded-full px-4 py-2 flex items-center gap-2 mt-4 md:mt-0"
+    >
+      <i class="fas fa-heartbeat text-green-600"></i>
+      <span>Diabetes Management Profile</span>
+    </div>
+  </section>
+
+  <div class="grid md:grid-cols-3 gap-6">
+    <!-- Left Column -->
+    <div class="md:col-span-2 space-y-6">
+      <!-- Progress Summary -->
+      <section class="bg-white shadow rounded-xl p-6">
+        <h2 class="flex items-center gap-2 text-xl font-semibold mb-4">
+          <i class="fas fa-chart-line text-green-600"></i> Today's Progress
+        </h2>
+
+        <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-4">
+          <div
+            class="bg-orange-50 p-4 rounded-lg border-t-4 border-orange-500 text-center"
+          >
+            <i class="fas fa-fire text-orange-500"></i>
+            <div class="text-2xl font-bold">1,650</div>
+            <p class="text-gray-500 text-sm">of 2,000 calories</p>
+            <div class="w-full h-2 bg-gray-200 rounded mt-2">
+              <div class="h-2 bg-orange-500 rounded" style="width: 65%"></div>
+            </div>
+          </div>
+          <div
+            class="bg-green-50 p-4 rounded-lg border-t-4 border-green-600 text-center"
+          >
+            <i class="fas fa-bread-slice text-green-600"></i>
+            <div class="text-2xl font-bold">185g</div>
+            <p class="text-gray-500 text-sm">of 230g carbs</p>
+            <div class="w-full h-2 bg-gray-200 rounded mt-2">
+              <div class="h-2 bg-green-600 rounded" style="width: 80%"></div>
+            </div>
+          </div>
+          <div
+            class="bg-yellow-50 p-4 rounded-lg border-t-4 border-yellow-500 text-center"
+          >
+            <i class="fas fa-dumbbell text-yellow-500"></i>
+            <div class="text-2xl font-bold">65g</div>
+            <p class="text-gray-500 text-sm">of 140g protein</p>
+            <div class="w-full h-2 bg-gray-200 rounded mt-2">
+              <div class="h-2 bg-yellow-500 rounded" style="width: 45%"></div>
+            </div>
+          </div>
+          <div
+            class="bg-purple-50 p-4 rounded-lg border-t-4 border-purple-600 text-center"
+          >
+            <i class="fas fa-oil-can text-purple-600"></i>
+            <div class="text-2xl font-bold">42g</div>
+            <p class="text-gray-500 text-sm">of 70g fats</p>
+            <div class="w-full h-2 bg-gray-200 rounded mt-2">
+              <div class="h-2 bg-purple-600 rounded" style="width: 60%"></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Alerts -->
+      <section class="bg-white shadow rounded-xl p-6">
+        <h2 class="flex items-center gap-2 text-xl font-semibold mb-4">
+          <i class="fas fa-exclamation-triangle text-red-500"></i> Important
+          Alerts
+        </h2>
+        <div
+          class="flex gap-3 bg-red-50 border-l-4 border-red-500 rounded-lg p-4 mb-3"
+        >
+          <div
+            class="w-10 h-10 rounded-full bg-red-500 flex items-center justify-center text-white"
+          >
+            <i class="fas fa-exclamation"></i>
+          </div>
+          <div>
+            <h3 class="font-semibold">High Sugar Intake</h3>
+            <p class="text-sm text-gray-600">
+              Your sugar consumption today is 15% above target. Reduce sugary
+              foods for your next meal.
+            </p>
+          </div>
+        </div>
+        <div
+          class="flex gap-3 bg-yellow-50 border-l-4 border-yellow-500 rounded-lg p-4"
+        >
+          <div
+            class="w-10 h-10 rounded-full bg-yellow-500 flex items-center justify-center text-white"
+          >
+            <i class="fas fa-clock"></i>
+          </div>
+          <div>
+            <h3 class="font-semibold">Missed Medication</h3>
+            <p class="text-sm text-gray-600">
+              You haven't logged your afternoon medication. Don’t forget to take
+              it with your next meal.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Chart -->
+      <section class="bg-white shadow rounded-xl p-6">
+        <h2 class="flex items-center gap-2 text-xl font-semibold mb-4">
+          <i class="fas fa-chart-bar text-green-600"></i> Weekly Nutrition
+          Trends
+        </h2>
+        <div class="h-72">
+          <canvas id="nutritionChart"></canvas>
+        </div>
+      </section>
+    </div>
+
+    <!-- Right Column -->
+    <div class="space-y-6">
+      <!-- Quick Actions -->
+      <section class="bg-white shadow rounded-xl p-6">
+        <h2 class="flex items-center gap-2 text-xl font-semibold mb-4">
+          <i class="fas fa-bolt text-orange-500"></i> Quick Actions
+        </h2>
+        <div class="grid grid-cols-2 gap-4">
+          <div
+            onclick="location.href='log-meal.html'"
+            class="bg-green-50 border-2 border-dashed border-gray-200 rounded-lg p-4 text-center hover:border-green-600 cursor-pointer"
+          >
+            <div
+              class="w-12 h-12 rounded-full bg-green-600 flex items-center justify-center text-white mx-auto mb-2"
+            >
+              <i class="fas fa-camera"></i>
+            </div>
+            <h3 class="font-semibold">Log a Meal</h3>
+            <p class="text-sm text-gray-600">Add food via image or entry</p>
+          </div>
+          <div
+            onclick="location.href='recommendations.html'"
+            class="bg-orange-50 border-2 border-dashed border-gray-200 rounded-lg p-4 text-center hover:border-orange-500 cursor-pointer"
+          >
+            <div
+              class="w-12 h-12 rounded-full bg-orange-500 flex items-center justify-center text-white mx-auto mb-2"
+            >
+              <i class="fas fa-lightbulb"></i>
+            </div>
+            <h3 class="font-semibold">Recommendations</h3>
+            <p class="text-sm text-gray-600">Get nutrition tips</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Recent Meals -->
+      <section class="bg-white shadow rounded-xl p-6">
+        <h2 class="flex items-center gap-2 text-xl font-semibold mb-4">
+          <i class="fas fa-utensils text-green-600"></i> Recent Meals
+        </h2>
+        <div class="space-y-4">
+          <div class="flex items-center gap-3 border-b border-gray-200 pb-2">
+            <img
+              src="https://images.unsplash.com/photo-1565958011703-44f9829ba187?auto=format&fit=crop&w=100&q=80"
+              class="w-16 h-16 rounded-lg object-cover"
+              alt="Lunch"
+            />
+            <div class="flex-1">
+              <h4 class="font-semibold">Lunch - Grilled Chicken Salad</h4>
+              <p class="text-sm text-gray-500">
+                12:30 PM • Carbs: 25g, Protein: 30g
+              </p>
+            </div>
+            <span class="text-orange-500 font-bold">420 cal</span>
+          </div>
+          <div class="flex items-center gap-3 border-b border-gray-200 pb-2">
+            <img
+              src="https://images.unsplash.com/photo-1490818387583-1baba5e638af?auto=format&fit=crop&w=100&q=80"
+              class="w-16 h-16 rounded-lg object-cover"
+              alt="Breakfast"
+            />
+            <div class="flex-1">
+              <h4 class="font-semibold">Breakfast - Oatmeal with Fruits</h4>
+              <p class="text-sm text-gray-500">
+                8:15 AM • Carbs: 45g, Protein: 12g
+              </p>
+            </div>
+            <span class="text-orange-500 font-bold">320 cal</span>
+          </div>
+        </div>
+      </section>
+    </div>
+  </div>
+</div>
+
+<!-- Footer -->
+<footer class="bg-gray-900 text-gray-300 mt-10">
+  <div
+    class="grid sm:grid-cols-2 md:grid-cols-4 gap-6 max-w-6xl mx-auto px-6 py-10"
+  >
+    <div>
+      <h3 class="font-semibold text-lg mb-4">NutriTrack</h3>
+      <p>Your intelligent nutrition companion for optimal health.</p>
+      <div class="flex gap-3 mt-4">
+        <a
+          href="#"
+          class="w-10 h-10 flex items-center justify-center bg-gray-700 rounded-full hover:bg-orange-500"
+          ><i class="fab fa-facebook-f"></i
+        ></a>
+        <a
+          href="#"
+          class="w-10 h-10 flex items-center justify-center bg-gray-700 rounded-full hover:bg-orange-500"
+          ><i class="fab fa-twitter"></i
+        ></a>
+      </div>
+    </div>
+    <div>
+      <h3 class="font-semibold text-lg mb-4">Quick Links</h3>
+      <ul class="space-y-2">
+        <li><a href="index.html" class="hover:text-white">Home</a></li>
+        <li><a href="dashboard.html" class="hover:text-white">Dashboard</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="text-center border-t border-gray-700 py-4 text-sm text-gray-500">
+    &copy; 2024 NutriTrack. All rights reserved.
+  </div>
+</footer>
+
+<!-- Chart.js Script -->
+<script>
+  const ctx = document.getElementById("nutritionChart").getContext("2d");
+  const nutritionChart = new Chart(ctx, {
+    type: "line",
+    data: {
+      labels: ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"],
+      datasets: [
+        {
+          label: "Calories",
+          data: [1850, 1920, 1780, 2100, 1950, 2300, 1800],
+          borderColor: "#f97316",
+          backgroundColor: "rgba(249,115,22,0.1)",
+          fill: true,
+        },
+        {
+          label: "Carbs (g)",
+          data: [210, 195, 185, 230, 200, 250, 190],
+          borderColor: "#22c55e",
+          backgroundColor: "rgba(34,197,94,0.1)",
+          fill: true,
+        },
+        {
+          label: "Protein (g)",
+          data: [120, 135, 110, 140, 125, 150, 115],
+          borderColor: "#eab308",
+          backgroundColor: "rgba(234,179,8,0.1)",
+          fill: true,
+        },
+      ],
+    },
+    options: { responsive: true, maintainAspectRatio: false },
+  });
+</script>
+
+<%- include("../partials/footer") %>
