@@ -1,0 +1,7 @@
+just so that we are on the same line 
+we used this 
+npm install express bcryptjs express-session body-parser cors dotenv
+
+to go with the api approach api with express using session instead of token 
+
+now the next step create a server that says hello with express
