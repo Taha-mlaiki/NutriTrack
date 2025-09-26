@@ -1,3 +1,6 @@
 
 node_modules 
-.env 
+
+.env
+
+public/css/output.css 
