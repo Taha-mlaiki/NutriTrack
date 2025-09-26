@@ -4,6 +4,6 @@ import { showProfile } from "../controllers/profileController.js";
 
 const router = Router ();
 
-router.get("/profile", showProfile);
+router.get("/", showProfile);
 
 export default router;
