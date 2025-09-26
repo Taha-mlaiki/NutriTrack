@@ -3,7 +3,8 @@ import path from "path";
 import { fileURLToPath } from "url";
 import dotenv from "dotenv";
 import authRoutes from './routes/authRoutes.js';
-import dashboardRoutes from './routes/dashboardRoutes.js';
+import dashRoutes from "./routes/dashboardRoutes.js";
+import { errorHandler } from "./middlewares/errorMiddleware.js";
 
 
 dotenv.config();
@@ -24,9 +25,12 @@ app.use(express.static(path.join(__dirname, "..", "public")));
 
 // Routes
 
+app.use("/", dashRoutes);
 app.use("/auth", authRoutes);
-app.use("/", dashboardRoutes);
 
     
+
+
+app.use(errorHandler);
 
 export default app;
