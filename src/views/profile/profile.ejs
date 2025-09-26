@@ -7,7 +7,7 @@
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
 
-
+<body class="bg-[#F9FBE7] text-[#2E3D32] leading-relaxed overflow-x-hidden font-[Segoe_UI,Tahoma,Geneva,Verdana,sans-serif]"></body>
   <!-- Header -->
   <header class="fixed w-full z-50 bg-white/95 shadow-md backdrop-blur-md">
     <nav class="flex justify-between items-center px-[5%] py-4 max-w-[1400px] mx-auto">
@@ -236,7 +236,7 @@
 
 
     <script>
-        // Initialize health chart
+        
         document.addEventListener('DOMContentLoaded', function() {
             const ctx = document.getElementById('healthChart').getContext('2d');
             const healthChart = new Chart(ctx, {
@@ -276,17 +276,16 @@
                 }
             });
 
-            // Tab functionality
+            
             const tabs = document.querySelectorAll('.history-tab');
             tabs.forEach(tab => {
                 tab.addEventListener('click', function() {
-                    // Remove active class from all tabs
+                    
                     tabs.forEach(t => t.classList.remove('active'));
-                    // Add active class to clicked tab
+                    
                     this.classList.add('active');
                     
-                    // In a real app, this would update the chart data based on the selected tab
-                    // For this example, we'll just change the chart title
+                   
                     const chartTitle = healthChart.options.plugins.title.text;
                     const newTitle = this.getAttribute('data-tab').replace('-', ' ');
                     healthChart.options.plugins.title.text = newTitle.charAt(0).toUpperCase() + newTitle.slice(1) + ' Over Time';
@@ -294,15 +293,15 @@
                 });
             });
 
-            // Profile option selection
+            
             const profileOptions = document.querySelectorAll('.profile-option');
             profileOptions.forEach(option => {
                 option.addEventListener('click', function() {
-                    // Remove active class from all options
+                    
                     profileOptions.forEach(o => o.classList.remove('active'));
-                    // Add active class to clicked option
+                    
                     this.classList.add('active');
-                    // Check the radio input
+                    
                     this.querySelector('input').checked = true;
                 });
             });
@@ -321,17 +320,17 @@
                 editProfileModal.style.display = 'none';
             });
 
-            // Close modal when clicking outside the content
+           
             window.addEventListener('click', function(event) {
                 if (event.target === editProfileModal) {
                     editProfileModal.style.display = 'none';
                 }
             });
 
-            // Form submission
+           
             editProfileForm.addEventListener('submit', function(e) {
                 e.preventDefault();
-                // In a real app, this would save the profile changes
+                
                 alert('Profile updated successfully!');
                 editProfileModal.style.display = 'none';
             });
