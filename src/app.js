@@ -6,6 +6,7 @@ import authRoutes from './routes/authRoutes.js';
 import dashRoutes from "./routes/dashboardRoutes.js";
 import { errorHandler } from "./middlewares/errorMiddleware.js";
 import profileRoutes from "./routes/profileRoutes.js";
+import mealLoggingRoutes from "./routes/mealLoggingRoutes.js";
 
 
 dotenv.config();
@@ -29,6 +30,7 @@ app.use(express.static(path.join(__dirname, "..", "public")));
 app.use("/", dashRoutes);
 app.use("/auth", authRoutes);
 app.use("/profile", profileRoutes);
+app.use("/mealLogging", mealLoggingRoutes);
 
     
 
