@@ -6,181 +6,274 @@
 >
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
-<body class="bg-lime-50 text-gray-800 font-sans"></body>
+<body class="bg-[#F9FBE7] text-[#2E3D32] font-sans leading-relaxed">
 
-<header class="bg-white shadow">
-    <nav class="flex items-center justify-between px-6 py-4">
-      <a href="index.html" class="flex items-center space-x-2 text-indigo-600 font-bold text-xl">
-        <i class="fas fa-apple-alt"></i>
-        <span>NutriTrack</span>
-      </a>
-      <div class="space-x-6 hidden md:flex">
-        <a href="index.html" class="hover:text-indigo-600">Home</a>
-        <a href="dashboard.html" class="hover:text-indigo-600">Dashboard</a>
-        <a href="meals.html" class="hover:text-indigo-600">Meals</a>
-        <a href="reports.html" class="hover:text-indigo-600">Reports</a>
-        <a href="recommendations.html" class="text-indigo-600 font-semibold">Recommendations</a>
-        <a href="profile.html" class="hover:text-indigo-600">Profile</a>
-      </div>
-      <div class="flex items-center space-x-2">
-        <div class="w-8 h-8 rounded-full bg-indigo-600 flex items-center justify-center text-white">JS</div>
-        <span>John Smith</span>
-      </div>
+<!-- Header -->
+<header class="bg-white shadow-md py-4 px-[5%]">
+    <nav class="flex justify-between items-center max-w-[1200px] mx-auto flex-wrap gap-4">
+        <a href="index.html" class="flex items-center gap-2 text-[#4CAF50] font-bold text-xl no-underline">
+            <i class="fas fa-apple-alt text-[#FF9800]"></i>
+            <span>NutriTrack</span>
+        </a>
+        <div class="flex gap-8">
+            <a href="index.html" class="text-[#2E3D32] font-medium">Home</a>
+            <a href="dashboard.html" class="text-[#2E3D32] font-medium">Dashboard</a>
+            <a href="meals.html" class="text-[#2E3D32] font-medium">Meals</a>
+            <a href="reports.html" class="text-[#2E3D32] font-medium">Reports</a>
+            <a href="recommendations.html" class="text-[#4CAF50] font-medium">Recommendations</a>
+            <a href="profile.html" class="text-[#2E3D32] font-medium">Profile</a>
+        </div>
+        <div class="flex items-center gap-4">
+            <div class="w-10 h-10 rounded-full bg-[#4CAF50] flex items-center justify-center text-white font-bold">DE</div>
+            <span>Dounia Elgarrai</span>
+        </div>
     </nav>
-  </header>
+</header>
 
-  <main class="max-w-7xl mx-auto px-6 py-10">
-    <div class="mb-8">
-      <h1 class="text-3xl font-bold text-gray-900">Personalized Recommendations</h1>
-      <p class="text-gray-500">AI-powered suggestions based on your profile and recent activity</p>
-    </div>
+<!-- Main Content -->
+<main class="max-w-[1000px] mx-auto my-8 px-4">
 
-    <div class="flex items-center justify-between bg-white shadow rounded-lg p-4 mb-8">
-      <div class="flex items-center space-x-4">
-        <div class="w-12 h-12 rounded-full bg-indigo-600 flex items-center justify-center text-white text-lg">JS</div>
+    <!-- Page Header -->
+    <div class="flex justify-between items-center flex-wrap gap-4 mb-8">
         <div>
-          <h3 class="font-semibold text-lg">John Smith</h3>
-          <p class="text-sm text-gray-500">Diabetes Management Profile</p>
+            <h1 class="text-2xl text-[#2E3D32] font-bold">Personalized Recommendations</h1>
+            <p class="text-[#607D8B]">AI-powered suggestions based on your profile and recent activity</p>
         </div>
-      </div>
-      <div class="flex items-center space-x-2 bg-yellow-100 text-yellow-700 px-3 py-1 rounded-full">
-        <i class="fas fa-lightbulb"></i>
-        <span>8 Active Recommendations</span>
-      </div>
     </div>
 
-    <div class="flex flex-wrap gap-3 mb-8">
-      <button class="filter-btn active bg-indigo-600 text-white px-4 py-2 rounded-full" data-filter="all"><i class="fas fa-layer-group"></i> All</button>
-      <button class="filter-btn bg-gray-200 px-4 py-2 rounded-full" data-filter="medical"><i class="fas fa-heartbeat"></i> Medical</button>
-      <button class="filter-btn bg-gray-200 px-4 py-2 rounded-full" data-filter="workout"><i class="fas fa-running"></i> Workout</button>
-      <button class="filter-btn bg-gray-200 px-4 py-2 rounded-full" data-filter="nutrition"><i class="fas fa-utensils"></i> Nutrition</button>
-      <button class="filter-btn bg-gray-200 px-4 py-2 rounded-full" data-filter="hydration"><i class="fas fa-tint"></i> Hydration</button>
-      <button class="filter-btn bg-gray-200 px-4 py-2 rounded-full" data-filter="weight"><i class="fas fa-weight"></i> Weight</button>
+    <!-- Profile Summary -->
+    <div class="bg-white rounded-xl p-6 shadow-md mb-8 flex justify-between items-center flex-wrap gap-4">
+        <div class="flex items-center gap-4">
+            <div class="w-15 h-15 rounded-full bg-[#4CAF50] flex items-center justify-center text-white text-xl font-bold">JS</div>
+            <div>
+                <h3 class="mb-1">John Smith</h3>
+                <p class="text-[#607D8B]">Diabetes Management Profile</p>
+            </div>
+        </div>
+        <div class="bg-[#4CAF501A] text-[#4CAF50] px-4 py-2 rounded-full text-sm flex items-center gap-1">
+            <i class="fas fa-lightbulb"></i> 8 Active Recommendations
+        </div>
     </div>
 
-    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6" id="recommendationsContainer">
-      <div class="recommendation-card bg-white shadow rounded-lg p-6" data-type="medical">
-        <div class="flex items-center justify-between mb-4">
-          <div class="flex items-center space-x-2">
-            <i class="fas fa-heartbeat text-red-500"></i>
-            <span class="font-semibold">Medical Advice</span>
-          </div>
-          <span class="status-badge text-xs px-2 py-1 rounded-full bg-blue-100 text-blue-600">New</span>
-        </div>
-        <p class="text-sm text-gray-600 mb-4">Check your blood sugar levels after every meal for better tracking.</p>
-        <div class="flex justify-between">
-          <button class="check-btn bg-green-100 text-green-700 px-3 py-1 rounded-full text-sm">Mark as Followed</button>
-          <button class="dismiss-btn bg-gray-100 text-gray-600 px-3 py-1 rounded-full text-sm">Dismiss</button>
-        </div>
-      </div>
-
-      <div class="recommendation-card bg-white shadow rounded-lg p-6" data-type="workout">
-        <div class="flex items-center justify-between mb-4">
-          <div class="flex items-center space-x-2">
-            <i class="fas fa-running text-green-500"></i>
-            <span class="font-semibold">Workout Tip</span>
-          </div>
-          <span class="status-badge text-xs px-2 py-1 rounded-full bg-blue-100 text-blue-600">New</span>
-        </div>
-        <p class="text-sm text-gray-600 mb-4">Take a 15-minute walk after lunch to improve digestion and control sugar levels.</p>
-        <div class="flex justify-between">
-          <button class="check-btn bg-green-100 text-green-700 px-3 py-1 rounded-full text-sm">Mark as Followed</button>
-          <button class="dismiss-btn bg-gray-100 text-gray-600 px-3 py-1 rounded-full text-sm">Dismiss</button>
-        </div>
-      </div>
-
-      <div class="recommendation-card bg-white shadow rounded-lg p-6" data-type="nutrition">
-        <div class="flex items-center justify-between mb-4">
-          <div class="flex items-center space-x-2">
-            <i class="fas fa-utensils text-yellow-500"></i>
-            <span class="font-semibold">Nutrition</span>
-          </div>
-          <span class="status-badge text-xs px-2 py-1 rounded-full bg-blue-100 text-blue-600">New</span>
-        </div>
-        <p class="text-sm text-gray-600 mb-4">Add more fiber to your breakfast with whole-grain cereals or oats.</p>
-        <div class="flex justify-between">
-          <button class="check-btn bg-green-100 text-green-700 px-3 py-1 rounded-full text-sm">Mark as Followed</button>
-          <button class="dismiss-btn bg-gray-100 text-gray-600 px-3 py-1 rounded-full text-sm">Dismiss</button>
-        </div>
-      </div>
-
-      <div class="recommendation-card bg-white shadow rounded-lg p-6" data-type="hydration">
-        <div class="flex items-center justify-between mb-4">
-          <div class="flex items-center space-x-2">
-            <i class="fas fa-tint text-blue-500"></i>
-            <span class="font-semibold">Hydration</span>
-          </div>
-          <span class="status-badge text-xs px-2 py-1 rounded-full bg-blue-100 text-blue-600">New</span>
-        </div>
-        <p class="text-sm text-gray-600 mb-4">Drink at least 2 liters of water daily to stay hydrated and maintain energy.</p>
-        <div class="flex justify-between">
-          <button class="check-btn bg-green-100 text-green-700 px-3 py-1 rounded-full text-sm">Mark as Followed</button>
-          <button class="dismiss-btn bg-gray-100 text-gray-600 px-3 py-1 rounded-full text-sm">Dismiss</button>
-        </div>
-      </div>
-
-      <div class="recommendation-card bg-white shadow rounded-lg p-6" data-type="weight">
-        <div class="flex items-center justify-between mb-4">
-          <div class="flex items-center space-x-2">
-            <i class="fas fa-weight text-purple-500"></i>
-            <span class="font-semibold">Weight Goal</span>
-          </div>
-          <span class="status-badge text-xs px-2 py-1 rounded-full bg-blue-100 text-blue-600">New</span>
-        </div>
-        <p class="text-sm text-gray-600 mb-4">Try reducing portion sizes slightly to gradually achieve your target weight.</p>
-        <div class="flex justify-between">
-          <button class="check-btn bg-green-100 text-green-700 px-3 py-1 rounded-full text-sm">Mark as Followed</button>
-          <button class="dismiss-btn bg-gray-100 text-gray-600 px-3 py-1 rounded-full text-sm">Dismiss</button>
-        </div>
-      </div>
+    <!-- Filters -->
+    <div class="flex flex-wrap gap-4 mb-8 justify-center md:justify-start">
+        <button class="flex items-center gap-2 px-6 py-3 rounded-full border border-[#E0E0E0] font-medium bg-[#4CAF50] text-white active" data-filter="all">
+            <i class="fas fa-layer-group"></i> All Recommendations
+        </button>
+        <button class="flex items-center gap-2 px-6 py-3 rounded-full border border-[#E0E0E0] font-medium" data-filter="medical">
+            <i class="fas fa-heartbeat"></i> Medical
+        </button>
+        <button class="flex items-center gap-2 px-6 py-3 rounded-full border border-[#E0E0E0] font-medium" data-filter="workout">
+            <i class="fas fa-running"></i> Workout
+        </button>
+        <button class="flex items-center gap-2 px-6 py-3 rounded-full border border-[#E0E0E0] font-medium" data-filter="nutrition">
+            <i class="fas fa-utensils"></i> Nutrition
+        </button>
+        <button class="flex items-center gap-2 px-6 py-3 rounded-full border border-[#E0E0E0] font-medium" data-filter="hydration">
+            <i class="fas fa-tint"></i> Hydration
+        </button>
+        <button class="flex items-center gap-2 px-6 py-3 rounded-full border border-[#E0E0E0] font-medium" data-filter="weight">
+            <i class="fas fa-weight"></i> Weight Goals
+        </button>
     </div>
-  </main>
 
-  <footer class="bg-white mt-10 shadow py-4 text-center">
-    <p class="text-gray-500">&copy; 2025 NutriTrack. All rights reserved.</p>
-    <p class="text-sm text-gray-400">Built with ❤️ for better health</p>
-  </footer>
+    <!-- Recommendations Grid -->
+    <div id="recommendationsContainer" class="grid gap-6">
 
-  <script>
-    const filterButtons = document.querySelectorAll(".filter-btn");
-    const recommendationCards = document.querySelectorAll(".recommendation-card");
+        <!-- Medical Card -->
+        <div class="recommendation-card medical bg-white rounded-xl p-6 shadow-md border-l-4 border-[#F44336]" data-type="medical">
+            <div class="flex justify-between items-start mb-4 flex-wrap gap-4">
+                <div>
+                    <div class="flex items-center gap-2 mb-2">
+                        <div class="w-8 h-8 rounded-full bg-[#F44336] flex items-center justify-center text-white text-sm">
+                            <i class="fas fa-heartbeat"></i>
+                        </div>
+                        <h3 class="font-semibold text-lg">Blood Sugar Management</h3>
+                    </div>
+                    <p>Based on your recent meals and diabetes profile</p>
+                </div>
+                <div class="flex gap-2 self-end">
+                    <button class="action-btn check-btn w-8 h-8 flex items-center justify-center rounded-full text-green-500 text-lg"><i class="fas fa-check"></i></button>
+                    <button class="action-btn dismiss-btn w-8 h-8 flex items-center justify-center rounded-full text-gray-500 text-lg"><i class="fas fa-times"></i></button>
+                </div>
+            </div>
+            <div class="mb-6">
+                <p>Your lunch contained 65g of carbohydrates, which may cause a blood sugar spike. Consider pairing high-carb meals with protein and fiber to slow glucose absorption.</p>
+                <div class="bg-[#F9FBE7] rounded p-4 mt-4">
+                    <div class="flex justify-between mb-2"><span>Meal Time:</span><span>Lunch (12:30 PM)</span></div>
+                    <div class="flex justify-between mb-2"><span>Carbohydrates:</span><span>65g (28% of daily limit)</span></div>
+                    <div class="flex justify-between"><span>Suggested Action:</span><span>Add protein source to next meal</span></div>
+                </div>
+            </div>
+            <div class="flex justify-between items-center pt-4 border-t border-[#E0E0E0] text-sm text-[#607D8B]">
+                <div class="flex items-center gap-1"><i class="fas fa-bolt"></i> AI Analysis</div>
+                <div class="flex items-center gap-1">
+                    <span class="status-badge bg-[#2196F31A] text-[#2196F3] px-3 py-1 rounded-full text-xs font-medium">New</span>
+                    <span>Generated 2 hours ago</span>
+                </div>
+            </div>
+        </div>
 
-    filterButtons.forEach(btn => {
-      btn.addEventListener("click", () => {
-        filterButtons.forEach(b => {
-          b.classList.remove("bg-indigo-600", "text-white");
-          b.classList.add("bg-gray-200");
-        });
-        btn.classList.remove("bg-gray-200");
-        btn.classList.add("bg-indigo-600", "text-white");
-        const filter = btn.getAttribute("data-filter");
-        recommendationCards.forEach(card => {
-          if (filter === "all" || card.dataset.type === filter) {
-            card.style.display = "block";
-          } else {
-            card.style.display = "none";
-          }
-        });
-      });
-    });
+        <!-- Workout Card -->
+        <div class="recommendation-card workout bg-white rounded-xl p-6 shadow-md border-l-4 border-[#FF9800]" data-type="workout">
+            <div class="flex justify-between items-start mb-4 flex-wrap gap-4">
+                <div>
+                    <div class="flex items-center gap-2 mb-2">
+                        <div class="w-8 h-8 rounded-full bg-[#FF9800] flex items-center justify-center text-white text-sm">
+                            <i class="fas fa-running"></i>
+                        </div>
+                        <h3 class="font-semibold text-lg">Afternoon Walk</h3>
+                    </div>
+                    <p>Boost your metabolism and improve blood sugar control</p>
+                </div>
+                <div class="flex gap-2 self-end">
+                    <button class="action-btn check-btn w-8 h-8 flex items-center justify-center rounded-full text-green-500 text-lg"><i class="fas fa-check"></i></button>
+                    <button class="action-btn dismiss-btn w-8 h-8 flex items-center justify-center rounded-full text-gray-500 text-lg"><i class="fas fa-times"></i></button>
+                </div>
+            </div>
+            <div class="mb-6">
+                <p>Take a 20-minute brisk walk after lunch to improve digestion and reduce blood sugar spikes.</p>
+                <div class="bg-[#FFF3E0] rounded p-4 mt-4">
+                    <div class="flex justify-between mb-2"><span>Duration:</span><span>20 min</span></div>
+                    <div class="flex justify-between mb-2"><span>Intensity:</span><span>Brisk</span></div>
+                    <div class="flex justify-between"><span>Suggested Time:</span><span>1:00 PM</span></div>
+                </div>
+            </div>
+            <div class="flex justify-between items-center pt-4 border-t border-[#E0E0E0] text-sm text-[#607D8B]">
+                <div class="flex items-center gap-1"><i class="fas fa-bolt"></i> AI Analysis</div>
+                <div class="flex items-center gap-1">
+                    <span class="status-badge bg-[#FF98001A] text-[#FF9800] px-3 py-1 rounded-full text-xs font-medium">New</span>
+                    <span>Generated 3 hours ago</span>
+                </div>
+            </div>
+        </div>
 
-    const checkBtns = document.querySelectorAll(".check-btn");
-    checkBtns.forEach(btn => {
-      btn.addEventListener("click", () => {
-        const status = btn.closest(".recommendation-card").querySelector(".status-badge");
-        status.textContent = "Followed";
-        status.className = "status-badge text-xs px-2 py-1 rounded-full bg-green-100 text-green-600";
-      });
-    });
+        <!-- Nutrition Card -->
+        <div class="recommendation-card nutrition bg-white rounded-xl p-6 shadow-md border-l-4 border-[#4CAF50]" data-type="nutrition">
+            <div class="flex justify-between items-start mb-4 flex-wrap gap-4">
+                <div>
+                    <div class="flex items-center gap-2 mb-2">
+                        <div class="w-8 h-8 rounded-full bg-[#4CAF50] flex items-center justify-center text-white text-sm">
+                            <i class="fas fa-utensils"></i>
+                        </div>
+                        <h3 class="font-semibold text-lg">Increase Fiber Intake</h3>
+                    </div>
+                    <p>Improve digestion and reduce sugar spikes</p>
+                </div>
+                <div class="flex gap-2 self-end">
+                    <button class="action-btn check-btn w-8 h-8 flex items-center justify-center rounded-full text-green-500 text-lg"><i class="fas fa-check"></i></button>
+                    <button class="action-btn dismiss-btn w-8 h-8 flex items-center justify-center rounded-full text-gray-500 text-lg"><i class="fas fa-times"></i></button>
+                </div>
+            </div>
+            <div class="mb-6">
+                <p>Add more vegetables, legumes, and whole grains to your meals to maintain stable glucose levels.</p>
+                <div class="bg-[#E8F5E9] rounded p-4 mt-4">
+                    <div class="flex justify-between mb-2"><span>Meal Recommendation:</span><span>Lunch & Dinner</span></div>
+                    <div class="flex justify-between mb-2"><span>Fiber Goal:</span><span>25g/day</span></div>
+                    <div class="flex justify-between"><span>Suggested Foods:</span><span>Beans, Lentils, Broccoli</span></div>
+                </div>
+            </div>
+            <div class="flex justify-between items-center pt-4 border-t border-[#E0E0E0] text-sm text-[#607D8B]">
+                <div class="flex items-center gap-1"><i class="fas fa-bolt"></i> AI Analysis</div>
+                <div class="flex items-center gap-1">
+                    <span class="status-badge bg-[#4CAF501A] text-[#4CAF50] px-3 py-1 rounded-full text-xs font-medium">New</span>
+                    <span>Generated 1 day ago</span>
+                </div>
+            </div>
+        </div>
 
-    const dismissBtns = document.querySelectorAll(".dismiss-btn");
-    dismissBtns.forEach(btn => {
-      btn.addEventListener("click", () => {
-        const card = btn.closest(".recommendation-card");
-        card.style.display = "none";
-      });
-    });
-  </script>
+        <!-- Hydration Card -->
+        <div class="recommendation-card hydration bg-white rounded-xl p-6 shadow-md border-l-4 border-[#2196F3]" data-type="hydration">
+            <div class="flex justify-between items-start mb-4 flex-wrap gap-4">
+                <div>
+                    <div class="flex items-center gap-2 mb-2">
+                        <div class="w-8 h-8 rounded-full bg-[#2196F3] flex items-center justify-center text-white text-sm">
+                            <i class="fas fa-tint"></i>
+                        </div>
+                        <h3 class="font-semibold text-lg">Stay Hydrated</h3>
+                    </div>
+                    <p>Drink more water to improve overall health</p>
+                </div>
+                <div class="flex gap-2 self-end">
+                    <button class="action-btn check-btn w-8 h-8 flex items-center justify-center rounded-full text-green-500 text-lg"><i class="fas fa-check"></i></button>
+                    <button class="action-btn dismiss-btn w-8 h-8 flex items-center justify-center rounded-full text-gray-500 text-lg"><i class="fas fa-times"></i></button>
+                </div>
+            </div>
+            <div class="mb-6">
+                <p>Log your water intake and aim for at least 2 liters daily.</p>
+                <div class="bg-[#E3F2FD] rounded p-4 mt-4">
+                    <div class="flex justify-between mb-2"><span>Consumed:</span><span>1.5L</span></div>
+                    <div class="flex justify-between mb-2"><span>Goal:</span><span>2L</span></div>
+                    <div class="flex justify-between"><span>Suggested:</span><span>500ml more today</span></div>
+                </div>
+            </div>
+            <div class="flex justify-between items-center pt-4 border-t border-[#E0E0E0] text-sm text-[#607D8B]">
+                <div class="flex items-center gap-1"><i class="fas fa-bolt"></i> AI Analysis</div>
+                <div class="flex items-center gap-1">
+                    <span class="status-badge bg-[#2196F31A] text-[#2196F3] px-3 py-1 rounded-full text-xs font-medium">New</span>
+                    <span>Generated 30 min ago</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Weight Goals Card -->
+        <div class="recommendation-card weight bg-white rounded-xl p-6 shadow-md border-l-4 border-[#9C27B0]" data-type="weight">
+            <div class="flex justify-between items-start mb-4 flex-wrap gap-4">
+                <div>
+                    <div class="flex items-center gap-2 mb-2">
+                        <div class="w-8 h-8 rounded-full bg-[#9C27B0] flex items-center justify-center text-white text-sm">
+                            <i class="fas fa-weight"></i>
+                        </div>
+                        <h3 class="font-semibold text-lg">Weight Management</h3>
+                    </div>
+                    <p>Monitor your weight to achieve your fitness goals</p>
+                </div>
+                <div class="flex gap-2 self-end">
+                    <button class="action-btn check-btn w-8 h-8 flex items-center justify-center rounded-full text-green-500 text-lg"><i class="fas fa-check"></i></button>
+                    <button class="action-btn dismiss-btn w-8 h-8 flex items-center justify-center rounded-full text-gray-500 text-lg"><i class="fas fa-times"></i></button>
+                </div>
+            </div>
+            <div class="mb-6">
+                <p>Aim to maintain your weight within a healthy range by tracking calories and activity.</p>
+                <div class="bg-[#F3E5F5] rounded p-4 mt-4">
+                    <div class="flex justify-between mb-2"><span>Current Weight:</span><span>72kg</span></div>
+                    <div class="flex justify-between mb-2"><span>Target Weight:</span><span>70kg</span></div>
+                    <div class="flex justify-between"><span>Suggested Action:</span><span>Reduce 200 kcal/day</span></div>
+                </div>
+            </div>
+            <div class="flex justify-between items-center pt-4 border-t border-[#E0E0E0] text-sm text-[#607D8B]">
+                <div class="flex items-center gap-1"><i class="fas fa-bolt"></i> AI Analysis</div>
+                <div class="flex items-center gap-1">
+                    <span class="status-badge bg-[#9C27B01A] text-[#9C27B0] px-3 py-1 rounded-full text-xs font-medium">New</span>
+                    <span>Generated yesterday</span>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Action Buttons -->
+    <div class="flex justify-center gap-4 mt-8">
+        <button class="btn border-2 border-[#4CAF50] text-[#4CAF50] font-semibold px-6 py-3 rounded hover:bg-[#4CAF501A] flex items-center gap-2" id="viewArchivedBtn">
+            <i class="fas fa-archive"></i> View Archived Recommendations
+        </button>
+        <button class="btn bg-[#FF9800] text-white font-semibold px-6 py-3 rounded hover:bg-[#F57C00] flex items-center gap-2" id="refreshBtn">
+            <i class="fas fa-sync-alt"></i> Refresh Recommendations
+        </button>
+    </div>
+
+</main>
+
+<!-- Footer -->
+<footer class="bg-[#2E3D32] text-white py-8 px-[5%] mt-12 text-center">
+    <div>
+        <h3 class="text-lg font-bold">NutriTrack</h3>
+        <p>Your intelligent nutrition companion</p>
+    </div>
+    <div class="mt-4 text-gray-300">
+        <p>&copy; 2024 NutriTrack. All rights reserved.</p>
+    </div>
+</footer>
 
 
 
