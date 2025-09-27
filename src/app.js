@@ -7,6 +7,7 @@ import dashRoutes from "./routes/dashboardRoutes.js";
 import { errorHandler } from "./middlewares/errorMiddleware.js";
 import profileRoutes from "./routes/profileRoutes.js";
 import mealRoutes from "./routes/mealRoutes.js";
+import reportsRoutes from "./routes/reportsRoutes.js";
 
 
 
@@ -32,6 +33,7 @@ app.use("/", dashRoutes);
 app.use("/auth", authRoutes);
 app.use("/profile", profileRoutes);
 app.use("/meal", mealRoutes);
+app.use("/reports", reportsRoutes);
 
     
 
