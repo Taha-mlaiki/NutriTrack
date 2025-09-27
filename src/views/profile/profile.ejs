@@ -1,0 +1,354 @@
+<%- include("../partials/header") %>
+
+<link 
+  rel="stylesheet" 
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+
+<body class="bg-[#F9FBE7] text-[#2E3D32] leading-relaxed overflow-x-hidden font-[Segoe_UI,Tahoma,Geneva,Verdana,sans-serif]"></body>
+  <!-- Header -->
+  <header class="fixed w-full z-50 bg-white/95 shadow-md backdrop-blur-md">
+    <nav class="flex justify-between items-center px-[5%] py-4 max-w-[1400px] mx-auto">
+      <a href="/" class="flex items-center gap-2 text-2xl font-bold text-[#4CAF50] no-underline">
+        <i class="fas fa-apple-alt text-[#FF9800]"></i>
+        <span>NutriTrack</span>
+      </a>
+
+      <div class="flex gap-8">
+        <a href="/" class="relative font-medium text-[#2E3D32] hover:text-[#4CAF50]">Home</a>
+        <a href="/dashboard" class="relative font-medium text-[#2E3D32] hover:text-[#4CAF50]">Dashboard</a>
+        <a href="/meals" class="relative font-medium text-[#2E3D32] hover:text-[#4CAF50]">Meals</a>
+        <a href="/reports" class="relative font-medium text-[#2E3D32] hover:text-[#4CAF50]">Reports</a>
+        <a href="/profile" class="relative font-medium text-[#4CAF50] after:content-[''] after:absolute after:w-full after:h-[3px] after:bg-[#4CAF50] after:left-0 after:-bottom-[5px]">Profile</a>
+      </div>
+
+      <div class="flex items-center gap-4">
+        <div class="w-10 h-10 rounded-full bg-[#4CAF50] flex items-center justify-center text-white font-bold">
+          DE
+        </div>
+        <span>Dounia Elgarrai</span>
+      </div>
+    </nav>
+  </header>
+
+  <!-- Profile -->
+  <div class="pt-24 px-[5%] pb-8 max-w-[1400px] mx-auto">
+    <div class="flex justify-between items-center mb-8 flex-col md:flex-row gap-4">
+      <h1 class="text-3xl font-bold text-[#2E3D32]">My Profile</h1>
+      <button class="px-6 py-3 rounded-full font-semibold text-white bg-[#FF9800] hover:bg-[#F57C00] hover:-translate-y-1 shadow-md hover:shadow-lg transition flex items-center gap-2">
+        <i class="fas fa-edit"></i> Edit Profile
+      </button>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-[1fr_2fr] gap-8">
+      <!-- Left Column -->
+      <div>
+        <div class="bg-white rounded-xl p-8 shadow-md mb-8">
+          <div class="flex items-center gap-6 mb-6 flex-col md:flex-row">
+            <div class="w-24 h-24 rounded-full bg-[#4CAF50] flex items-center justify-center text-white text-4xl font-bold">DE</div>
+            <div>
+              <h2 class="text-xl font-semibold">Dounia Elgarrai</h2>
+              <p class="text-[#607D8B]">Joined January 2023</p>
+              <div class="inline-block bg-[#F9FBE7] px-4 py-2 rounded-full mt-2 border-l-4 border-[#4CAF50]">
+                <i class="fas fa-heartbeat"></i> Diabetes Management Profile
+              </div>
+            </div>
+          </div>
+
+          <h3 class="flex items-center gap-2 text-xl font-semibold text-[#2E3D32] border-b-2 border-[#E0E0E0] pb-2 mb-6">
+            <i class="fas fa-user"></i> Personal Information
+          </h3>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div>
+              <div class="text-sm text-[#607D8B] font-medium">Age</div>
+              <div class="text-lg font-semibold">21 years</div>
+            </div>
+            <div>
+              <div class="text-sm text-[#607D8B] font-medium">Height</div>
+              <div class="text-lg font-semibold">178 cm</div>
+            </div>
+            <div>
+              <div class="text-sm text-[#607D8B] font-medium">Weight</div>
+              <div class="text-lg font-semibold">50 kg</div>
+            </div>
+            <div>
+              <div class="text-sm text-[#607D8B] font-medium">BMI</div>
+              <div class="text-lg font-semibold">26.5</div>
+            </div>
+            <div>
+              <div class="text-sm text-[#607D8B] font-medium">Activity Level</div>
+              <div class="text-lg font-semibold">Moderately Active</div>
+            </div>
+            <div>
+              <div class="text-sm text-[#607D8B] font-medium">Diet Type</div>
+              <div class="text-lg font-semibold">Balanced</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Goals Section -->
+        <div class="bg-white rounded-xl p-8 shadow-md mb-8">
+          <h3 class="flex items-center gap-2 text-xl font-semibold text-[#2E3D32] border-b-2 border-[#E0E0E0] pb-2 mb-6">
+            <i class="fas fa-bullseye"></i> Current Goals
+          </h3>
+
+          <div class="divide-y divide-[#E0E0E0]">
+            <div class="flex justify-between items-center py-4">
+              <div>
+                <h4 class="font-semibold">Daily Calorie Target</h4>
+                <p class="text-sm text-[#607D8B]">Based on your weight loss goal</p>
+              </div>
+              <span class="font-bold text-[#FF9800]">2,000 cal</span>
+            </div>
+            <div class="flex justify-between items-center py-4">
+              <div>
+                <h4 class="font-semibold">Maximum Sodium</h4>
+                <p class="text-sm text-[#607D8B]">For blood pressure management</p>
+              </div>
+              <span class="font-bold text-[#FF9800]">2,300 mg</span>
+            </div>
+            <div class="flex justify-between items-center py-4">
+              <div>
+                <h4 class="font-semibold">Carbohydrate Limit</h4>
+                <p class="text-sm text-[#607D8B]">For diabetes management</p>
+              </div>
+              <span class="font-bold text-[#FF9800]">230 g</span>
+            </div>
+            <div class="flex justify-between items-center py-4">
+              <div>
+                <h4 class="font-semibold">Protein Target</h4>
+                <p class="text-sm text-[#607D8B]">For muscle maintenance</p>
+              </div>
+              <span class="font-bold text-[#FF9800]">140 g</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right Column -->
+      <div>
+        <div class="bg-white rounded-xl p-8 shadow-md mb-8">
+          <h3 class="flex items-center gap-2 text-xl font-semibold text-[#2E3D32] border-b-2 border-[#E0E0E0] pb-2 mb-6">
+            <i class="fas fa-clipboard-list"></i> Profile Type
+          </h3>
+          <div class="flex flex-wrap gap-4">
+            <span class="bg-[#E8F5E9] text-[#4CAF50] px-4 py-2 rounded-full font-medium">Diabetic</span>
+            <span class="bg-[#E3F2FD] text-[#2196F3] px-4 py-2 rounded-full font-medium">Weight Management</span>
+            <span class="bg-[#FFF3E0] text-[#FF9800] px-4 py-2 rounded-full font-medium">Low Sodium</span>
+          </div>
+        </div>
+
+        <div class="bg-white rounded-xl p-8 shadow-md mb-8">
+          <h3 class="flex items-center gap-2 text-xl font-semibold text-[#2E3D32] border-b-2 border-[#E0E0E0] pb-2 mb-6">
+            <i class="fas fa-history"></i> History
+          </h3>
+          <ul class="space-y-4">
+            <li class="flex justify-between">
+              <span>Weight updated</span>
+              <span class="text-[#607D8B] text-sm">2 days ago</span>
+            </li>
+            <li class="flex justify-between">
+              <span>New meal plan created</span>
+              <span class="text-[#607D8B] text-sm">5 days ago</span>
+            </li>
+            <li class="flex justify-between">
+              <span>Blood sugar logged</span>
+              <span class="text-[#607D8B] text-sm">1 week ago</span>
+            </li>
+          </ul>
+        </div>
+
+        <div class="bg-white rounded-xl p-8 shadow-md mb-8">
+          <h3 class="flex items-center gap-2 text-xl font-semibold text-[#2E3D32] border-b-2 border-[#E0E0E0] pb-2 mb-6">
+            <i class="fas fa-cog"></i> Settings
+          </h3>
+          <ul class="space-y-4">
+            <li><a href="#" class="text-[#4CAF50] hover:underline">Change Password</a></li>
+            <li><a href="#" class="text-[#4CAF50] hover:underline">Notification Preferences</a></li>
+            <li><a href="#" class="text-[#4CAF50] hover:underline">Privacy Settings</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="bg-gray-900 text-gray-300 mt-10">
+    <div
+      class="grid sm:grid-cols-2 md:grid-cols-4 gap-6 max-w-6xl mx-auto px-6 py-10"
+    >
+      <div>
+        <h3 class="font-semibold text-lg mb-4">NutriTrack</h3>
+        <p>Your intelligent nutrition companion for optimal health.</p>
+        <div class="flex gap-3 mt-4">
+          <a
+            href="#"
+            class="w-10 h-10 flex items-center justify-center bg-gray-700 rounded-full hover:bg-orange-500"
+            ><i class="fab fa-facebook-f"></i
+          ></a>
+          <a
+            href="#"
+            class="w-10 h-10 flex items-center justify-center bg-gray-700 rounded-full hover:bg-orange-500"
+            ><i class="fab fa-twitter"></i
+          ></a>
+        </div>
+      </div>
+      <div>
+        <h3 class="font-semibold text-lg mb-4">Quick Links</h3>
+        <ul class="space-y-2">
+          <li><a href="index.html" class="hover:text-white">Home</a></li>
+          <li><a href="dashboard.html" class="hover:text-white">Dashboard</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="text-center border-t border-gray-700 py-4 text-sm text-gray-500">
+      &copy; 2024 NutriTrack. All rights reserved.
+    </div>
+  </footer>
+
+  <!-- Modal -->
+  <div id="editModal" class="hidden fixed inset-0 bg-black/50 justify-center items-center z-50">
+    <div class="bg-white p-8 rounded-xl shadow-lg w-[90%] max-w-lg">
+      <h2 class="text-2xl font-bold mb-6">Edit Profile</h2>
+      <form class="space-y-4">
+        <div>
+          <label class="block text-sm font-medium text-[#607D8B] mb-1">Name</label>
+          <input type="text" class="w-full border border-[#E0E0E0] rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-[#4CAF50]">
+        </div>
+        <div>
+          <label class="block text-sm font-medium text-[#607D8B] mb-1">Email</label>
+          <input type="email" class="w-full border border-[#E0E0E0] rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-[#4CAF50]">
+        </div>
+        <div>
+          <label class="block text-sm font-medium text-[#607D8B] mb-1">Password</label>
+          <input type="password" class="w-full border border-[#E0E0E0] rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-[#4CAF50]">
+        </div>
+        <div class="flex justify-end gap-4">
+          <button type="button" class="px-6 py-2 rounded-lg bg-[#E0E0E0] hover:bg-[#BDBDBD]">Cancel</button>
+          <button type="submit" class="px-6 py-2 rounded-lg bg-[#4CAF50] text-white hover:bg-[#43A047]">Save</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+
+    <script>
+        
+        document.addEventListener('DOMContentLoaded', function() {
+            const ctx = document.getElementById('healthChart').getContext('2d');
+            const healthChart = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct'],
+                    datasets: [{
+                        label: 'Weight (kg)',
+                        data: [88, 87, 86, 85.5, 85, 84.5, 84.2, 84, 84, 84],
+                        borderColor: '#4CAF50',
+                        backgroundColor: 'rgba(76, 175, 80, 0.1)',
+                        tension: 0.3,
+                        fill: true
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            position: 'top',
+                        },
+                        title: {
+                            display: true,
+                            text: 'Weight Trend Over Time'
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: false,
+                            title: {
+                                display: true,
+                                text: 'Weight (kg)'
+                            }
+                        }
+                    }
+                }
+            });
+
+            
+            const tabs = document.querySelectorAll('.history-tab');
+            tabs.forEach(tab => {
+                tab.addEventListener('click', function() {
+                    
+                    tabs.forEach(t => t.classList.remove('active'));
+                    
+                    this.classList.add('active');
+                    
+                   
+                    const chartTitle = healthChart.options.plugins.title.text;
+                    const newTitle = this.getAttribute('data-tab').replace('-', ' ');
+                    healthChart.options.plugins.title.text = newTitle.charAt(0).toUpperCase() + newTitle.slice(1) + ' Over Time';
+                    healthChart.update();
+                });
+            });
+
+            
+            const profileOptions = document.querySelectorAll('.profile-option');
+            profileOptions.forEach(option => {
+                option.addEventListener('click', function() {
+                    
+                    profileOptions.forEach(o => o.classList.remove('active'));
+                    
+                    this.classList.add('active');
+                    
+                    this.querySelector('input').checked = true;
+                });
+            });
+
+            // Modal functionality
+            const editProfileBtn = document.getElementById('editProfileBtn');
+            const editProfileModal = document.getElementById('editProfileModal');
+            const closeModal = document.getElementById('closeModal');
+            const editProfileForm = document.getElementById('editProfileForm');
+
+            editProfileBtn.addEventListener('click', function() {
+                editProfileModal.style.display = 'flex';
+            });
+
+            closeModal.addEventListener('click', function() {
+                editProfileModal.style.display = 'none';
+            });
+
+           
+            window.addEventListener('click', function(event) {
+                if (event.target === editProfileModal) {
+                    editProfileModal.style.display = 'none';
+                }
+            });
+
+           
+            editProfileForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                alert('Profile updated successfully!');
+                editProfileModal.style.display = 'none';
+            });
+        });
+    </script>
+
+<%- include("../partials/footer") %>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
