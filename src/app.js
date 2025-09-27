@@ -8,6 +8,8 @@ import { errorHandler } from "./middlewares/errorMiddleware.js";
 import profileRoutes from "./routes/profileRoutes.js";
 import mealRoutes from "./routes/mealRoutes.js";
 import reportsRoutes from "./routes/reportsRoutes.js";
+import recommendationsRoutes from "./routes/recommendationsRoutes.js";
+
 
 
 
@@ -34,6 +36,8 @@ app.use("/auth", authRoutes);
 app.use("/profile", profileRoutes);
 app.use("/meal", mealRoutes);
 app.use("/reports", reportsRoutes);
+app.use("/recommendations", recommendationsRoutes);
+
 
     
 
