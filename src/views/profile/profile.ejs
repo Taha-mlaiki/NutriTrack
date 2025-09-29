@@ -11,331 +11,645 @@
   <!-- Header -->
   <header class="fixed w-full z-50 bg-white/95 shadow-md backdrop-blur-md">
     <nav class="flex justify-between items-center px-[5%] py-4 max-w-[1400px] mx-auto">
-      <a href="/" class="flex items-center gap-2 text-2xl font-bold text-[#4CAF50] no-underline">
+      <a href="/" class="flex items-center gap-2 text-xl font-bold text-[#4CAF50] no-underline">
         <i class="fas fa-apple-alt text-[#FF9800]"></i>
         <span>NutriTrack</span>
       </a>
 
-      <div class="flex gap-8">
-        <a href="/" class="relative font-medium text-[#2E3D32] hover:text-[#4CAF50]">Home</a>
-        <a href="/dashboard" class="relative font-medium text-[#2E3D32] hover:text-[#4CAF50]">Dashboard</a>
-        <a href="/meals" class="relative font-medium text-[#2E3D32] hover:text-[#4CAF50]">Meals</a>
-        <a href="/reports" class="relative font-medium text-[#2E3D32] hover:text-[#4CAF50]">Reports</a>
-        <a href="/profile" class="relative font-medium text-[#4CAF50] after:content-[''] after:absolute after:w-full after:h-[3px] after:bg-[#4CAF50] after:left-0 after:-bottom-[5px]">Profile</a>
+      <div class="hidden md:flex gap-8">
+        <a href="/" class="text-sm font-medium text-[#2E3D32] hover:text-[#4CAF50] no-underline">Home</a>
+        <a href="/dashboard" class="text-sm font-medium text-[#2E3D32] hover:text-[#4CAF50] no-underline">Dashboard</a>
+        <a href="/meals" class="text-sm font-medium text-[#2E3D32] hover:text-[#4CAF50] no-underline">Meals</a>
+        <a href="/reports" class="text-sm font-medium text-[#2E3D32] hover:text-[#4CAF50] no-underline">Reports</a>
+        <a href="/profile" class="text-sm font-medium text-[#4CAF50] relative after:content-[''] after:absolute after:w-full after:h-[3px] after:bg-[#4CAF50] after:left-0 after:-bottom-[5px] no-underline">Profile</a>
       </div>
 
-      <div class="flex items-center gap-4">
-        <div class="w-10 h-10 rounded-full bg-[#4CAF50] flex items-center justify-center text-white font-bold">
+      <div class="flex items-center gap-3">
+        <div class="w-10 h-10 rounded-full bg-[#4CAF50] flex items-center justify-center text-white font-bold text-sm">
           DE
         </div>
-        <span>Dounia Elgarrai</span>
+        <span class="hidden md:inline text-sm font-medium">Dounia Elgarrai</span>
       </div>
     </nav>
   </header>
 
-  <!-- Profile -->
+  <!-- Profile Content -->
   <div class="pt-24 px-[5%] pb-8 max-w-[1400px] mx-auto">
-    <div class="flex justify-between items-center mb-8 flex-col md:flex-row gap-4">
-      <h1 class="text-3xl font-bold text-[#2E3D32]">My Profile</h1>
-      <button class="px-6 py-3 rounded-full font-semibold text-white bg-[#FF9800] hover:bg-[#F57C00] hover:-translate-y-1 shadow-md hover:shadow-lg transition flex items-center gap-2">
+    <div class="flex justify-between items-center mb-6">
+      <h1 class="text-2xl font-bold text-[#2E3D32]">My Profile</h1>
+      <button class="px-5 py-2 rounded-full font-medium text-sm text-white bg-[#FF9800] hover:bg-[#F57C00] shadow-md transition flex items-center gap-2">
         <i class="fas fa-edit"></i> Edit Profile
       </button>
     </div>
 
-    <div class="grid grid-cols-1 md:grid-cols-[1fr_2fr] gap-8">
+    <div class="grid grid-cols-1 lg:grid-cols-[350px_1fr] gap-6">
       <!-- Left Column -->
-      <div>
-        <div class="bg-white rounded-xl p-8 shadow-md mb-8">
-          <div class="flex items-center gap-6 mb-6 flex-col md:flex-row">
-            <div class="w-24 h-24 rounded-full bg-[#4CAF50] flex items-center justify-center text-white text-4xl font-bold">DE</div>
+      <div class="space-y-6">
+        <!-- Profile Card -->
+        <div class="bg-white rounded-lg shadow-md p-6">
+          <div class="flex items-start gap-4 mb-4">
+            <div class="w-16 h-16 rounded-full bg-[#4CAF50] flex items-center justify-center text-white text-2xl font-bold flex-shrink-0">
+              DE
+            </div>
             <div>
-              <h2 class="text-xl font-semibold">Dounia Elgarrai</h2>
-              <p class="text-[#607D8B]">Joined January 2023</p>
-              <div class="inline-block bg-[#F9FBE7] px-4 py-2 rounded-full mt-2 border-l-4 border-[#4CAF50]">
-                <i class="fas fa-heartbeat"></i> Diabetes Management Profile
+              <h2 class="text-lg font-bold text-[#2E3D32]">Dounia Elgarrai</h2>
+              <p class="text-xs text-[#607D8B] mb-2">Joined January 2023</p>
+              <div class="inline-flex items-center gap-1 bg-[#E8F5E9] px-3 py-1 rounded-full text-xs text-[#4CAF50] border-l-4 border-[#4CAF50]">
+                <i class="fas fa-check text-[10px]"></i>
+                <span>Diabetes Management</span>
               </div>
-            </div>
-          </div>
-
-          <h3 class="flex items-center gap-2 text-xl font-semibold text-[#2E3D32] border-b-2 border-[#E0E0E0] pb-2 mb-6">
-            <i class="fas fa-user"></i> Personal Information
-          </h3>
-
-          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            <div>
-              <div class="text-sm text-[#607D8B] font-medium">Age</div>
-              <div class="text-lg font-semibold">21 years</div>
-            </div>
-            <div>
-              <div class="text-sm text-[#607D8B] font-medium">Height</div>
-              <div class="text-lg font-semibold">178 cm</div>
-            </div>
-            <div>
-              <div class="text-sm text-[#607D8B] font-medium">Weight</div>
-              <div class="text-lg font-semibold">50 kg</div>
-            </div>
-            <div>
-              <div class="text-sm text-[#607D8B] font-medium">BMI</div>
-              <div class="text-lg font-semibold">26.5</div>
-            </div>
-            <div>
-              <div class="text-sm text-[#607D8B] font-medium">Activity Level</div>
-              <div class="text-lg font-semibold">Moderately Active</div>
-            </div>
-            <div>
-              <div class="text-sm text-[#607D8B] font-medium">Diet Type</div>
-              <div class="text-lg font-semibold">Balanced</div>
             </div>
           </div>
         </div>
 
-        <!-- Goals Section -->
-        <div class="bg-white rounded-xl p-8 shadow-md mb-8">
-          <h3 class="flex items-center gap-2 text-xl font-semibold text-[#2E3D32] border-b-2 border-[#E0E0E0] pb-2 mb-6">
-            <i class="fas fa-bullseye"></i> Current Goals
+        <!-- Personal Information -->
+        <div class="bg-white rounded-lg shadow-md p-6">
+          <h3 class="flex items-center gap-2 text-base font-bold text-[#2E3D32] border-b-2 border-[#E0E0E0] pb-3 mb-4">
+            <i class="fas fa-user text-sm"></i>
+            <span>Personal Information</span>
           </h3>
 
-          <div class="divide-y divide-[#E0E0E0]">
-            <div class="flex justify-between items-center py-4">
-              <div>
-                <h4 class="font-semibold">Daily Calorie Target</h4>
-                <p class="text-sm text-[#607D8B]">Based on your weight loss goal</p>
-              </div>
-              <span class="font-bold text-[#FF9800]">2,000 cal</span>
+          <div class="grid grid-cols-2 gap-4">
+            <div>
+              <div class="text-xs text-[#607D8B] mb-1">Age</div>
+              <div class="text-sm font-semibold text-[#2E3D32]">21 years</div>
             </div>
-            <div class="flex justify-between items-center py-4">
-              <div>
-                <h4 class="font-semibold">Maximum Sodium</h4>
-                <p class="text-sm text-[#607D8B]">For blood pressure management</p>
-              </div>
-              <span class="font-bold text-[#FF9800]">2,300 mg</span>
+            <div>
+              <div class="text-xs text-[#607D8B] mb-1">Height</div>
+              <div class="text-sm font-semibold text-[#2E3D32]">165 cm</div>
             </div>
-            <div class="flex justify-between items-center py-4">
-              <div>
-                <h4 class="font-semibold">Carbohydrate Limit</h4>
-                <p class="text-sm text-[#607D8B]">For diabetes management</p>
-              </div>
-              <span class="font-bold text-[#FF9800]">230 g</span>
+            <div>
+              <div class="text-xs text-[#607D8B] mb-1">Weight</div>
+              <div class="text-sm font-semibold text-[#2E3D32]">58 kg</div>
             </div>
-            <div class="flex justify-between items-center py-4">
-              <div>
-                <h4 class="font-semibold">Protein Target</h4>
-                <p class="text-sm text-[#607D8B]">For muscle maintenance</p>
+            <div>
+              <div class="text-xs text-[#607D8B] mb-1">BMI</div>
+              <div class="text-sm font-semibold text-[#2E3D32]">26.5</div>
+            </div>
+            <div>
+              <div class="text-xs text-[#607D8B] mb-1">Activity Level</div>
+              <div class="text-sm font-semibold text-[#2E3D32]">Moderately Active</div>
+            </div>
+            <div>
+              <div class="text-xs text-[#607D8B] mb-1">Diet Type</div>
+              <div class="text-sm font-semibold text-[#2E3D32]">Balanced</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Current Goals -->
+        <div class="bg-white rounded-lg shadow-md p-6">
+          <h3 class="flex items-center gap-2 text-base font-bold text-[#2E3D32] border-b-2 border-[#E0E0E0] pb-3 mb-4">
+            <i class="fas fa-bullseye text-sm"></i>
+            <span>Current Goals</span>
+          </h3>
+
+          <div class="space-y-4">
+            <div>
+              <div class="flex justify-between items-start mb-1">
+                <span class="text-sm font-semibold text-[#2E3D32]">Daily Calorie Target</span>
+                <span class="text-sm font-bold text-[#FF9800]">2,000 cal</span>
               </div>
-              <span class="font-bold text-[#FF9800]">140 g</span>
+              <p class="text-xs text-[#607D8B]">Based on your weight loss goal</p>
+            </div>
+
+            <div>
+              <div class="flex justify-between items-start mb-1">
+                <span class="text-sm font-semibold text-[#2E3D32]">Maximum Sodium</span>
+                <span class="text-sm font-bold text-[#FF9800]">2,300 mg</span>
+              </div>
+              <p class="text-xs text-[#607D8B]">For blood pressure management</p>
+            </div>
+
+            <div>
+              <div class="flex justify-between items-start mb-1">
+                <span class="text-sm font-semibold text-[#2E3D32]">Carbohydrate Limit</span>
+                <span class="text-sm font-bold text-[#FF9800]">210 g</span>
+              </div>
+              <p class="text-xs text-[#607D8B]">For diabetes management</p>
+            </div>
+
+            <div>
+              <div class="flex justify-between items-start mb-1">
+                <span class="text-sm font-semibold text-[#2E3D32]">Protein Target</span>
+                <span class="text-sm font-bold text-[#FF9800]">140 g</span>
+              </div>
+              <p class="text-xs text-[#607D8B]">For Muscle maintenance</p>
             </div>
           </div>
         </div>
       </div>
 
       <!-- Right Column -->
-      <div>
-        <div class="bg-white rounded-xl p-8 shadow-md mb-8">
-          <h3 class="flex items-center gap-2 text-xl font-semibold text-[#2E3D32] border-b-2 border-[#E0E0E0] pb-2 mb-6">
-            <i class="fas fa-clipboard-list"></i> Profile Type
+      <div class="space-y-6">
+        <!-- Health Profile Type -->
+        <div class="bg-white rounded-lg shadow-md p-6">
+          <h3 class="flex items-center gap-2 text-base font-bold text-[#2E3D32] border-b-2 border-[#E0E0E0] pb-3 mb-3">
+            <i class="fas fa-clipboard-list text-sm"></i>
+            <span>Health Profile Type</span>
           </h3>
-          <div class="flex flex-wrap gap-4">
-            <span class="bg-[#E8F5E9] text-[#4CAF50] px-4 py-2 rounded-full font-medium">Diabetic</span>
-            <span class="bg-[#E3F2FD] text-[#2196F3] px-4 py-2 rounded-full font-medium">Weight Management</span>
-            <span class="bg-[#FFF3E0] text-[#FF9800] px-4 py-2 rounded-full font-medium">Low Sodium</span>
+          <p class="text-xs text-[#607D8B] mb-4">Select the profile that best matches your health goals and needs.</p>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 mb-4">
+            <!-- Diabetes Management - Selected -->
+            <div class="border-2 border-[#4CAF50] rounded-lg p-4 bg-[#E8F5E9] cursor-pointer">
+              <div class="w-10 h-10 bg-[#4CAF50] rounded-full flex items-center justify-center text-white mb-2">
+                <i class="fas fa-check text-sm"></i>
+              </div>
+              <h4 class="font-bold text-xs text-[#2E3D32] mb-1">Diabetes Management</h4>
+              <p class="text-[10px] text-[#607D8B] leading-tight">Focus on metabolism and blood sugar stability</p>
+            </div>
+
+            <!-- Hypertension -->
+            <div class="border-2 border-[#E0E0E0] rounded-lg p-4 cursor-pointer hover:border-[#FF9800] transition">
+              <div class="w-10 h-10 bg-[#FF9800] rounded-full flex items-center justify-center text-white mb-2">
+                <i class="fas fa-heart text-sm"></i>
+              </div>
+              <h4 class="font-bold text-xs text-[#2E3D32] mb-1">Hypertension</h4>
+              <p class="text-[10px] text-[#607D8B] leading-tight">Keeps sodium intake and blood pressure</p>
+            </div>
+
+            <!-- Athletic -->
+            <div class="border-2 border-[#E0E0E0] rounded-lg p-4 cursor-pointer hover:border-[#FFC107] transition">
+              <div class="w-10 h-10 bg-[#FFC107] rounded-full flex items-center justify-center text-white mb-2">
+                <i class="fas fa-bolt text-sm"></i>
+              </div>
+              <h4 class="font-bold text-xs text-[#2E3D32] mb-1">Athletic</h4>
+              <p class="text-[10px] text-[#607D8B] leading-tight">Optimize performance and recovery nutrition</p>
+            </div>
+
+            <!-- Weight Management -->
+            <div class="border-2 border-[#E0E0E0] rounded-lg p-4 cursor-pointer hover:border-[#9C27B0] transition">
+              <div class="w-10 h-10 bg-[#9C27B0] rounded-full flex items-center justify-center text-white mb-2">
+                <i class="fas fa-weight text-sm"></i>
+              </div>
+              <h4 class="font-bold text-xs text-[#2E3D32] mb-1">Weight Management</h4>
+              <p class="text-[10px] text-[#607D8B] leading-tight">Focus on calorie control and balanced nutrition</p>
+            </div>
+          </div>
+
+          <button class="w-full border-2 border-[#4CAF50] text-[#4CAF50] py-2 rounded-lg text-sm font-medium hover:bg-[#E8F5E9] transition flex items-center justify-center gap-2">
+            <i class="fas fa-sync-alt text-xs"></i>
+            <span>Update Profile Type</span>
+          </button>
+        </div>
+
+        <!-- Health History -->
+        <div class="bg-white rounded-lg shadow-md p-6">
+          <h3 class="flex items-center gap-2 text-base font-bold text-[#2E3D32] border-b-2 border-[#E0E0E0] pb-3 mb-4">
+            <i class="fas fa-chart-line text-sm"></i>
+            <span>Health History</span>
+          </h3>
+
+          <div class="flex gap-4 mb-4 border-b border-[#E0E0E0]">
+            <button class="px-3 py-2 text-xs font-medium text-[#4CAF50] border-b-2 border-[#4CAF50] -mb-[2px]">Weight Trend</button>
+            <button class="px-3 py-2 text-xs font-medium text-[#607D8B] hover:text-[#2E3D32]">Blood Glucose</button>
+            <button class="px-3 py-2 text-xs font-medium text-[#607D8B] hover:text-[#2E3D32]">Blood Pressure</button>
+          </div>
+
+          <div class="mb-3">
+            <p class="text-xs text-[#607D8B] mb-2">Weight Trend Over Time</p>
+            <div class="flex gap-2 text-[10px]">
+              <span class="inline-flex items-center gap-1 px-2 py-1 bg-[#E8F5E9] text-[#4CAF50] rounded">
+                <span class="w-2 h-2 bg-[#4CAF50] rounded-full"></span>
+                Weight (kg)
+              </span>
+              <span class="inline-flex items-center gap-1 px-2 py-1 bg-[#F5F5F5] text-[#607D8B] rounded">
+                <span class="w-2 h-2 bg-[#9E9E9E] rounded-full"></span>
+                Target (kg)
+              </span>
+            </div>
+          </div>
+
+          <div class="h-64">
+            <canvas id="weightChart"></canvas>
           </div>
         </div>
 
-        <div class="bg-white rounded-xl p-8 shadow-md mb-8">
-          <h3 class="flex items-center gap-2 text-xl font-semibold text-[#2E3D32] border-b-2 border-[#E0E0E0] pb-2 mb-6">
-            <i class="fas fa-history"></i> History
+        <!-- Nutrition Settings -->
+        <div class="bg-white rounded-lg shadow-md p-6">
+          <h3 class="flex items-center gap-2 text-base font-bold text-[#2E3D32] border-b-2 border-[#E0E0E0] pb-3 mb-4">
+            <i class="fas fa-cog text-sm"></i>
+            <span>Nutrition Settings</span>
           </h3>
-          <ul class="space-y-4">
-            <li class="flex justify-between">
-              <span>Weight updated</span>
-              <span class="text-[#607D8B] text-sm">2 days ago</span>
-            </li>
-            <li class="flex justify-between">
-              <span>New meal plan created</span>
-              <span class="text-[#607D8B] text-sm">5 days ago</span>
-            </li>
-            <li class="flex justify-between">
-              <span>Blood sugar logged</span>
-              <span class="text-[#607D8B] text-sm">1 week ago</span>
-            </li>
-          </ul>
-        </div>
 
-        <div class="bg-white rounded-xl p-8 shadow-md mb-8">
-          <h3 class="flex items-center gap-2 text-xl font-semibold text-[#2E3D32] border-b-2 border-[#E0E0E0] pb-2 mb-6">
-            <i class="fas fa-cog"></i> Settings
-          </h3>
-          <ul class="space-y-4">
-            <li><a href="#" class="text-[#4CAF50] hover:underline">Change Password</a></li>
-            <li><a href="#" class="text-[#4CAF50] hover:underline">Notification Preferences</a></li>
-            <li><a href="#" class="text-[#4CAF50] hover:underline">Privacy Settings</a></li>
-          </ul>
+          <div class="space-y-5">
+            <div>
+              <h4 class="font-bold text-sm text-[#2E3D32] mb-3">Diabetes Management Settings</h4>
+
+              <div class="flex justify-between items-center mb-4">
+                <div class="flex-1">
+                  <p class="font-semibold text-xs text-[#2E3D32] mb-1">Maximum Daily Carbs</p>
+                  <p class="text-[10px] text-[#607D8B]">Set your carbohydrate limit for blood sugar control</p>
+                </div>
+                <div class="flex items-center gap-2 ml-4">
+                  <input type="number" value="250" class="w-14 px-2 py-1 border border-[#E0E0E0] rounded text-xs text-right focus:outline-none focus:border-[#4CAF50]">
+                  <span class="text-xs text-[#607D8B]">grams</span>
+                </div>
+              </div>
+
+              <div class="flex justify-between items-center">
+                <div class="flex-1">
+                  <p class="font-semibold text-xs text-[#2E3D32] mb-1">Blood Sugar Alerts</p>
+                  <p class="text-[10px] text-[#607D8B]">Receive notifications when meals may affect glucose levels</p>
+                </div>
+                <label class="relative inline-flex items-center cursor-pointer ml-4">
+                  <input type="checkbox" checked class="sr-only peer">
+                  <div class="w-11 h-6 bg-gray-200 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-[#4CAF50]"></div>
+                </label>
+              </div>
+            </div>
+
+            <div>
+              <h4 class="font-bold text-sm text-[#2E3D32] mb-3">General Nutrition Targets</h4>
+
+              <div class="space-y-4">
+                <div class="flex justify-between items-center">
+                  <div class="flex-1">
+                    <p class="font-semibold text-xs text-[#2E3D32] mb-1">Daily Protein Target</p>
+                    <p class="text-[10px] text-[#607D8B]">Based on your activity level and goals</p>
+                  </div>
+                  <div class="flex items-center gap-2 ml-4">
+                    <input type="number" value="140" class="w-14 px-2 py-1 border border-[#E0E0E0] rounded text-xs text-right focus:outline-none focus:border-[#4CAF50]">
+                    <span class="text-xs text-[#607D8B]">grams</span>
+                  </div>
+                </div>
+
+                <div class="flex justify-between items-center">
+                  <div class="flex-1">
+                    <p class="font-semibold text-xs text-[#2E3D32] mb-1">Daily Fat Limit</p>
+                    <p class="text-[10px] text-[#607D8B]">Set your total daily fat intake</p>
+                  </div>
+                  <div class="flex items-center gap-2 ml-4">
+                    <input type="number" value="70" class="w-14 px-2 py-1 border border-[#E0E0E0] rounded text-xs text-right focus:outline-none focus:border-[#4CAF50]">
+                    <span class="text-xs text-[#607D8B]">grams</span>
+                  </div>
+                </div>
+
+                <div class="flex justify-between items-center">
+                  <div class="flex-1">
+                    <p class="font-semibold text-xs text-[#2E3D32] mb-1">Sodium Limit</p>
+                    <p class="text-[10px] text-[#607D8B]">Important for blood pressure management</p>
+                  </div>
+                  <div class="flex items-center gap-2 ml-4">
+                    <input type="number" value="2300" class="w-14 px-2 py-1 border border-[#E0E0E0] rounded text-xs text-right focus:outline-none focus:border-[#4CAF50]">
+                    <span class="text-xs text-[#607D8B]">mg</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <button class="w-full bg-[#FF9800] text-white py-3 rounded-lg font-semibold text-sm hover:bg-[#F57C00] transition mt-6 flex items-center justify-center gap-2">
+            <i class="fas fa-save"></i>
+            <span>Save All Changes</span>
+          </button>
         </div>
       </div>
     </div>
   </div>
 
   <!-- Footer -->
-  <footer class="bg-gray-900 text-gray-300 mt-10">
-    <div
-      class="grid sm:grid-cols-2 md:grid-cols-4 gap-6 max-w-6xl mx-auto px-6 py-10"
-    >
+  <footer class="bg-gray-900 text-gray-300 mt-12">
+    <div class="grid sm:grid-cols-2 md:grid-cols-4 gap-8 max-w-6xl mx-auto px-6 py-10">
       <div>
-        <h3 class="font-semibold text-lg mb-4">NutriTrack</h3>
-        <p>Your intelligent nutrition companion for optimal health.</p>
-        <div class="flex gap-3 mt-4">
-          <a
-            href="#"
-            class="w-10 h-10 flex items-center justify-center bg-gray-700 rounded-full hover:bg-orange-500"
-            ><i class="fab fa-facebook-f"></i
-          ></a>
-          <a
-            href="#"
-            class="w-10 h-10 flex items-center justify-center bg-gray-700 rounded-full hover:bg-orange-500"
-            ><i class="fab fa-twitter"></i
-          ></a>
+        <h3 class="font-semibold text-lg mb-4 text-white">NutriTrack</h3>
+        <p class="text-sm mb-4">Your intelligent nutrition companion for optimal health.</p>
+        <div class="flex gap-3">
+          <a href="#" class="w-10 h-10 flex items-center justify-center bg-gray-700 rounded-full hover:bg-[#FF9800] transition">
+            <i class="fab fa-facebook-f"></i>
+          </a>
+          <a href="#" class="w-10 h-10 flex items-center justify-center bg-gray-700 rounded-full hover:bg-[#FF9800] transition">
+            <i class="fab fa-twitter"></i>
+          </a>
+          <a href="#" class="w-10 h-10 flex items-center justify-center bg-gray-700 rounded-full hover:bg-[#FF9800] transition">
+            <i class="fab fa-instagram"></i>
+          </a>
+          <a href="#" class="w-10 h-10 flex items-center justify-center bg-gray-700 rounded-full hover:bg-[#FF9800] transition">
+            <i class="fab fa-linkedin-in"></i>
+          </a>
         </div>
       </div>
+
       <div>
-        <h3 class="font-semibold text-lg mb-4">Quick Links</h3>
-        <ul class="space-y-2">
-          <li><a href="index.html" class="hover:text-white">Home</a></li>
-          <li><a href="dashboard.html" class="hover:text-white">Dashboard</a></li>
+        <h3 class="font-semibold text-lg mb-4 text-white">Quick Links</h3>
+        <ul class="space-y-2 text-sm">
+          <li><a href="/" class="hover:text-white transition">Home</a></li>
+          <li><a href="/dashboard" class="hover:text-white transition">Dashboard</a></li>
+          <li><a href="/meals" class="hover:text-white transition">Meal Logging</a></li>
+          <li><a href="/reports" class="hover:text-white transition">Reports</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h3 class="font-semibold text-lg mb-4 text-white">Legal</h3>
+        <ul class="space-y-2 text-sm">
+          <li><a href="#" class="hover:text-white transition">Privacy Policy</a></li>
+          <li><a href="#" class="hover:text-white transition">Terms of Service</a></li>
+          <li><a href="#" class="hover:text-white transition">Cookie Policy</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h3 class="font-semibold text-lg mb-4 text-white">Contact</h3>
+        <ul class="space-y-2 text-sm">
+          <li class="flex items-center gap-2">
+            <i class="fas fa-envelope"></i>
+            <span>support@nutritrack.com</span>
+          </li>
+          <li class="flex items-center gap-2">
+            <i class="fas fa-phone"></i>
+            <span>+1 (555) 123-4567</span>
+          </li>
+          <li class="flex items-center gap-2">
+            <i class="fas fa-map-marker-alt"></i>
+            <span>San Francisco, CA</span>
+          </li>
         </ul>
       </div>
     </div>
+
     <div class="text-center border-t border-gray-700 py-4 text-sm text-gray-500">
       &copy; 2024 NutriTrack. All rights reserved.
     </div>
   </footer>
 
-  <!-- Modal -->
-  <div id="editModal" class="hidden fixed inset-0 bg-black/50 justify-center items-center z-50">
-    <div class="bg-white p-8 rounded-xl shadow-lg w-[90%] max-w-lg">
-      <h2 class="text-2xl font-bold mb-6">Edit Profile</h2>
-      <form class="space-y-4">
-        <div>
-          <label class="block text-sm font-medium text-[#607D8B] mb-1">Name</label>
-          <input type="text" class="w-full border border-[#E0E0E0] rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-[#4CAF50]">
+  <!-- Edit Profile Modal -->
+  <div id="editModal" class="hidden fixed inset-0 bg-black/50 z-50 flex items-center justify-center p-4">
+    <div class="bg-white rounded-xl shadow-2xl w-full max-w-2xl max-h-[90vh] overflow-y-auto">
+      <div class="sticky top-0 bg-white border-b border-[#E0E0E0] px-6 py-4 flex justify-between items-center">
+        <h2 class="text-xl font-bold text-[#2E3D32]">Edit Personal Information</h2>
+        <button id="closeModal" class="text-[#607D8B] hover:text-[#2E3D32] text-2xl leading-none">
+          <i class="fas fa-times"></i>
+        </button>
+      </div>
+
+      <form id="editForm" class="p-6 space-y-6">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <!-- Name -->
+          <div class="md:col-span-2">
+            <label class="block text-sm font-semibold text-[#2E3D32] mb-2">
+              <i class="fas fa-user text-[#4CAF50] mr-1"></i> Full Name
+            </label>
+            <input type="text" id="name" value="Dounia Elgarrai" 
+              class="w-full px-4 py-2 border-2 border-[#E0E0E0] rounded-lg focus:outline-none focus:border-[#4CAF50] transition">
+          </div>
+
+          <!-- Age -->
+          <div>
+            <label class="block text-sm font-semibold text-[#2E3D32] mb-2">
+              <i class="fas fa-birthday-cake text-[#4CAF50] mr-1"></i> Age (years)
+            </label>
+            <input type="number" id="age" value="21" min="1" max="120"
+              class="w-full px-4 py-2 border-2 border-[#E0E0E0] rounded-lg focus:outline-none focus:border-[#4CAF50] transition">
+          </div>
+
+          <!-- Height -->
+          <div>
+            <label class="block text-sm font-semibold text-[#2E3D32] mb-2">
+              <i class="fas fa-ruler-vertical text-[#4CAF50] mr-1"></i> Height (cm)
+            </label>
+            <input type="number" id="height" value="165" min="50" max="250"
+              class="w-full px-4 py-2 border-2 border-[#E0E0E0] rounded-lg focus:outline-none focus:border-[#4CAF50] transition">
+          </div>
+
+          <!-- Weight -->
+          <div>
+            <label class="block text-sm font-semibold text-[#2E3D32] mb-2">
+              <i class="fas fa-weight text-[#4CAF50] mr-1"></i> Weight (kg)
+            </label>
+            <input type="number" id="weight" value="58" min="20" max="300" step="0.1"
+              class="w-full px-4 py-2 border-2 border-[#E0E0E0] rounded-lg focus:outline-none focus:border-[#4CAF50] transition">
+          </div>
+
+          <!-- BMI (Read-only, calculated) -->
+          <div>
+            <label class="block text-sm font-semibold text-[#2E3D32] mb-2">
+              <i class="fas fa-calculator text-[#4CAF50] mr-1"></i> BMI
+            </label>
+            <input type="text" id="bmi" value="26.5" readonly
+              class="w-full px-4 py-2 border-2 border-[#E0E0E0] rounded-lg bg-gray-100 cursor-not-allowed">
+          </div>
+
+          <!-- Activity Level -->
+          <div>
+            <label class="block text-sm font-semibold text-[#2E3D32] mb-2">
+              <i class="fas fa-running text-[#4CAF50] mr-1"></i> Activity Level
+            </label>
+            <select id="activityLevel" 
+              class="w-full px-4 py-2 border-2 border-[#E0E0E0] rounded-lg focus:outline-none focus:border-[#4CAF50] transition">
+              <option value="Sedentary">Sedentary</option>
+              <option value="Lightly Active">Lightly Active</option>
+              <option value="Moderately Active" selected>Moderately Active</option>
+              <option value="Very Active">Very Active</option>
+              <option value="Extremely Active">Extremely Active</option>
+            </select>
+          </div>
+
+          <!-- Diet Type -->
+          <div>
+            <label class="block text-sm font-semibold text-[#2E3D32] mb-2">
+              <i class="fas fa-utensils text-[#4CAF50] mr-1"></i> Diet Type
+            </label>
+            <select id="dietType" 
+              class="w-full px-4 py-2 border-2 border-[#E0E0E0] rounded-lg focus:outline-none focus:border-[#4CAF50] transition">
+              <option value="Balanced" selected>Balanced</option>
+              <option value="Vegetarian">Vegetarian</option>
+              <option value="Vegan">Vegan</option>
+              <option value="Keto">Keto</option>
+              <option value="Paleo">Paleo</option>
+              <option value="Low-Carb">Low-Carb</option>
+              <option value="Mediterranean">Mediterranean</option>
+            </select>
+          </div>
         </div>
-        <div>
-          <label class="block text-sm font-medium text-[#607D8B] mb-1">Email</label>
-          <input type="email" class="w-full border border-[#E0E0E0] rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-[#4CAF50]">
-        </div>
-        <div>
-          <label class="block text-sm font-medium text-[#607D8B] mb-1">Password</label>
-          <input type="password" class="w-full border border-[#E0E0E0] rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-[#4CAF50]">
-        </div>
-        <div class="flex justify-end gap-4">
-          <button type="button" class="px-6 py-2 rounded-lg bg-[#E0E0E0] hover:bg-[#BDBDBD]">Cancel</button>
-          <button type="submit" class="px-6 py-2 rounded-lg bg-[#4CAF50] text-white hover:bg-[#43A047]">Save</button>
+
+        <!-- Buttons -->
+        <div class="flex gap-3 pt-4 border-t border-[#E0E0E0]">
+          <button type="button" id="cancelBtn" 
+            class="flex-1 px-6 py-3 rounded-lg border-2 border-[#E0E0E0] text-[#607D8B] font-semibold hover:bg-gray-50 transition">
+            Cancel
+          </button>
+          <button type="submit" 
+            class="flex-1 px-6 py-3 rounded-lg bg-[#4CAF50] text-white font-semibold hover:bg-[#43A047] shadow-md hover:shadow-lg transition flex items-center justify-center gap-2">
+            <i class="fas fa-save"></i>
+            Save Changes
+          </button>
         </div>
       </form>
     </div>
   </div>
 
+  <script>
+    // Weight Chart
+    const ctx = document.getElementById('weightChart').getContext('2d');
+    const weightChart = new Chart(ctx, {
+      type: 'line',
+      data: {
+        labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct'],
+        datasets: [{
+          label: 'Weight (kg)',
+          data: [89.8, 88.0, 85.5, 82.0, 78.5, 75.0, 72.0, 68.5, 65.0, 62.0],
+          borderColor: '#4CAF50',
+          backgroundColor: 'rgba(76, 175, 80, 0.1)',
+          fill: true,
+          tension: 0.4,
+          pointRadius: 0,
+          pointHoverRadius: 4,
+          borderWidth: 2
+        }, {
+          label: 'Target (kg)',
+          data: [89.8, 88.0, 85.5, 82.0, 78.5, 75.0, 72.0, 68.5, 65.0, 60.0],
+          borderColor: '#9E9E9E',
+          borderDash: [5, 5],
+          fill: false,
+          tension: 0.4,
+          pointRadius: 0,
+          pointHoverRadius: 4,
+          borderWidth: 2
+        }]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: {
+          legend: {
+            display: false
+          },
+          tooltip: {
+            mode: 'index',
+            intersect: false,
+          }
+        },
+        scales: {
+          y: {
+            beginAtZero: false,
+            min: 55,
+            max: 92,
+            ticks: {
+              stepSize: 2,
+              font: {
+                size: 10
+              }
+            },
+            grid: {
+              color: '#F5F5F5'
+            }
+          },
+          x: {
+            grid: {
+              display: false
+            },
+            ticks: {
+              font: {
+                size: 10
+              }
+            }
+          }
+        },
+        interaction: {
+          mode: 'nearest',
+          axis: 'x',
+          intersect: false
+        }
+      }
+    });
 
-    <script>
-        
-        document.addEventListener('DOMContentLoaded', function() {
-            const ctx = document.getElementById('healthChart').getContext('2d');
-            const healthChart = new Chart(ctx, {
-                type: 'line',
-                data: {
-                    labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct'],
-                    datasets: [{
-                        label: 'Weight (kg)',
-                        data: [88, 87, 86, 85.5, 85, 84.5, 84.2, 84, 84, 84],
-                        borderColor: '#4CAF50',
-                        backgroundColor: 'rgba(76, 175, 80, 0.1)',
-                        tension: 0.3,
-                        fill: true
-                    }]
-                },
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: false,
-                    plugins: {
-                        legend: {
-                            position: 'top',
-                        },
-                        title: {
-                            display: true,
-                            text: 'Weight Trend Over Time'
-                        }
-                    },
-                    scales: {
-                        y: {
-                            beginAtZero: false,
-                            title: {
-                                display: true,
-                                text: 'Weight (kg)'
-                            }
-                        }
-                    }
-                }
-            });
+    // Modal functionality
+    const editModal = document.getElementById('editModal');
+    const editBtn = document.querySelector('button[class*="Edit Profile"]');
+    const closeModalBtn = document.getElementById('closeModal');
+    const cancelBtn = document.getElementById('cancelBtn');
+    const editForm = document.getElementById('editForm');
 
-            
-            const tabs = document.querySelectorAll('.history-tab');
-            tabs.forEach(tab => {
-                tab.addEventListener('click', function() {
-                    
-                    tabs.forEach(t => t.classList.remove('active'));
-                    
-                    this.classList.add('active');
-                    
-                   
-                    const chartTitle = healthChart.options.plugins.title.text;
-                    const newTitle = this.getAttribute('data-tab').replace('-', ' ');
-                    healthChart.options.plugins.title.text = newTitle.charAt(0).toUpperCase() + newTitle.slice(1) + ' Over Time';
-                    healthChart.update();
-                });
-            });
-
-            
-            const profileOptions = document.querySelectorAll('.profile-option');
-            profileOptions.forEach(option => {
-                option.addEventListener('click', function() {
-                    
-                    profileOptions.forEach(o => o.classList.remove('active'));
-                    
-                    this.classList.add('active');
-                    
-                    this.querySelector('input').checked = true;
-                });
-            });
-
-            // Modal functionality
-            const editProfileBtn = document.getElementById('editProfileBtn');
-            const editProfileModal = document.getElementById('editProfileModal');
-            const closeModal = document.getElementById('closeModal');
-            const editProfileForm = document.getElementById('editProfileForm');
-
-            editProfileBtn.addEventListener('click', function() {
-                editProfileModal.style.display = 'flex';
-            });
-
-            closeModal.addEventListener('click', function() {
-                editProfileModal.style.display = 'none';
-            });
-
-           
-            window.addEventListener('click', function(event) {
-                if (event.target === editProfileModal) {
-                    editProfileModal.style.display = 'none';
-                }
-            });
-
-           
-            editProfileForm.addEventListener('submit', function(e) {
-                e.preventDefault();
-                
-                alert('Profile updated successfully!');
-                editProfileModal.style.display = 'none';
-            });
+    // Get all Edit Profile buttons
+    const editProfileBtns = document.querySelectorAll('button');
+    editProfileBtns.forEach(btn => {
+      if (btn.textContent.includes('Edit Profile')) {
+        btn.addEventListener('click', () => {
+          editModal.classList.remove('hidden');
+          document.body.style.overflow = 'hidden';
         });
-    </script>
+      }
+    });
+
+    // Close modal
+    function closeModal() {
+      editModal.classList.add('hidden');
+      document.body.style.overflow = 'auto';
+    }
+
+    closeModalBtn.addEventListener('click', closeModal);
+    cancelBtn.addEventListener('click', closeModal);
+
+    // Close on backdrop click
+    editModal.addEventListener('click', (e) => {
+      if (e.target === editModal) {
+        closeModal();
+      }
+    });
+
+    // Calculate BMI when height or weight changes
+    function calculateBMI() {
+      const height = parseFloat(document.getElementById('height').value);
+      const weight = parseFloat(document.getElementById('weight').value);
+      
+      if (height > 0 && weight > 0) {
+        const heightInMeters = height / 100;
+        const bmi = (weight / (heightInMeters * heightInMeters)).toFixed(1);
+        document.getElementById('bmi').value = bmi;
+      }
+    }
+
+    document.getElementById('height').addEventListener('input', calculateBMI);
+    document.getElementById('weight').addEventListener('input', calculateBMI);
+
+    // Form submission
+    editForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      
+      // Get form values
+      const name = document.getElementById('name').value;
+      const age = document.getElementById('age').value;
+      const height = document.getElementById('height').value;
+      const weight = document.getElementById('weight').value;
+      const bmi = document.getElementById('bmi').value;
+      const activityLevel = document.getElementById('activityLevel').value;
+      const dietType = document.getElementById('dietType').value;
+
+      // Update the page with new values
+      document.querySelectorAll('h2').forEach(el => {
+        if (el.textContent === 'Dounia Elgarrai') {
+          el.textContent = name;
+        }
+      });
+
+      // Update personal information in the card
+      const personalInfoDiv = document.querySelector('.grid.grid-cols-2.gap-4');
+      if (personalInfoDiv) {
+        const values = personalInfoDiv.querySelectorAll('.text-sm.font-semibold');
+        values[0].textContent = age + ' years';
+        values[1].textContent = height + ' cm';
+        values[2].textContent = weight + ' kg';
+        values[3].textContent = bmi;
+        values[4].textContent = activityLevel;
+        values[5].textContent = dietType;
+      }
+
+      // Show success message
+      const successMsg = document.createElement('div');
+      successMsg.className = 'fixed top-20 right-5 bg-[#4CAF50] text-white px-6 py-3 rounded-lg shadow-lg z-50 flex items-center gap-2';
+      successMsg.innerHTML = '<i class="fas fa-check-circle"></i> Profile updated successfully!';
+      document.body.appendChild(successMsg);
+
+      setTimeout(() => {
+        successMsg.remove();
+      }, 3000);
+
+      
+      closeModal();
+    });
+  </script>
 
 <%- include("../partials/footer") %>
 
