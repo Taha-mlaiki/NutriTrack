@@ -4,17 +4,26 @@ export const showLogin = (req, res) => {
   res.render("auth/login", { error: null });
 };
 
-export const handleLogin = async (req, res, next) => {
+export const handleLogin = async (req, res) => {
   try {
     const { email, password } = req.body;
     const user = await authService.login(email, password);
+    if (!req.session) {
+      req.session = {};
+    }
     req.session.user = user;
-    res.redirect("/meals");
+
+    return res.json({
+      success: true,
+      message: "Connexion réussie",
+    });
   } catch (err) {
-    res.render("auth/login", { error: err.message });
+    return res.status(401).json({
+      success: false,
+      message: err.message || "Email ou mot de passe incorrect.",
+    });
   }
 };
-
 export const showRegister = (req, res) => {
   res.render("auth/register", { error: null });
 };

@@ -320,15 +320,13 @@
         const res = await axios.post("/auth/register", formData);
 
         if (res.data.success) {
-          showToast("Inscription réussie 🎉", "success");
+          showToast("Inscription réussie", "success");
           setTimeout(() => {
             window.location.href = "/auth/login";
           }, 1500);
-        } else {
-          showToast(res.data.message, "error");
         }
       } catch (err) {
-        showToast("Une erreur est survenue", "error");
+        showToast(err.response.data.message, "error");
       }
     });
   });
