@@ -1,322 +1,542 @@
 <%- include("../partials/header") %>
 
-<link 
-  rel="stylesheet" 
+<link
+  rel="stylesheet"
   href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
->
+/>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
-
-<body class="bg-[#F9FBE7] text-[#2E3D32] leading-relaxed overflow-x-hidden font-sans">
+<body
+  class="bg-[#F9FBE7] text-[#2E3D32] leading-relaxed overflow-x-hidden font-sans"
+>
   <!-- Header -->
-    <header class="bg-white/95 backdrop-blur-md shadow-soft fixed w-full z-50">
-        <nav class="navbar flex justify-between items-center py-4 px-[5%] max-w-[1400px] mx-auto">
-            <div class="logo flex items-center gap-2 text-2xl font-bold text-primary-orange">
-                <i class="fas fa-apple-alt text-primary-orange"></i>
-                <span>NutriTrack</span>
-            </div>
-            <div class="color-indicators flex justify-center gap-2 my-4">
-                <div class="color-indicator w-5 h-5 rounded-full bg-primary-green"></div>
-                <div class="color-indicator w-5 h-5 rounded-full bg-primary-orange"></div>
-                <div class="color-indicator w-5 h-5 rounded-full bg-primary-yellow"></div>
-            </div>
-            <div class="nav-links flex gap-8">
-                <a href="#features" class="nav-link text-dark font-medium relative transition-colors duration-300 hover:text-primary-green">Features</a>
-                <a href="#how-it-works" class="nav-link text-dark font-medium relative transition-colors duration-300 hover:text-primary-green">How It Works</a>
-                <a href="#profiles" class="nav-link text-dark font-medium relative transition-colors duration-300 hover:text-primary-green">Profiles</a>
-                <a href="#testimonials" class="nav-link text-dark font-medium relative transition-colors duration-300 hover:text-primary-green">Testimonials</a>
-            </div>
-            <div class="auth-buttons flex gap-4">
-                <button class="btn btn-outline bg-transparent border-2 border-primary-green text-primary-green px-6 py-2 rounded-full font-semibold cursor-pointer transition-all duration-300 hover:-translate-y-1 hover:shadow-medium">Login</button>
-                <button class="btn btn-primary bg-primary-orange text-white px-6 py-2 rounded-full font-semibold cursor-pointer transition-all duration-300 hover:-translate-y-1 hover:shadow-medium">Sign Up</button>
-            </div>
-        </nav>
-    </header>
+  <%- include('../partials/navbar') %>
 
-    <!-- Hero Section -->
-    <section class="hero pt-40 pb-20 px-[5%] max-w-[1400px] mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 items-center min-h-screen">
-        <div class="hero-content">
-            <h1 class="text-4xl md:text-5xl leading-tight mb-6 text-dark">Your Health, Simplified with <span class="text-primary-green">Intelligent Nutrition</span> Tracking</h1>
-            <p class="text-xl text-gray mb-8">NutriTrack uses advanced AI to analyze your meals, track your progress, and provide personalized recommendations based on your health goals.</p>
-            <div class="hero-buttons flex gap-4 mb-8">
-                <button class="btn btn-primary bg-primary-orange text-white px-6 py-3 rounded-full font-semibold cursor-pointer transition-all duration-300 hover:-translate-y-1 hover:shadow-medium">Start Free Trial</button>
-                <button class="btn btn-outline bg-transparent border-2 border-primary-green text-primary-green px-6 py-3 rounded-full font-semibold cursor-pointer transition-all duration-300 hover:-translate-y-1 hover:shadow-medium">Watch Demo</button>
-            </div>
-            <div class="hero-stats flex gap-8 mt-8">
-                <div class="stat text-center p-4 rounded-xl bg-white shadow-medium">
-                    <div class="stat-number text-3xl font-bold text-primary-orange">50K+</div>
-                    <div>Active Users</div>
-                </div>
-                <div class="stat text-center p-4 rounded-xl bg-white shadow-medium">
-                    <div class="stat-number text-3xl font-bold text-primary-orange">98%</div>
-                    <div>Accuracy</div>
-                </div>
-                <div class="stat text-center p-4 rounded-xl bg-white shadow-medium">
-                    <div class="stat-number text-3xl font-bold text-primary-orange">4.9★</div>
-                    <div>User Rating</div>
-                </div>
-            </div>
+  <!-- Hero Section -->
+  <section
+    class="hero pt-40 pb-20 px-[5%] max-w-[1400px] mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 items-center min-h-screen"
+  >
+    <div class="hero-content">
+      <h1 class="text-4xl md:text-5xl leading-tight mb-6 text-dark">
+        Your Health, Simplified with
+        <span class="text-primary-green">Intelligent Nutrition</span> Tracking
+      </h1>
+      <p class="text-xl text-gray mb-8">
+        NutriTrack uses advanced AI to analyze your meals, track your progress,
+        and provide personalized recommendations based on your health goals.
+      </p>
+      <div class="hero-buttons flex gap-4 mb-8">
+        <button
+          class="btn btn-primary bg-primary-orange text-white px-6 py-3 rounded-full font-semibold cursor-pointer transition-all duration-300 hover:-translate-y-1 hover:shadow-medium"
+        >
+          Start Free Trial
+        </button>
+        <button
+          class="btn btn-outline bg-transparent border-2 border-primary-green text-primary-green px-6 py-3 rounded-full font-semibold cursor-pointer transition-all duration-300 hover:-translate-y-1 hover:shadow-medium"
+        >
+          Watch Demo
+        </button>
+      </div>
+      <div class="hero-stats flex gap-8 mt-8">
+        <div class="stat text-center p-4 rounded-xl bg-white shadow-medium">
+          <div class="stat-number text-3xl font-bold text-primary-orange">
+            50K+
+          </div>
+          <div>Active Users</div>
         </div>
-        <div class="hero-image relative text-center">
-            <div class="image-container relative rounded-2xl overflow-hidden shadow-large">
-                <img src="https://images.unsplash.com/photo-1490818387583-1baba5e638af?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Healthy food selection" class="w-full h-auto block">
-                <div class="image-badge absolute top-5 right-5 bg-primary-yellow text-white py-2 px-4 rounded-full font-semibold">AI-Powered Analysis</div>
-            </div>
+        <div class="stat text-center p-4 rounded-xl bg-white shadow-medium">
+          <div class="stat-number text-3xl font-bold text-primary-orange">
+            98%
+          </div>
+          <div>Accuracy</div>
         </div>
-    </section>
+        <div class="stat text-center p-4 rounded-xl bg-white shadow-medium">
+          <div class="stat-number text-3xl font-bold text-primary-orange">
+            4.9★
+          </div>
+          <div>User Rating</div>
+        </div>
+      </div>
+    </div>
+    <div class="hero-image relative text-center">
+      <div
+        class="image-container relative rounded-2xl overflow-hidden shadow-large"
+      >
+        <img
+          src="https://images.unsplash.com/photo-1490818387583-1baba5e638af?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+          alt="Healthy food selection"
+          class="w-full h-auto block"
+        />
+        <div
+          class="image-badge absolute top-5 right-5 bg-primary-yellow text-white py-2 px-4 rounded-full font-semibold"
+        >
+          AI-Powered Analysis
+        </div>
+      </div>
+    </div>
+  </section>
 
-    <!-- Features Section -->
-    <section class="features py-24 px-[5%] bg-white rounded-t-3xl mt-8" id="features">
-        <div class="section-title text-center mb-16">
-            <h2 class="text-4xl text-dark mb-4">Smart Features for Your Health Journey</h2>
-            <p class="text-gray max-w-2xl mx-auto">Discover how NutriTrack revolutionizes your approach to nutrition</p>
+  <!-- Features Section -->
+  <section
+    class="features py-24 px-[5%] bg-white rounded-t-3xl mt-8"
+    id="features"
+  >
+    <div class="section-title text-center mb-16">
+      <h2 class="text-4xl text-dark mb-4">
+        Smart Features for Your Health Journey
+      </h2>
+      <p class="text-gray max-w-2xl mx-auto">
+        Discover how NutriTrack revolutionizes your approach to nutrition
+      </p>
+    </div>
+    <div
+      class="features-grid grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto"
+    >
+      <div
+        class="feature-card bg-light p-8 rounded-2xl text-center transition-transform duration-300 shadow-medium relative overflow-hidden border-t-4 border-primary-green animate-on-scroll"
+      >
+        <div
+          class="feature-icon w-20 h-20 bg-light-gray rounded-full flex items-center justify-center mx-auto mb-6 text-3xl text-primary-green"
+        >
+          <i class="fas fa-camera"></i>
         </div>
-        <div class="features-grid grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
-            <div class="feature-card bg-light p-8 rounded-2xl text-center transition-transform duration-300 shadow-medium relative overflow-hidden border-t-4 border-primary-green animate-on-scroll">
-                <div class="feature-icon w-20 h-20 bg-light-gray rounded-full flex items-center justify-center mx-auto mb-6 text-3xl text-primary-green">
-                    <i class="fas fa-camera"></i>
-                </div>
-                <h3 class="text-2xl mb-4 text-dark">Image Analysis</h3>
-                <p class="mb-4">Simply take a photo of your meal and our AI automatically analyzes the food items and nutrients.</p>
-                <div class="step-image w-full h-48 rounded-xl overflow-hidden my-4">
-                    <img src="https://images.unsplash.com/photo-1555939594-58d7cb561ad1?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Food photography" class="w-full h-full object-cover">
-                </div>
-            </div>
-            <div class="feature-card bg-light p-8 rounded-2xl text-center transition-transform duration-300 shadow-medium relative overflow-hidden border-t-4 border-primary-orange animate-on-scroll">
-                <div class="feature-icon w-20 h-20 bg-light-gray rounded-full flex items-center justify-center mx-auto mb-6 text-3xl text-primary-orange">
-                    <i class="fas fa-chart-line"></i>
-                </div>
-                <h3 class="text-2xl mb-4 text-dark">Personalized Tracking</h3>
-                <p class="mb-4">Get detailed reports and charts to visualize your progress according to your health profile.</p>
-                <div class="step-image w-full h-48 rounded-xl overflow-hidden my-4">
-                    <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Data analytics" class="w-full h-full object-cover">
-                </div>
-            </div>
-            <div class="feature-card bg-light p-8 rounded-2xl text-center transition-transform duration-300 shadow-medium relative overflow-hidden border-t-4 border-primary-yellow animate-on-scroll">
-                <div class="feature-icon w-20 h-20 bg-light-gray rounded-full flex items-center justify-center mx-auto mb-6 text-3xl text-primary-yellow">
-                    <i class="fas fa-heartbeat"></i>
-                </div>
-                <h3 class="text-2xl mb-4 text-dark">Smart Recommendations</h3>
-                <p class="mb-4">Receive alerts and advice tailored to your condition (diabetes, hypertension, athletic goals, etc.).</p>
-                <div class="step-image w-full h-48 rounded-xl overflow-hidden my-4">
-                    <img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Health recommendations" class="w-full h-full object-cover">
-                </div>
-            </div>
+        <h3 class="text-2xl mb-4 text-dark">Image Analysis</h3>
+        <p class="mb-4">
+          Simply take a photo of your meal and our AI automatically analyzes the
+          food items and nutrients.
+        </p>
+        <div class="step-image w-full h-48 rounded-xl overflow-hidden my-4">
+          <img
+            src="https://images.unsplash.com/photo-1555939594-58d7cb561ad1?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80"
+            alt="Food photography"
+            class="w-full h-full object-cover"
+          />
         </div>
-    </section>
+      </div>
+      <div
+        class="feature-card bg-light p-8 rounded-2xl text-center transition-transform duration-300 shadow-medium relative overflow-hidden border-t-4 border-primary-orange animate-on-scroll"
+      >
+        <div
+          class="feature-icon w-20 h-20 bg-light-gray rounded-full flex items-center justify-center mx-auto mb-6 text-3xl text-primary-orange"
+        >
+          <i class="fas fa-chart-line"></i>
+        </div>
+        <h3 class="text-2xl mb-4 text-dark">Personalized Tracking</h3>
+        <p class="mb-4">
+          Get detailed reports and charts to visualize your progress according
+          to your health profile.
+        </p>
+        <div class="step-image w-full h-48 rounded-xl overflow-hidden my-4">
+          <img
+            src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80"
+            alt="Data analytics"
+            class="w-full h-full object-cover"
+          />
+        </div>
+      </div>
+      <div
+        class="feature-card bg-light p-8 rounded-2xl text-center transition-transform duration-300 shadow-medium relative overflow-hidden border-t-4 border-primary-yellow animate-on-scroll"
+      >
+        <div
+          class="feature-icon w-20 h-20 bg-light-gray rounded-full flex items-center justify-center mx-auto mb-6 text-3xl text-primary-yellow"
+        >
+          <i class="fas fa-heartbeat"></i>
+        </div>
+        <h3 class="text-2xl mb-4 text-dark">Smart Recommendations</h3>
+        <p class="mb-4">
+          Receive alerts and advice tailored to your condition (diabetes,
+          hypertension, athletic goals, etc.).
+        </p>
+        <div class="step-image w-full h-48 rounded-xl overflow-hidden my-4">
+          <img
+            src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80"
+            alt="Health recommendations"
+            class="w-full h-full object-cover"
+          />
+        </div>
+      </div>
+    </div>
+  </section>
 
-    <!-- How It Works Section -->
-    <section class="how-it-works py-24 px-[5%] bg-light" id="how-it-works">
-        <div class="section-title text-center mb-16">
-            <h2 class="text-4xl text-dark mb-4">How It Works</h2>
-            <p class="text-gray max-w-2xl mx-auto">Take control of your nutrition in just 3 simple steps</p>
+  <!-- How It Works Section -->
+  <section class="how-it-works py-24 px-[5%] bg-light" id="how-it-works">
+    <div class="section-title text-center mb-16">
+      <h2 class="text-4xl text-dark mb-4">How It Works</h2>
+      <p class="text-gray max-w-2xl mx-auto">
+        Take control of your nutrition in just 3 simple steps
+      </p>
+    </div>
+    <div
+      class="steps flex flex-col md:flex-row justify-between max-w-4xl mx-auto relative"
+    >
+      <div class="step text-center relative z-10 flex-1 px-4 animate-on-scroll">
+        <div
+          class="step-number w-20 h-20 bg-white border-4 border-primary-green rounded-full flex items-center justify-center text-3xl font-bold mx-auto mb-4 text-primary-green"
+        >
+          1
         </div>
-        <div class="steps flex flex-col md:flex-row justify-between max-w-4xl mx-auto relative">
-            <div class="step text-center relative z-10 flex-1 px-4 animate-on-scroll">
-                <div class="step-number w-20 h-20 bg-white border-4 border-primary-green rounded-full flex items-center justify-center text-3xl font-bold mx-auto mb-4 text-primary-green">1</div>
-                <h3 class="text-xl mb-4">Choose Your Profile</h3>
-                <p class="mb-4">Select your health goal (diabetes management, athletic performance, weight loss, etc.)</p>
-                <div class="step-image w-full h-48 rounded-xl overflow-hidden my-4">
-                    <img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Profile selection" class="w-full h-full object-cover">
-                </div>
-            </div>
-            <div class="step text-center relative z-10 flex-1 px-4 animate-on-scroll">
-                <div class="step-number w-20 h-20 bg-white border-4 border-primary-orange rounded-full flex items-center justify-center text-3xl font-bold mx-auto mb-4 text-primary-orange">2</div>
-                <h3 class="text-xl mb-4">Analyze Your Meals</h3>
-                <p class="mb-4">Photograph what you eat for automatic tracking and nutrient analysis</p>
-                <div class="step-image w-full h-48 rounded-xl overflow-hidden my-4">
-                    <img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Meal analysis" class="w-full h-full object-cover">
-                </div>
-            </div>
-            <div class="step text-center relative z-10 flex-1 px-4 animate-on-scroll">
-                <div class="step-number w-20 h-20 bg-white border-4 border-primary-yellow rounded-full flex items-center justify-center text-3xl font-bold mx-auto mb-4 text-primary-yellow">3</div>
-                <h3 class="text-xl mb-4">Track Your Progress</h3>
-                <p class="mb-4">View your reports and receive personalized recommendations</p>
-                <div class="step-image w-full h-48 rounded-xl overflow-hidden my-4">
-                    <img src="https://images.unsplash.com/photo-1506126613408-eca07ce68773?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Progress tracking" class="w-full h-full object-cover">
-                </div>
-            </div>
+        <h3 class="text-xl mb-4">Choose Your Profile</h3>
+        <p class="mb-4">
+          Select your health goal (diabetes management, athletic performance,
+          weight loss, etc.)
+        </p>
+        <div class="step-image w-full h-48 rounded-xl overflow-hidden my-4">
+          <img
+            src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80"
+            alt="Profile selection"
+            class="w-full h-full object-cover"
+          />
         </div>
-    </section>
+      </div>
+      <div class="step text-center relative z-10 flex-1 px-4 animate-on-scroll">
+        <div
+          class="step-number w-20 h-20 bg-white border-4 border-primary-orange rounded-full flex items-center justify-center text-3xl font-bold mx-auto mb-4 text-primary-orange"
+        >
+          2
+        </div>
+        <h3 class="text-xl mb-4">Analyze Your Meals</h3>
+        <p class="mb-4">
+          Photograph what you eat for automatic tracking and nutrient analysis
+        </p>
+        <div class="step-image w-full h-48 rounded-xl overflow-hidden my-4">
+          <img
+            src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80"
+            alt="Meal analysis"
+            class="w-full h-full object-cover"
+          />
+        </div>
+      </div>
+      <div class="step text-center relative z-10 flex-1 px-4 animate-on-scroll">
+        <div
+          class="step-number w-20 h-20 bg-white border-4 border-primary-yellow rounded-full flex items-center justify-center text-3xl font-bold mx-auto mb-4 text-primary-yellow"
+        >
+          3
+        </div>
+        <h3 class="text-xl mb-4">Track Your Progress</h3>
+        <p class="mb-4">
+          View your reports and receive personalized recommendations
+        </p>
+        <div class="step-image w-full h-48 rounded-xl overflow-hidden my-4">
+          <img
+            src="https://images.unsplash.com/photo-1506126613408-eca07ce68773?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80"
+            alt="Progress tracking"
+            class="w-full h-full object-cover"
+          />
+        </div>
+      </div>
+    </div>
+  </section>
 
-    <!-- Profiles Section -->
-    <section class="profiles py-24 px-[5%] bg-white" id="profiles">
-        <div class="section-title text-center mb-16">
-            <h2 class="text-4xl text-dark mb-4">Personalized Health Profiles</h2>
-            <p class="text-gray max-w-2xl mx-auto">NutriTrack adapts to your specific needs</p>
+  <!-- Profiles Section -->
+  <section class="profiles py-24 px-[5%] bg-white" id="profiles">
+    <div class="section-title text-center mb-16">
+      <h2 class="text-4xl text-dark mb-4">Personalized Health Profiles</h2>
+      <p class="text-gray max-w-2xl mx-auto">
+        NutriTrack adapts to your specific needs
+      </p>
+    </div>
+    <div
+      class="profile-cards grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-6xl mx-auto"
+    >
+      <div
+        class="profile-card bg-light rounded-2xl overflow-hidden transition-transform duration-300 shadow-medium animate-on-scroll"
+      >
+        <div class="profile-image h-36 overflow-hidden">
+          <img
+            src="https://images.unsplash.com/photo-1532938911079-1b06ac7ceec7?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80"
+            alt="Diabetes management"
+            class="w-full h-full object-cover"
+          />
         </div>
-        <div class="profile-cards grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-6xl mx-auto">
-            <div class="profile-card bg-light rounded-2xl overflow-hidden transition-transform duration-300 shadow-medium animate-on-scroll">
-                <div class="profile-image h-36 overflow-hidden">
-                    <img src="https://images.unsplash.com/photo-1532938911079-1b06ac7ceec7?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Diabetes management" class="w-full h-full object-cover">
-                </div>
-                <div class="profile-content p-6 border-t-4 border-primary-green">
-                    <h3 class="text-xl mb-2">Diabetes Management</h3>
-                    <p>Track carbohydrates and glycemic index with personalized alerts.</p>
-                </div>
-            </div>
-            <div class="profile-card bg-light rounded-2xl overflow-hidden transition-transform duration-300 shadow-medium animate-on-scroll">
-                <div class="profile-image h-36 overflow-hidden">
-                    <img src="https://images.unsplash.com/photo-1559757148-5c350d0d3c56?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Hypertension management" class="w-full h-full object-cover">
-                </div>
-                <div class="profile-content p-6 border-t-4 border-primary-orange">
-                    <h3 class="text-xl mb-2">Hypertension</h3>
-                    <p>Control sodium intake with tailored recommendations.</p>
-                </div>
-            </div>
-            <div class="profile-card bg-light rounded-2xl overflow-hidden transition-transform duration-300 shadow-medium animate-on-scroll">
-                <div class="profile-image h-36 overflow-hidden">
-                    <img src="https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Athletic performance" class="w-full h-full object-cover">
-                </div>
-                <div class="profile-content p-6 border-t-4 border-primary-yellow">
-                    <h3 class="text-xl mb-2">Athletes</h3>
-                    <p>Optimize nutrition for performance and recovery.</p>
-                </div>
-            </div>
-            <div class="profile-card bg-light rounded-2xl overflow-hidden transition-transform duration-300 shadow-medium animate-on-scroll">
-                <div class="profile-image h-36 overflow-hidden">
-                    <img src="https://images.unsplash.com/photo-1514986888952-8cd320577b68?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Weight management" class="w-full h-full object-cover">
-                </div>
-                <div class="profile-content p-6 border-t-4 border-primary-green">
-                    <h3 class="text-xl mb-2">Weight Management</h3>
-                    <p>Personalized programs for weight loss or gain.</p>
-                </div>
-            </div>
+        <div class="profile-content p-6 border-t-4 border-primary-green">
+          <h3 class="text-xl mb-2">Diabetes Management</h3>
+          <p>
+            Track carbohydrates and glycemic index with personalized alerts.
+          </p>
         </div>
-    </section>
+      </div>
+      <div
+        class="profile-card bg-light rounded-2xl overflow-hidden transition-transform duration-300 shadow-medium animate-on-scroll"
+      >
+        <div class="profile-image h-36 overflow-hidden">
+          <img
+            src="https://images.unsplash.com/photo-1559757148-5c350d0d3c56?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80"
+            alt="Hypertension management"
+            class="w-full h-full object-cover"
+          />
+        </div>
+        <div class="profile-content p-6 border-t-4 border-primary-orange">
+          <h3 class="text-xl mb-2">Hypertension</h3>
+          <p>Control sodium intake with tailored recommendations.</p>
+        </div>
+      </div>
+      <div
+        class="profile-card bg-light rounded-2xl overflow-hidden transition-transform duration-300 shadow-medium animate-on-scroll"
+      >
+        <div class="profile-image h-36 overflow-hidden">
+          <img
+            src="https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80"
+            alt="Athletic performance"
+            class="w-full h-full object-cover"
+          />
+        </div>
+        <div class="profile-content p-6 border-t-4 border-primary-yellow">
+          <h3 class="text-xl mb-2">Athletes</h3>
+          <p>Optimize nutrition for performance and recovery.</p>
+        </div>
+      </div>
+      <div
+        class="profile-card bg-light rounded-2xl overflow-hidden transition-transform duration-300 shadow-medium animate-on-scroll"
+      >
+        <div class="profile-image h-36 overflow-hidden">
+          <img
+            src="https://images.unsplash.com/photo-1514986888952-8cd320577b68?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80"
+            alt="Weight management"
+            class="w-full h-full object-cover"
+          />
+        </div>
+        <div class="profile-content p-6 border-t-4 border-primary-green">
+          <h3 class="text-xl mb-2">Weight Management</h3>
+          <p>Personalized programs for weight loss or gain.</p>
+        </div>
+      </div>
+    </div>
+  </section>
 
-    <!-- Testimonials Section -->
-    <section class="testimonials py-24 px-[5%] bg-light" id="testimonials">
-        <div class="section-title text-center mb-16">
-            <h2 class="text-4xl text-dark mb-4">What Our Users Say</h2>
-            <p class="text-gray max-w-2xl mx-auto">Discover how NutriTrack has transformed lives</p>
+  <!-- Testimonials Section -->
+  <section class="testimonials py-24 px-[5%] bg-light" id="testimonials">
+    <div class="section-title text-center mb-16">
+      <h2 class="text-4xl text-dark mb-4">What Our Users Say</h2>
+      <p class="text-gray max-w-2xl mx-auto">
+        Discover how NutriTrack has transformed lives
+      </p>
+    </div>
+    <div
+      class="testimonial-cards grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto"
+    >
+      <div
+        class="testimonial-card bg-white p-8 rounded-2xl shadow-medium border-l-4 border-primary-orange animate-on-scroll"
+      >
+        <div class="testimonial-text italic mb-6">
+          "As a diabetic, NutriTrack has been a game-changer. The automatic carb
+          tracking helps me maintain stable blood sugar levels."
         </div>
-        <div class="testimonial-cards grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
-            <div class="testimonial-card bg-white p-8 rounded-2xl shadow-medium border-l-4 border-primary-orange animate-on-scroll">
-                <div class="testimonial-text italic mb-6">
-                    "As a diabetic, NutriTrack has been a game-changer. The automatic carb tracking helps me maintain stable blood sugar levels."
-                </div>
-                <div class="testimonial-author flex items-center gap-4">
-                    <div class="author-avatar w-12 h-12 bg-light-gray rounded-full flex items-center justify-center text-primary-green font-bold">MJ</div>
-                    <div>
-                        <div class="author-name font-medium">Michael Johnson</div>
-                        <div class="author-title text-sm">Type 2 Diabetes Patient</div>
-                    </div>
-                </div>
-            </div>
-            <div class="testimonial-card bg-white p-8 rounded-2xl shadow-medium border-l-4 border-primary-orange animate-on-scroll">
-                <div class="testimonial-text italic mb-6">
-                    "The athletic profile helped me optimize my nutrition for marathon training. My recovery time has improved significantly!"
-                </div>
-                <div class="testimonial-author flex items-center gap-4">
-                    <div class="author-avatar w-12 h-12 bg-light-gray rounded-full flex items-center justify-center text-primary-green font-bold">SR</div>
-                    <div>
-                        <div class="author-name font-medium">Sarah Roberts</div>
-                        <div class="author-title text-sm">Marathon Runner</div>
-                    </div>
-                </div>
-            </div>
-            <div class="testimonial-card bg-white p-8 rounded-2xl shadow-medium border-l-4 border-primary-orange animate-on-scroll">
-                <div class="testimonial-text italic mb-6">
-                    "I've lost 25 pounds in 4 months with NutriTrack. The personalized recommendations made healthy eating so much easier."
-                </div>
-                <div class="testimonial-author flex items-center gap-4">
-                    <div class="author-avatar w-12 h-12 bg-light-gray rounded-full flex items-center justify-center text-primary-green font-bold">DP</div>
-                    <div>
-                        <div class="author-name font-medium">David Peterson</div>
-                        <div class="author-title text-sm">Weight Loss Success</div>
-                    </div>
-                </div>
-            </div>
+        <div class="testimonial-author flex items-center gap-4">
+          <div
+            class="author-avatar w-12 h-12 bg-light-gray rounded-full flex items-center justify-center text-primary-green font-bold"
+          >
+            MJ
+          </div>
+          <div>
+            <div class="author-name font-medium">Michael Johnson</div>
+            <div class="author-title text-sm">Type 2 Diabetes Patient</div>
+          </div>
         </div>
-    </section>
+      </div>
+      <div
+        class="testimonial-card bg-white p-8 rounded-2xl shadow-medium border-l-4 border-primary-orange animate-on-scroll"
+      >
+        <div class="testimonial-text italic mb-6">
+          "The athletic profile helped me optimize my nutrition for marathon
+          training. My recovery time has improved significantly!"
+        </div>
+        <div class="testimonial-author flex items-center gap-4">
+          <div
+            class="author-avatar w-12 h-12 bg-light-gray rounded-full flex items-center justify-center text-primary-green font-bold"
+          >
+            SR
+          </div>
+          <div>
+            <div class="author-name font-medium">Sarah Roberts</div>
+            <div class="author-title text-sm">Marathon Runner</div>
+          </div>
+        </div>
+      </div>
+      <div
+        class="testimonial-card bg-white p-8 rounded-2xl shadow-medium border-l-4 border-primary-orange animate-on-scroll"
+      >
+        <div class="testimonial-text italic mb-6">
+          "I've lost 25 pounds in 4 months with NutriTrack. The personalized
+          recommendations made healthy eating so much easier."
+        </div>
+        <div class="testimonial-author flex items-center gap-4">
+          <div
+            class="author-avatar w-12 h-12 bg-light-gray rounded-full flex items-center justify-center text-primary-green font-bold"
+          >
+            DP
+          </div>
+          <div>
+            <div class="author-name font-medium">David Peterson</div>
+            <div class="author-title text-sm">Weight Loss Success</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
-    <!-- CTA Section -->
-    <section class="cta py-24 px-[5%] text-center bg-white rounded-3xl mx-[5%] mt-8 border-2 border-dashed border-primary-yellow">
-        <h2 class="text-4xl mb-4 text-dark">Ready to Transform Your Health?</h2>
-        <p class="text-xl max-w-2xl mx-auto mb-8 text-gray">Join thousands of users who have already taken control of their nutrition with NutriTrack.</p>
-        <button class="btn btn-light bg-primary-green text-white px-8 py-3 rounded-full font-semibold cursor-pointer transition-all duration-300 hover:-translate-y-1 hover:shadow-medium">Start Your Free Trial</button>
-    </section>
+  <!-- CTA Section -->
+  <section
+    class="cta py-24 px-[5%] text-center bg-white rounded-3xl mx-[5%] mt-8 border-2 border-dashed border-primary-yellow"
+  >
+    <h2 class="text-4xl mb-4 text-dark">Ready to Transform Your Health?</h2>
+    <p class="text-xl max-w-2xl mx-auto mb-8 text-gray">
+      Join thousands of users who have already taken control of their nutrition
+      with NutriTrack.
+    </p>
+    <button
+      class="btn btn-light bg-primary-green text-white px-8 py-3 rounded-full font-semibold cursor-pointer transition-all duration-300 hover:-translate-y-1 hover:shadow-medium"
+    >
+      Start Your Free Trial
+    </button>
+  </section>
 
-    <!-- Footer -->
-    <footer class="bg-dark text-white py-16 px-[5%]">
-        <div class="footer-content grid grid-cols-1 md:grid-cols-4 gap-8 max-w-6xl mx-auto">
-            <div class="footer-column">
-                <h3 class="text-xl mb-6">NutriTrack</h3>
-                <p class="mb-4">Your intelligent nutrition companion for optimal health.</p>
-                <div class="social-links flex gap-4 mt-4">
-                    <a href="#" class="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center transition-colors duration-300 hover:bg-primary-orange"><i class="fab fa-facebook-f"></i></a>
-                    <a href="#" class="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center transition-colors duration-300 hover:bg-primary-orange"><i class="fab fa-twitter"></i></a>
-                    <a href="#" class="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center transition-colors duration-300 hover:bg-primary-orange"><i class="fab fa-instagram"></i></a>
-                    <a href="#" class="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center transition-colors duration-300 hover:bg-primary-orange"><i class="fab fa-linkedin-in"></i></a>
-                </div>
-            </div>
-            <div class="footer-column">
-                <h3 class="text-xl mb-6">Quick Links</h3>
-                <ul class="space-y-2">
-                    <li><a href="#" class="text-gray-300 hover:text-white transition-colors duration-300">Home</a></li>
-                    <li><a href="#features" class="text-gray-300 hover:text-white transition-colors duration-300">Features</a></li>
-                    <li><a href="#" class="text-gray-300 hover:text-white transition-colors duration-300">Pricing</a></li>
-                    <li><a href="#" class="text-gray-300 hover:text-white transition-colors duration-300">Blog</a></li>
-                </ul>
-            </div>
-            <div class="footer-column">
-                <h3 class="text-xl mb-6">Legal</h3>
-                <ul class="space-y-2">
-                    <li><a href="#" class="text-gray-300 hover:text-white transition-colors duration-300">Privacy Policy</a></li>
-                    <li><a href="#" class="text-gray-300 hover:text-white transition-colors duration-300">Terms of Service</a></li>
-                    <li><a href="#" class="text-gray-300 hover:text-white transition-colors duration-300">Cookie Policy</a></li>
-                </ul>
-            </div>
-            <div class="footer-column">
-                <h3 class="text-xl mb-6">Contact</h3>
-                <ul class="space-y-2">
-                    <li class="flex items-center gap-2"><i class="fas fa-envelope"></i> contact@nutritrack.com</li>
-                    <li class="flex items-center gap-2"><i class="fas fa-phone"></i> +1 (555) 123-4567</li>
-                    <li class="flex items-center gap-2"><i class="fas fa-map-marker-alt"></i> San Francisco, CA</li>
-                </ul>
-            </div>
+  <!-- Footer -->
+  <footer class="bg-dark text-white py-16 px-[5%]">
+    <div
+      class="footer-content grid grid-cols-1 md:grid-cols-4 gap-8 max-w-6xl mx-auto"
+    >
+      <div class="footer-column">
+        <h3 class="text-xl mb-6">NutriTrack</h3>
+        <p class="mb-4">
+          Your intelligent nutrition companion for optimal health.
+        </p>
+        <div class="social-links flex gap-4 mt-4">
+          <a
+            href="#"
+            class="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center transition-colors duration-300 hover:bg-primary-orange"
+            ><i class="fab fa-facebook-f"></i
+          ></a>
+          <a
+            href="#"
+            class="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center transition-colors duration-300 hover:bg-primary-orange"
+            ><i class="fab fa-twitter"></i
+          ></a>
+          <a
+            href="#"
+            class="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center transition-colors duration-300 hover:bg-primary-orange"
+            ><i class="fab fa-instagram"></i
+          ></a>
+          <a
+            href="#"
+            class="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center transition-colors duration-300 hover:bg-primary-orange"
+            ><i class="fab fa-linkedin-in"></i
+          ></a>
         </div>
-        <div class="copyright text-center mt-12 pt-8 border-t border-white/10 text-gray-300">
-            <p>&copy; 2024 NutriTrack. All rights reserved.</p>
-        </div>
-    </footer>
+      </div>
+      <div class="footer-column">
+        <h3 class="text-xl mb-6">Quick Links</h3>
+        <ul class="space-y-2">
+          <li>
+            <a
+              href="#"
+              class="text-gray-300 hover:text-white transition-colors duration-300"
+              >Home</a
+            >
+          </li>
+          <li>
+            <a
+              href="#features"
+              class="text-gray-300 hover:text-white transition-colors duration-300"
+              >Features</a
+            >
+          </li>
+          <li>
+            <a
+              href="#"
+              class="text-gray-300 hover:text-white transition-colors duration-300"
+              >Pricing</a
+            >
+          </li>
+          <li>
+            <a
+              href="#"
+              class="text-gray-300 hover:text-white transition-colors duration-300"
+              >Blog</a
+            >
+          </li>
+        </ul>
+      </div>
+      <div class="footer-column">
+        <h3 class="text-xl mb-6">Legal</h3>
+        <ul class="space-y-2">
+          <li>
+            <a
+              href="#"
+              class="text-gray-300 hover:text-white transition-colors duration-300"
+              >Privacy Policy</a
+            >
+          </li>
+          <li>
+            <a
+              href="#"
+              class="text-gray-300 hover:text-white transition-colors duration-300"
+              >Terms of Service</a
+            >
+          </li>
+          <li>
+            <a
+              href="#"
+              class="text-gray-300 hover:text-white transition-colors duration-300"
+              >Cookie Policy</a
+            >
+          </li>
+        </ul>
+      </div>
+      <div class="footer-column">
+        <h3 class="text-xl mb-6">Contact</h3>
+        <ul class="space-y-2">
+          <li class="flex items-center gap-2">
+            <i class="fas fa-envelope"></i> contact@nutritrack.com
+          </li>
+          <li class="flex items-center gap-2">
+            <i class="fas fa-phone"></i> +1 (555) 123-4567
+          </li>
+          <li class="flex items-center gap-2">
+            <i class="fas fa-map-marker-alt"></i> San Francisco, CA
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div
+      class="copyright text-center mt-12 pt-8 border-t border-white/10 text-gray-300"
+    >
+      <p>&copy; 2024 NutriTrack. All rights reserved.</p>
+    </div>
+  </footer>
 
-    <script>
-        // Smooth scroll functionality
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                document.querySelector(this.getAttribute('href')).scrollIntoView({
-                    behavior: 'smooth'
-                });
-            });
+  <script>
+    // Smooth scroll functionality
+    document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+      anchor.addEventListener("click", function (e) {
+        e.preventDefault();
+        document.querySelector(this.getAttribute("href")).scrollIntoView({
+          behavior: "smooth",
         });
+      });
+    });
 
-        // Animation on scroll
-        document.addEventListener('DOMContentLoaded', function() {
-            const observerOptions = {
-                threshold: 0.1,
-                rootMargin: '0px 0px -50px 0px'
-            };
+    // Animation on scroll
+    document.addEventListener("DOMContentLoaded", function () {
+      const observerOptions = {
+        threshold: 0.1,
+        rootMargin: "0px 0px -50px 0px",
+      };
 
-            const observer = new IntersectionObserver(function(entries) {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('visible');
-                    }
-                });
-            }, observerOptions);
-
-            // Animate elements on scroll
-            const elementsToAnimate = document.querySelectorAll('.animate-on-scroll');
-            elementsToAnimate.forEach(el => {
-                observer.observe(el);
-            });
+      const observer = new IntersectionObserver(function (entries) {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("visible");
+          }
         });
-    </script>
+      }, observerOptions);
 
-<%- include("../partials/footer") %>
+      // Animate elements on scroll
+      const elementsToAnimate = document.querySelectorAll(".animate-on-scroll");
+      elementsToAnimate.forEach((el) => {
+        observer.observe(el);
+      });
+    });
+  </script>
 
-
-
+  <%- include("../partials/footer") %>
+</body>

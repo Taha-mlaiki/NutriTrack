@@ -96,3 +96,5 @@ CREATE TABLE Reports (
     charts_data JSON,
     FOREIGN KEY (user_id) REFERENCES Users(user_id) ON DELETE CASCADE
 );
+
+

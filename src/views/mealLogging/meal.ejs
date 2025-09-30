@@ -1,14 +1,15 @@
 <%- include("../partials/header") %>
 
-<link 
-  rel="stylesheet" 
+<link
+  rel="stylesheet"
   href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
->
+/>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 
-<body class="bg-lime-50 text-gray-800 font-sans"></body>
+<body class="bg-lime-50 text-gray-800 font-sans">
   <!-- Header -->
- <%- include('../partials/navbar') %>
+  <%- include('../partials/navbar') %>
 
   <!-- Main Content -->
   <main class="max-w-5xl mx-auto px-4 my-8">
@@ -18,131 +19,156 @@
       <p class="text-gray-500">Track your nutrition with AI-powered analysis</p>
     </div>
 
-    <!-- Logging Options -->
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
-      <div id="imageOption" class="bg-white rounded-xl p-6 shadow hover:shadow-lg text-center border-2 border-green-600 cursor-pointer transition">
-        <div class="w-20 h-20 rounded-full bg-green-600 flex items-center justify-center mx-auto mb-4 text-white text-3xl">
-          <i class="fas fa-camera"></i>
-        </div>
-        <h3 class="text-lg font-semibold mb-1">Image Analysis</h3>
-        <p class="text-gray-500">Take a photo of your meal for automatic nutrient detection</p>
-      </div>
-
-      <div id="manualOption" class="bg-white rounded-xl p-6 shadow hover:shadow-lg text-center border-2 border-transparent cursor-pointer transition">
-        <div class="w-20 h-20 rounded-full bg-orange-500 flex items-center justify-center mx-auto mb-4 text-white text-3xl">
-          <i class="fas fa-utensils"></i>
-        </div>
-        <h3 class="text-lg font-semibold mb-1">Manual Entry</h3>
-        <p class="text-gray-500">Search and select foods from our database</p>
-      </div>
-    </div>
-
     <!-- Image Upload Section -->
-    <section id="uploadSection" class="bg-white rounded-xl p-6 shadow mb-8 block">
-      <h2 class="flex items-center gap-2 text-xl font-semibold mb-6 text-gray-800">
+    <section
+      id="uploadSection"
+      class="bg-white rounded-xl p-6 shadow mb-8 block"
+    >
+      <h2
+        class="flex items-center gap-2 text-xl font-semibold mb-6 text-gray-800"
+      >
         <i class="fas fa-camera text-green-600"></i> Upload Meal Image
       </h2>
 
-      <div id="uploadArea" class="border-2 border-dashed border-gray-300 rounded-xl p-10 text-center hover:border-green-600 cursor-pointer transition mb-6">
+      <div
+        id="uploadArea"
+        class="border-2 border-dashed border-gray-300 rounded-xl p-10 text-center hover:border-green-600 cursor-pointer transition mb-6"
+      >
         <i class="fas fa-cloud-upload-alt text-5xl text-gray-400 mb-4"></i>
         <h3 class="text-lg font-semibold mb-1">Upload a Photo of Your Meal</h3>
-        <p class="text-gray-500 mb-1">Drag & drop an image or click to browse</p>
-        <p class="text-gray-400 text-sm mb-4">Supported formats: JPG, PNG (Max 5MB)</p>
-        <button id="browseBtn" class="px-4 py-2 rounded-md border-2 border-green-600 text-green-600 font-semibold hover:bg-green-50 transition">
+        <p class="text-gray-500 mb-1">
+          Drag & drop an image or click to browse
+        </p>
+        <p class="text-gray-400 text-sm mb-4">
+          Supported formats: JPG, PNG (Max 5MB)
+        </p>
+        <button
+          id="browseBtn"
+          class="px-4 py-2 rounded-md border-2 border-green-600 text-green-600 font-semibold hover:bg-green-50 transition"
+        >
           <i class="fas fa-folder-open"></i> Browse Files
         </button>
-        <input type="file" id="fileInput" accept="image/*" class="hidden">
+        <input type="file" id="fileInput" accept="image/*" class="hidden" />
       </div>
 
       <!-- Camera preview -->
       <div id="cameraPreview" class="hidden max-w-md mx-auto">
-        <video id="video" autoplay playsinline class="rounded-lg w-full"></video>
+        <video
+          id="video"
+          autoplay
+          playsinline
+          class="rounded-lg w-full"
+        ></video>
         <canvas id="canvas" class="hidden rounded-lg w-full"></canvas>
         <div class="flex gap-4 justify-center mt-4">
-          <button id="captureBtn" class="px-4 py-2 rounded-md border-2 border-green-600 text-green-600 font-semibold hover:bg-green-50 transition">
+          <button
+            id="captureBtn"
+            class="px-4 py-2 rounded-md border-2 border-green-600 text-green-600 font-semibold hover:bg-green-50 transition"
+          >
             <i class="fas fa-camera"></i> Capture
           </button>
-          <button id="retakeBtn" class="hidden px-4 py-2 rounded-md border-2 border-green-600 text-green-600 font-semibold hover:bg-green-50 transition">
+          <button
+            id="retakeBtn"
+            class="hidden px-4 py-2 rounded-md border-2 border-green-600 text-green-600 font-semibold hover:bg-green-50 transition"
+          >
             <i class="fas fa-redo"></i> Retake
           </button>
         </div>
       </div>
 
       <div class="flex gap-4 justify-end mt-6">
-        <button id="useCameraBtn" class="px-4 py-2 rounded-md border-2 border-green-600 text-green-600 font-semibold hover:bg-green-50 transition">
+        <button
+          id="useCameraBtn"
+          class="px-4 py-2 rounded-md border-2 border-green-600 text-green-600 font-semibold hover:bg-green-50 transition"
+        >
           <i class="fas fa-camera"></i> Use Camera
         </button>
-        <button id="analyzeBtn" disabled class="px-4 py-2 rounded-md bg-orange-500 text-white font-semibold hover:bg-orange-600 transition disabled:opacity-50">
-          <i class="fas fa-search"></i> Analyze Meal
+        <button
+          id="analyzeBtn"
+          disabled
+          class="px-4 py-2 rounded-md bg-orange-500 text-white font-semibold hover:bg-orange-600 transition disabled:opacity-50"
+        >
+          <i class="fas fa-search"></i>
+          <span class="analyze-text">Analyze Meal</span>
+          <span class="analyze-loading hidden">
+            <i class="fas fa-spinner fa-spin"></i> Analyzing...
+          </span>
         </button>
       </div>
     </section>
 
     <!-- Manual Section -->
-    <section id="manualSection" class="hidden bg-white rounded-xl p-6 shadow mb-8">
-      <h2 class="flex items-center gap-2 text-xl font-semibold mb-6 text-gray-800">
+    <section
+      id="manualSection"
+      class="hidden bg-white rounded-xl p-6 shadow mb-8"
+    >
+      <h2
+        class="flex items-center gap-2 text-xl font-semibold mb-6 text-gray-800"
+      >
         <i class="fas fa-utensils text-orange-500"></i> Manual Food Entry
       </h2>
 
       <div class="relative mb-6">
-        <i class="fas fa-search absolute left-4 top-1/2 -translate-y-1/2 text-gray-400"></i>
-        <input id="foodSearch" type="text" placeholder="Search for foods (e.g., apple, chicken breast)" class="w-full pl-12 pr-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-green-500 focus:outline-none">
+        <i
+          class="fas fa-search absolute left-4 top-1/2 -translate-y-1/2 text-gray-400"
+        ></i>
+        <input
+          id="foodSearch"
+          type="text"
+          placeholder="Search for foods (e.g., apple, chicken breast)"
+          class="w-full pl-12 pr-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-green-500 focus:outline-none"
+        />
       </div>
 
-      <div id="foodResults" class="hidden max-h-56 overflow-y-auto border border-gray-300 rounded-md mb-6"></div>
+      <div
+        id="foodResults"
+        class="hidden max-h-56 overflow-y-auto border border-gray-300 rounded-md mb-6"
+      ></div>
       <div id="selectedFoods" class="mb-6"></div>
 
       <div class="flex justify-end">
-        <button id="analyzeManualBtn" class="px-4 py-2 rounded-md bg-orange-500 text-white font-semibold hover:bg-orange-600 transition">
+        <button
+          id="analyzeManualBtn"
+          class="px-4 py-2 rounded-md bg-orange-500 text-white font-semibold hover:bg-orange-600 transition"
+        >
           <i class="fas fa-calculator"></i> Calculate Nutrition
         </button>
       </div>
     </section>
 
     <!-- Analysis Section -->
-    <section id="analysisSection" class="hidden bg-white rounded-xl p-6 shadow mb-8">
-      <h2 class="flex items-center gap-2 text-xl font-semibold mb-6 text-gray-800">
+    <section
+      id="analysisSection"
+      class="bg-white rounded-xl p-6 shadow mb-8 hidden"
+    >
+      <h2
+        class="flex items-center gap-2 text-xl font-semibold mb-6 text-gray-800"
+      >
         <i class="fas fa-chart-bar text-green-600"></i> Meal Analysis
       </h2>
 
       <h3 class="font-semibold mb-3">Detected Foods</h3>
-      <div id="detectedFoods" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4 mb-6"></div>
-
-      <h3 class="font-semibold mb-3">Nutrition Facts</h3>
-      <div class="grid sm:grid-cols-2 md:grid-cols-4 gap-4 mb-6">
-        <div class="bg-lime-50 border-l-4 border-orange-500 rounded-md p-4 text-center">
-          <i class="fas fa-fire"></i>
-          <div class="text-xl font-bold">650 cal</div>
-          <div class="text-sm text-gray-500">of 2,000 daily</div>
-        </div>
-        <div class="bg-lime-50 border-l-4 border-green-600 rounded-md p-4 text-center">
-          <i class="fas fa-bread-slice"></i>
-          <div class="text-xl font-bold">85 g</div>
-          <div class="text-sm text-gray-500">of 230 g daily</div>
-        </div>
-        <div class="bg-lime-50 border-l-4 border-yellow-500 rounded-md p-4 text-center">
-          <i class="fas fa-dumbbell"></i>
-          <div class="text-xl font-bold">35 g</div>
-          <div class="text-sm text-gray-500">of 140 g daily</div>
-        </div>
-        <div class="bg-lime-50 border-l-4 border-purple-600 rounded-md p-4 text-center">
-          <i class="fas fa-oil-can"></i>
-          <div class="text-xl font-bold">22 g</div>
-          <div class="text-sm text-gray-500">of 70 g daily</div>
-        </div>
-      </div>
-
-      <div id="mealFeedback" class="bg-yellow-100 border-l-4 border-yellow-500 p-4 rounded-md mb-6">
-        <h4 class="font-semibold flex items-center gap-2"><i class="fas fa-exclamation-triangle"></i> Meal Feedback</h4>
-        <p>This meal is low in protein for your muscle gain goal. Consider adding a protein source like chicken, fish, or tofu.</p>
-      </div>
+      <div
+        id="detectedFoods"
+        class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 mb-6"
+      ></div>
 
       <div class="flex gap-4 justify-end">
-        <button id="editMealBtn" class="px-4 py-2 rounded-md border-2 border-green-600 text-green-600 font-semibold hover:bg-green-50 transition">
+        <button
+          id="editMealBtn"
+          class="px-4 py-2 rounded-md border-2 border-green-600 text-green-600 font-semibold hover:bg-green-50 transition"
+        >
           <i class="fas fa-edit"></i> Edit Meal
         </button>
-        <button id="saveMealBtn" class="px-4 py-2 rounded-md bg-orange-500 text-white font-semibold hover:bg-orange-600 transition">
-          <i class="fas fa-save"></i> Save to Log
+        <button
+          id="saveMealBtn"
+          class="px-4 py-2 rounded-md bg-orange-500 text-white font-semibold hover:bg-orange-600 transition"
+        >
+          <i class="fas fa-save"></i>
+          <span class="save-text">Save to Log</span>
+          <span class="save-loading hidden">
+            <i class="fas fa-spinner fa-spin"></i> Saving...
+          </span>
         </button>
       </div>
     </section>
@@ -152,13 +178,300 @@
   <footer class="bg-gray-900 text-white text-center py-6 mt-12">
     <h3 class="text-xl font-bold">NutriTrack</h3>
     <p class="text-gray-400">Your intelligent nutrition companion</p>
-    <div class="mt-4 text-gray-500 text-sm">&copy; 2024 NutriTrack. All rights reserved.</div>
+    <div class="mt-4 text-gray-500 text-sm">
+      &copy; 2024 NutriTrack. All rights reserved.
+    </div>
   </footer>
 
-  
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      // Elements
+      const uploadArea = document.getElementById("uploadArea");
+      const fileInput = document.getElementById("fileInput");
+      const browseBtn = document.getElementById("browseBtn");
+      const useCameraBtn = document.getElementById("useCameraBtn");
+      const captureBtn = document.getElementById("captureBtn");
+      const retakeBtn = document.getElementById("retakeBtn");
+      const video = document.getElementById("video");
+      const canvas = document.getElementById("canvas");
+      const cameraPreview = document.getElementById("cameraPreview");
+      const analyzeBtn = document.getElementById("analyzeBtn");
+      const analysisSection = document.getElementById("analysisSection");
+      const detectedFoods = document.getElementById("detectedFoods");
+      const saveMealBtn = document.getElementById("saveMealBtn");
 
+      // Loading elements
+      const analyzeText = analyzeBtn.querySelector(".analyze-text");
+      const analyzeLoading = analyzeBtn.querySelector(".analyze-loading");
+      const saveText = saveMealBtn.querySelector(".save-text");
+      const saveLoading = saveMealBtn.querySelector(".save-loading");
 
+      // Add image preview element
+      const previewImg = document.createElement("img");
+      previewImg.id = "previewImg";
+      previewImg.className = "max-w-full h-auto rounded-lg mt-4 hidden";
+      uploadArea.appendChild(previewImg);
 
+      let selectedFile = null;
 
+      // Display image preview
+      function showImagePreview(file) {
+        const reader = new FileReader();
+        reader.onload = (e) => {
+          previewImg.src = e.target.result;
+          previewImg.classList.remove("hidden");
+          uploadArea.querySelector("h3").textContent =
+            file.name || "Captured Image";
+        };
+        reader.readAsDataURL(file);
+      }
+
+      // File upload handling
+      browseBtn.addEventListener("click", () => fileInput.click());
+      fileInput.addEventListener("change", (e) => {
+        selectedFile = e.target.files[0];
+        if (selectedFile) {
+          analyzeBtn.disabled = false;
+          showImagePreview(selectedFile);
+        }
+      });
+
+      // Drag and drop
+      uploadArea.addEventListener("dragover", (e) => {
+        e.preventDefault();
+        uploadArea.classList.add("border-green-600");
+      });
+      uploadArea.addEventListener("dragleave", () => {
+        uploadArea.classList.remove("border-green-600");
+      });
+      uploadArea.addEventListener("drop", (e) => {
+        e.preventDefault();
+        uploadArea.classList.remove("border-green-600");
+        selectedFile = e.dataTransfer.files[0];
+        if (selectedFile) {
+          analyzeBtn.disabled = false;
+          showImagePreview(selectedFile);
+        }
+      });
+
+      // Camera handling
+      useCameraBtn.addEventListener("click", async () => {
+        cameraPreview.classList.remove("hidden");
+        uploadArea.classList.add("hidden");
+        previewImg.classList.add("hidden");
+        try {
+          const stream = await navigator.mediaDevices.getUserMedia({
+            video: true,
+          });
+          video.srcObject = stream;
+        } catch (err) {
+          console.error("Camera error:", err);
+          alert("Failed to access camera");
+        }
+      });
+
+      captureBtn.addEventListener("click", () => {
+        canvas.width = video.videoWidth;
+        canvas.height = video.videoHeight;
+        canvas.getContext("2d").drawImage(video, 0, 0);
+        canvas.toBlob((blob) => {
+          selectedFile = new File([blob], "captured-meal.jpg", {
+            type: "image/jpeg",
+          });
+          analyzeBtn.disabled = false;
+          video.classList.add("hidden");
+          canvas.classList.remove("hidden");
+          captureBtn.classList.add("hidden");
+          retakeBtn.classList.remove("hidden");
+          showImagePreview(selectedFile);
+          uploadArea.classList.remove("hidden");
+          cameraPreview.classList.add("hidden");
+          video.srcObject.getTracks().forEach((track) => track.stop()); // Stop camera
+        }, "image/jpeg");
+      });
+
+      retakeBtn.addEventListener("click", async () => {
+        video.classList.remove("hidden");
+        canvas.classList.add("hidden");
+        captureBtn.classList.remove("hidden");
+        retakeBtn.classList.add("hidden");
+        selectedFile = null;
+        analyzeBtn.disabled = true;
+        previewImg.classList.add("hidden");
+        uploadArea.classList.add("hidden");
+        cameraPreview.classList.remove("hidden");
+        try {
+          const stream = await navigator.mediaDevices.getUserMedia({
+            video: true,
+          });
+          video.srcObject = stream;
+        } catch (err) {
+          console.error("Camera error:", err);
+          alert("Failed to access camera");
+        }
+      });
+
+      // Analyze meal
+      analyzeBtn.addEventListener("click", async () => {
+        if (!selectedFile) return alert("Please select or capture an image");
+
+        // Show loading state
+        analyzeBtn.disabled = true;
+        analyzeText.classList.add("hidden");
+        analyzeLoading.classList.remove("hidden");
+
+        const formData = new FormData();
+        formData.append("image", selectedFile);
+
+        try {
+          const response = await axios.post("/meals/analyze", formData);
+          const data = response.data;
+          console.log("Analysis data:", data);
+
+          if (response.status === 200 && data.foods) {
+            displayAnalysis(data);
+            analysisSection.classList.remove("hidden"); // Show analysis section
+            saveMealBtn.disabled = false;
+          } else {
+            console.error("Invalid data:", data);
+            alert(data.error || "Invalid analysis data");
+          }
+        } catch (err) {
+          console.error("Error analyzing meal:", err);
+          alert("Error: " + err.message);
+        } finally {
+          // Reset loading state
+          analyzeBtn.disabled = false;
+          analyzeText.classList.remove("hidden");
+          analyzeLoading.classList.add("hidden");
+        }
+      });
+
+      // Display analysis
+      function displayAnalysis(data) {
+        // Clear previous content
+        detectedFoods.innerHTML = "";
+
+        // Display foods with improved design
+        data.foods.forEach((food) => {
+          const foodDiv = document.createElement("div");
+          foodDiv.className =
+            "bg-lime-50 p-4 rounded-lg shadow-sm hover:shadow-md transition duration-200 border border-gray-200";
+          foodDiv.innerHTML = `
+        <div class="flex items-center gap-2 mb-2">
+          <i class="fas fa-utensils text-green-600"></i>
+          <h4 class="font-semibold text-lg text-gray-800">${food.name}</h4>
+        </div>
+        <div class="grid grid-cols-2 gap-2 text-sm">
+          <div class="flex items-center gap-1">
+            <i class="fas fa-fire text-orange-500"></i>
+            <span>Calories: ${food.calories} cal</span>
+          </div>
+          <div class="flex items-center gap-1">
+            <i class="fas fa-bread-slice text-green-600"></i>
+            <span>Carbs: ${food.carbs} g</span>
+          </div>
+          <div class="flex items-center gap-1">
+            <i class="fas fa-dumbbell text-yellow-500"></i>
+            <span>Protein: ${food.protein} g</span>
+          </div>
+          <div class="flex items-center gap-1">
+            <i class="fas fa-oil-can text-purple-600"></i>
+            <span>Fats: ${food.fats} g</span>
+          </div>
+          <div class="flex items-center gap-1">
+            <i class="fas fa-tint text-blue-500"></i>
+            <span>Sodium: ${food.sodium} mg</span>
+          </div>
+          <div class="flex items-center gap-1">
+            <i class="fas fa-leaf text-teal-500"></i>
+            <span>Fiber: ${food.fiber} g</span>
+          </div>
+        </div>
+      `;
+          detectedFoods.appendChild(foodDiv);
+        });
+      }
+
+      // Save meal to log
+      saveMealBtn.addEventListener("click", async () => {
+        if (!selectedFile) return alert("No meal to save");
+
+        // Show loading state
+        saveMealBtn.disabled = true;
+        saveText.classList.add("hidden");
+        saveLoading.classList.remove("hidden");
+
+        const formData = new FormData();
+        formData.append("image", selectedFile);
+
+        try {
+          const response = await axios.post("/meals", formData);
+          if (response.status === 200) {
+            alert("Meal saved to log!");
+            loadMealHistory(); // Refresh history
+          } else {
+            alert("Failed to save meal");
+          }
+        } catch (err) {
+          alert("Error saving meal: " + err.message);
+        } finally {
+          // Reset loading state
+          saveMealBtn.disabled = false;
+          saveText.classList.remove("hidden");
+          saveLoading.classList.add("hidden");
+        }
+      });
+
+      // Fetch and display meal history
+      async function loadMealHistory() {
+        try {
+          const response = await axios.get("/meals/history");
+          const meals = response.data;
+          const historySection = document.createElement("section");
+          historySection.className = "bg-white rounded-xl p-6 shadow mb-8";
+          historySection.innerHTML = `
+        <h2 class="flex items-center gap-2 text-xl font-semibold mb-6 text-gray-800">
+          <i class="fas fa-history text-green-600"></i> Meal History
+        </h2>
+        <div id="mealHistory" class="grid grid-cols-1 gap-4"></div>
+      `;
+          document
+            .querySelector("#analysisSection")
+            .insertAdjacentElement("afterend", historySection);
+
+          const mealHistory = document.getElementById("mealHistory");
+          meals.forEach((meal, index) => {
+            const mealDiv = document.createElement("div");
+            mealDiv.className = "bg-lime-50 p-4 rounded-lg shadow-sm";
+            mealDiv.innerHTML = `
+          <h4 class="font-semibold text-lg">Meal ${
+            index + 1
+          } (Logged: ${new Date().toLocaleDateString()})</h4>
+          <p class="text-sm">Foods: ${meal.foods
+            .map((f) => f.name)
+            .join(", ")}</p>
+          ${meal.foods
+            .map(
+              (food) => `
+            <div class="text-sm pl-4">
+              <p>${food.name}: ${food.calories} cal, ${food.carbs}g carbs, ${food.protein}g protein, ${food.fats}g fats, ${food.sodium}mg sodium, ${food.fiber}g fiber</p>
+            </div>
+          `
+            )
+            .join("")}
+        `;
+            mealHistory.appendChild(mealDiv);
+          });
+        } catch (err) {
+          console.error("Error loading meal history:", err);
+        }
+      }
+
+      // Load meal history on page load
+      loadMealHistory();
+    });
+  </script>
+</body>
 
 <%- include("../partials/footer") %>
