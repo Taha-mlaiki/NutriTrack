@@ -5,35 +5,7 @@
 />
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <!-- Header -->
-<header class="fixed top-0 w-full bg-white/95 backdrop-blur shadow-md z-50">
-  <nav class="flex justify-between items-center max-w-6xl mx-auto px-6 py-4">
-    <a
-      href="index.html"
-      class="flex items-center gap-2 text-green-600 text-xl font-bold"
-    >
-      <i class="fas fa-apple-alt text-orange-500"></i> NutriTrack
-    </a>
-    <div class="flex gap-6">
-      <a href="index.html" class="hover:text-green-600">Home</a>
-      <a
-        href="dashboard.html"
-        class="text-green-600 font-medium border-b-2 border-green-600"
-        >Dashboard</a
-      >
-      <a href="meals.html" class="hover:text-green-600">Meals</a>
-      <a href="reports.html" class="hover:text-green-600">Reports</a>
-      <a href="profile.html" class="hover:text-green-600">Profile</a>
-    </div>
-    <div class="flex items-center gap-3">
-      <div
-        class="w-10 h-10 rounded-full bg-green-600 flex items-center justify-center text-white font-bold"
-      >
-        DE
-      </div>
-      <span>Dounia Elgarrai</span>
-    </div>
-  </nav>
-</header>
+ <%- include('../partials/navbar') %>
 
 <!-- Dashboard -->
 <div class="pt-28 px-6 max-w-6xl mx-auto">
@@ -236,38 +208,7 @@
 </div>
 
 <!-- Footer -->
-<footer class="bg-gray-900 text-gray-300 mt-10">
-  <div
-    class="grid sm:grid-cols-2 md:grid-cols-4 gap-6 max-w-6xl mx-auto px-6 py-10"
-  >
-    <div>
-      <h3 class="font-semibold text-lg mb-4">NutriTrack</h3>
-      <p>Your intelligent nutrition companion for optimal health.</p>
-      <div class="flex gap-3 mt-4">
-        <a
-          href="#"
-          class="w-10 h-10 flex items-center justify-center bg-gray-700 rounded-full hover:bg-orange-500"
-          ><i class="fab fa-facebook-f"></i
-        ></a>
-        <a
-          href="#"
-          class="w-10 h-10 flex items-center justify-center bg-gray-700 rounded-full hover:bg-orange-500"
-          ><i class="fab fa-twitter"></i
-        ></a>
-      </div>
-    </div>
-    <div>
-      <h3 class="font-semibold text-lg mb-4">Quick Links</h3>
-      <ul class="space-y-2">
-        <li><a href="index.html" class="hover:text-white">Home</a></li>
-        <li><a href="dashboard.html" class="hover:text-white">Dashboard</a></li>
-      </ul>
-    </div>
-  </div>
-  <div class="text-center border-t border-gray-700 py-4 text-sm text-gray-500">
-    &copy; 2024 NutriTrack. All rights reserved.
-  </div>
-</footer>
+ <%- include('../partials/footer') %>
 
 <!-- Chart.js Script -->
 <script>

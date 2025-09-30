@@ -9,29 +9,7 @@
 
 <body class="bg-[#F9FBE7] text-[#2E3D32] leading-relaxed overflow-x-hidden font-[Segoe_UI,Tahoma,Geneva,Verdana,sans-serif]"></body>
   <!-- Header -->
-  <header class="fixed w-full z-50 bg-white/95 shadow-md backdrop-blur-md">
-    <nav class="flex justify-between items-center px-[5%] py-4 max-w-[1400px] mx-auto">
-      <a href="/" class="flex items-center gap-2 text-xl font-bold text-[#4CAF50] no-underline">
-        <i class="fas fa-apple-alt text-[#FF9800]"></i>
-        <span>NutriTrack</span>
-      </a>
-
-      <div class="hidden md:flex gap-8">
-        <a href="/" class="text-sm font-medium text-[#2E3D32] hover:text-[#4CAF50] no-underline">Home</a>
-        <a href="/dashboard" class="text-sm font-medium text-[#2E3D32] hover:text-[#4CAF50] no-underline">Dashboard</a>
-        <a href="/meals" class="text-sm font-medium text-[#2E3D32] hover:text-[#4CAF50] no-underline">Meals</a>
-        <a href="/reports" class="text-sm font-medium text-[#2E3D32] hover:text-[#4CAF50] no-underline">Reports</a>
-        <a href="/profile" class="text-sm font-medium text-[#4CAF50] relative after:content-[''] after:absolute after:w-full after:h-[3px] after:bg-[#4CAF50] after:left-0 after:-bottom-[5px] no-underline">Profile</a>
-      </div>
-
-      <div class="flex items-center gap-3">
-        <div class="w-10 h-10 rounded-full bg-[#4CAF50] flex items-center justify-center text-white font-bold text-sm">
-          DE
-        </div>
-        <span class="hidden md:inline text-sm font-medium">Dounia Elgarrai</span>
-      </div>
-    </nav>
-  </header>
+ <%- include('../partials/navbar') %>
 
   <!-- Profile Content -->
   <div class="pt-24 px-[5%] pb-8 max-w-[1400px] mx-auto">
