@@ -1,4 +1,6 @@
-    <footer class="bg-dark text-white py-16 px-[5%]">
+
+
+                 <footer class="bg-dark text-white py-16 px-[5%]">
         <div class="footer-content grid grid-cols-1 md:grid-cols-4 gap-8 max-w-6xl mx-auto">
             <div class="footer-column">
                 <h3 class="text-xl mb-6">NutriTrack</h3>
@@ -40,3 +42,51 @@
             <p>&copy; 2024 NutriTrack. All rights reserved.</p>
         </div>
     </footer>
+                </body>
+</html>
+<script>
+
+  function showToast(message, type = "success") {
+    const container = document.getElementById("toast-container");
+    if (!container) return;
+
+    const colors = {
+      success: "bg-green-500",
+      error: "bg-red-500",
+      info: "bg-blue-500",
+    };
+
+    const toast = document.createElement("div");
+    toast.className = `${colors[type]} text-white px-4 py-3 rounded shadow-lg flex items-center justify-between animate-slide-in`;
+    toast.innerHTML = `
+      <span>${message}</span>
+      <button class="ml-4 text-white hover:text-gray-200">&times;</button>
+    `;
+
+    // Close button
+    toast.querySelector("button").addEventListener("click", () => {
+      toast.remove();
+    });
+
+    // Auto remove after 3s
+    setTimeout(() => {
+      toast.remove();
+    }, 3000);
+
+    container.appendChild(toast);
+  }
+
+</script>
+
+<!-- Optional animation -->
+<style>
+  @keyframes slideIn {
+    from { transform: translateX(120%); opacity: 0; }
+    to   { transform: translateX(0); opacity: 1; }
+  }
+  .animate-slide-in {
+    animation: slideIn 0.3s ease-out;
+  }
+  
+</style>
+
