@@ -2,16 +2,14 @@ import express from "express";
 import path from "path";
 import { fileURLToPath } from "url";
 import dotenv from "dotenv";
-import authRoutes from './routes/authRoutes.js';
+import authRoutes from "./routes/authRoutes.js";
 import dashRoutes from "./routes/dashboardRoutes.js";
 import { errorHandler } from "./middlewares/errorMiddleware.js";
 import profileRoutes from "./routes/profileRoutes.js";
 import mealRoutes from "./routes/mealRoutes.js";
 import reportsRoutes from "./routes/reportsRoutes.js";
 import recommendationsRoutes from "./routes/recommendationsRoutes.js";
-
-
-
+import bodyParser from "body-parser";
 
 dotenv.config();
 
@@ -24,7 +22,8 @@ app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "views"));
 
 // Middleware
-app.use(express.json());
+app.use(bodyParser.json({extended:true}));
+app.use(bodyParser.urlencoded());
 
 // Static files
 app.use(express.static(path.join(__dirname, "..", "public")));
@@ -34,13 +33,9 @@ app.use(express.static(path.join(__dirname, "..", "public")));
 app.use("/", dashRoutes);
 app.use("/auth", authRoutes);
 app.use("/profile", profileRoutes);
-app.use("/meal", mealRoutes);
+app.use("/meals", mealRoutes);
 app.use("/reports", reportsRoutes);
 app.use("/recommendations", recommendationsRoutes);
-
-
-    
-
 
 app.use(errorHandler);
 

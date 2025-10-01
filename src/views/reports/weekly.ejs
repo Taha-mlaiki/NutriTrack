@@ -1,281 +1,337 @@
 <%- include("../partials/header") %>
 
-<link 
-  rel="stylesheet" 
+<link
+  rel="stylesheet"
   href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
->
+/>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
 <body class="bg-lime-50 text-gray-800 font-sans"></body>
-  
-  <!-- Header -->
-  <header class="bg-white shadow-md">
-    <nav class="max-w-6xl mx-auto flex justify-between items-center px-6 py-4">
-      <a href="index.html" class="flex items-center gap-2 text-xl font-bold text-green-600">
-        <i class="fas fa-apple-alt text-orange-500"></i>
-        NutriTrack
-      </a>
-      <div class="flex gap-6">
-        <a href="index.html" class="hover:text-green-600">Home</a>
-        <a href="dashboard.html" class="hover:text-green-600">Dashboard</a>
-        <a href="meals.html" class="hover:text-green-600">Meals</a>
-        <a href="reports.html" class="text-green-600 font-semibold">Reports</a>
-        <a href="profile.html" class="hover:text-green-600">Profile</a>
-      </div>
-      <div class="flex items-center gap-3">
-        <div class="w-10 h-10 rounded-full bg-green-600 text-white flex items-center justify-center font-bold">DE</div>
-        <span>Dounia Elgarrai</span>
-      </div>
-    </nav>
-  </header>
+<!-- Header -->
+<%- include('../partials/navbar') %>
 
-  <!-- Main -->
-  <main class="max-w-6xl mx-auto px-4 py-8">
-    <!-- Page Header -->
-    <div class="flex flex-wrap justify-between items-center mb-8 gap-4">
+<!-- Main -->
+<main class="max-w-6xl mx-auto px-4 py-8">
+  <!-- Page Header -->
+  <div class="flex flex-wrap justify-between items-center mb-8 gap-4">
+    <div>
+      <h1 class="text-3xl font-bold">Weekly Reports</h1>
+      <p class="text-gray-500">
+        Your nutrition and health insights for the week
+      </p>
+    </div>
+    <div class="flex items-center gap-3 bg-white px-4 py-2 rounded-md shadow">
+      <button id="prevWeek" class="text-gray-500 text-lg">
+        <i class="fas fa-chevron-left"></i>
+      </button>
+      <span id="weekDisplay" class="font-medium">Oct 8 - Oct 14, 2023</span>
+      <button id="nextWeek" class="text-gray-500 text-lg">
+        <i class="fas fa-chevron-right"></i>
+      </button>
+    </div>
+  </div>
+
+  <!-- Profile Summary -->
+  <div
+    class="bg-white rounded-lg shadow p-6 flex flex-wrap justify-between items-center gap-4 mb-8"
+  >
+    <div class="flex items-center gap-4">
+      <div
+        class="w-14 h-14 rounded-full bg-green-600 flex items-center justify-center text-white text-xl font-bold"
+      >
+        DE
+      </div>
       <div>
-        <h1 class="text-3xl font-bold">Weekly Reports</h1>
-        <p class="text-gray-500">Your nutrition and health insights for the week</p>
-      </div>
-      <div class="flex items-center gap-3 bg-white px-4 py-2 rounded-md shadow">
-        <button id="prevWeek" class="text-gray-500 text-lg"><i class="fas fa-chevron-left"></i></button>
-        <span id="weekDisplay" class="font-medium">Oct 8 - Oct 14, 2023</span>
-        <button id="nextWeek" class="text-gray-500 text-lg"><i class="fas fa-chevron-right"></i></button>
+        <h3 class="font-semibold">Dounia Elgarrai</h3>
+        <p class="text-gray-500">Diabetes Management Profile</p>
       </div>
     </div>
+    <span
+      class="bg-green-100 text-green-600 px-4 py-2 rounded-full text-sm font-medium"
+    >
+      <i class="fas fa-chart-line"></i> Weekly Progress Report
+    </span>
+  </div>
 
-    <!-- Profile Summary -->
-    <div class="bg-white rounded-lg shadow p-6 flex flex-wrap justify-between items-center gap-4 mb-8">
-      <div class="flex items-center gap-4">
-        <div class="w-14 h-14 rounded-full bg-green-600 flex items-center justify-center text-white text-xl font-bold">DE</div>
-        <div>
-          <h3 class="font-semibold">Dounia Elgarrai</h3>
-          <p class="text-gray-500">Diabetes Management Profile</p>
-        </div>
+  <!-- Metrics Grid -->
+  <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+    <div class="bg-white rounded-lg shadow p-6 text-center">
+      <div
+        class="w-12 h-12 rounded-full bg-orange-500 flex items-center justify-center text-white text-xl mx-auto mb-3"
+      >
+        <i class="fas fa-fire"></i>
       </div>
-      <span class="bg-green-100 text-green-600 px-4 py-2 rounded-full text-sm font-medium">
-        <i class="fas fa-chart-line"></i> Weekly Progress Report
-      </span>
+      <div class="text-2xl font-bold">14,280</div>
+      <p class="text-gray-500 text-sm">Total Calories</p>
+      <p
+        class="text-green-600 flex items-center justify-center gap-1 text-sm mt-2"
+      >
+        <i class="fas fa-arrow-down"></i> 5% less than last week
+      </p>
     </div>
-
-    <!-- Metrics Grid -->
-    <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
-      <div class="bg-white rounded-lg shadow p-6 text-center">
-        <div class="w-12 h-12 rounded-full bg-orange-500 flex items-center justify-center text-white text-xl mx-auto mb-3">
-          <i class="fas fa-fire"></i>
-        </div>
-        <div class="text-2xl font-bold">14,280</div>
-        <p class="text-gray-500 text-sm">Total Calories</p>
-        <p class="text-green-600 flex items-center justify-center gap-1 text-sm mt-2">
-          <i class="fas fa-arrow-down"></i> 5% less than last week
-        </p>
+    <div class="bg-white rounded-lg shadow p-6 text-center">
+      <div
+        class="w-12 h-12 rounded-full bg-green-600 flex items-center justify-center text-white text-xl mx-auto mb-3"
+      >
+        <i class="fas fa-bread-slice"></i>
       </div>
-      <div class="bg-white rounded-lg shadow p-6 text-center">
-        <div class="w-12 h-12 rounded-full bg-green-600 flex items-center justify-center text-white text-xl mx-auto mb-3">
-          <i class="fas fa-bread-slice"></i>
-        </div>
-        <div class="text-2xl font-bold">1,540g</div>
-        <p class="text-gray-500 text-sm">Total Carbohydrates</p>
-        <p class="text-red-500 flex items-center justify-center gap-1 text-sm mt-2">
-          <i class="fas fa-arrow-up"></i> 8% more than target
-        </p>
-      </div>
-      <div class="bg-white rounded-lg shadow p-6 text-center">
-        <div class="w-12 h-12 rounded-full bg-yellow-500 flex items-center justify-center text-white text-xl mx-auto mb-3">
-          <i class="fas fa-dumbbell"></i>
-        </div>
-        <div class="text-2xl font-bold">980g</div>
-        <p class="text-gray-500 text-sm">Total Protein</p>
-        <p class="text-green-600 flex items-center justify-center gap-1 text-sm mt-2">
-          <i class="fas fa-check"></i> On target
-        </p>
-      </div>
-      <div class="bg-white rounded-lg shadow p-6 text-center">
-        <div class="w-12 h-12 rounded-full bg-purple-600 flex items-center justify-center text-white text-xl mx-auto mb-3">
-          <i class="fas fa-weight"></i>
-        </div>
-        <div class="text-2xl font-bold">83.5kg</div>
-        <p class="text-gray-500 text-sm">Current Weight</p>
-        <p class="text-green-600 flex items-center justify-center gap-1 text-sm mt-2">
-          <i class="fas fa-arrow-down"></i> 0.5kg loss this week
-        </p>
-      </div>
+      <div class="text-2xl font-bold">1,540g</div>
+      <p class="text-gray-500 text-sm">Total Carbohydrates</p>
+      <p
+        class="text-red-500 flex items-center justify-center gap-1 text-sm mt-2"
+      >
+        <i class="fas fa-arrow-up"></i> 8% more than target
+      </p>
     </div>
-
-    <!-- Tabs -->
-    <div class="flex border-b border-gray-200 mb-6 flex-wrap">
-      <button class="tab px-4 py-2 border-b-2 border-green-600 text-green-600 font-medium" data-tab="nutrition">Nutrition Trends</button>
-      <button class="tab px-4 py-2 text-gray-600 hover:text-green-600" data-tab="health">Health Metrics</button>
-      <button class="tab px-4 py-2 text-gray-600 hover:text-green-600" data-tab="goals">Goal Progress</button>
-      <button class="tab px-4 py-2 text-gray-600 hover:text-green-600" data-tab="comparison">Weekly Comparison</button>
-    </div>
-
-    <!-- Nutrition Trends -->
-    <div class="bg-white rounded-lg shadow p-6 mb-8">
-      <div class="flex justify-between items-center flex-wrap gap-4 mb-4">
-        <h2 class="text-xl font-semibold flex items-center gap-2 text-gray-800">
-          <i class="fas fa-chart-line"></i> Nutrition Trends
-        </h2>
-        <div class="flex gap-2 flex-wrap">
-          <button class="filter-btn bg-green-600 text-white px-3 py-1 rounded-full text-sm">Calories</button>
-          <button class="filter-btn bg-gray-100 text-gray-600 px-3 py-1 rounded-full text-sm">Carbs</button>
-          <button class="filter-btn bg-gray-100 text-gray-600 px-3 py-1 rounded-full text-sm">Protein</button>
-          <button class="filter-btn bg-gray-100 text-gray-600 px-3 py-1 rounded-full text-sm">Sodium</button>
-        </div>
+    <div class="bg-white rounded-lg shadow p-6 text-center">
+      <div
+        class="w-12 h-12 rounded-full bg-yellow-500 flex items-center justify-center text-white text-xl mx-auto mb-3"
+      >
+        <i class="fas fa-dumbbell"></i>
       </div>
-      <div class="h-72">
-        <canvas id="nutritionChart"></canvas>
-      </div>
+      <div class="text-2xl font-bold">980g</div>
+      <p class="text-gray-500 text-sm">Total Protein</p>
+      <p
+        class="text-green-600 flex items-center justify-center gap-1 text-sm mt-2"
+      >
+        <i class="fas fa-check"></i> On target
+      </p>
     </div>
+    <div class="bg-white rounded-lg shadow p-6 text-center">
+      <div
+        class="w-12 h-12 rounded-full bg-purple-600 flex items-center justify-center text-white text-xl mx-auto mb-3"
+      >
+        <i class="fas fa-weight"></i>
+      </div>
+      <div class="text-2xl font-bold">83.5kg</div>
+      <p class="text-gray-500 text-sm">Current Weight</p>
+      <p
+        class="text-green-600 flex items-center justify-center gap-1 text-sm mt-2"
+      >
+        <i class="fas fa-arrow-down"></i> 0.5kg loss this week
+      </p>
+    </div>
+  </div>
 
-    <!-- Health Metrics -->
-    <div class="bg-white rounded-lg shadow p-6 mb-8">
-      <h2 class="text-xl font-semibold flex items-center gap-2 mb-4 text-gray-800">
-        <i class="fas fa-heartbeat"></i> Health Metrics
+  <!-- Tabs -->
+  <div class="flex border-b border-gray-200 mb-6 flex-wrap">
+    <button
+      class="tab px-4 py-2 border-b-2 border-green-600 text-green-600 font-medium"
+      data-tab="nutrition"
+    >
+      Nutrition Trends
+    </button>
+    <button
+      class="tab px-4 py-2 text-gray-600 hover:text-green-600"
+      data-tab="health"
+    >
+      Health Metrics
+    </button>
+    <button
+      class="tab px-4 py-2 text-gray-600 hover:text-green-600"
+      data-tab="goals"
+    >
+      Goal Progress
+    </button>
+    <button
+      class="tab px-4 py-2 text-gray-600 hover:text-green-600"
+      data-tab="comparison"
+    >
+      Weekly Comparison
+    </button>
+  </div>
+
+  <!-- Nutrition Trends -->
+  <div class="bg-white rounded-lg shadow p-6 mb-8">
+    <div class="flex justify-between items-center flex-wrap gap-4 mb-4">
+      <h2 class="text-xl font-semibold flex items-center gap-2 text-gray-800">
+        <i class="fas fa-chart-line"></i> Nutrition Trends
       </h2>
-      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
-        <div class="text-center">
-          <div class="text-2xl font-bold text-green-600">120/80</div>
-          <p class="text-gray-500">Blood Pressure (avg)</p>
+      <div class="flex gap-2 flex-wrap">
+        <button
+          class="filter-btn bg-green-600 text-white px-3 py-1 rounded-full text-sm"
+        >
+          Calories
+        </button>
+        <button
+          class="filter-btn bg-gray-100 text-gray-600 px-3 py-1 rounded-full text-sm"
+        >
+          Carbs
+        </button>
+        <button
+          class="filter-btn bg-gray-100 text-gray-600 px-3 py-1 rounded-full text-sm"
+        >
+          Protein
+        </button>
+        <button
+          class="filter-btn bg-gray-100 text-gray-600 px-3 py-1 rounded-full text-sm"
+        >
+          Sodium
+        </button>
+      </div>
+    </div>
+    <div class="h-72">
+      <canvas id="nutritionChart"></canvas>
+    </div>
+  </div>
+
+  <!-- Health Metrics -->
+  <div class="bg-white rounded-lg shadow p-6 mb-8">
+    <h2
+      class="text-xl font-semibold flex items-center gap-2 mb-4 text-gray-800"
+    >
+      <i class="fas fa-heartbeat"></i> Health Metrics
+    </h2>
+    <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+      <div class="text-center">
+        <div class="text-2xl font-bold text-green-600">120/80</div>
+        <p class="text-gray-500">Blood Pressure (avg)</p>
+      </div>
+      <div class="text-center">
+        <div class="text-2xl font-bold text-green-600">95 mg/dL</div>
+        <p class="text-gray-500">Glucose Level (avg)</p>
+      </div>
+      <div class="text-center">
+        <div class="text-2xl font-bold text-green-600">72 bpm</div>
+        <p class="text-gray-500">Heart Rate (avg)</p>
+      </div>
+      <div class="text-center">
+        <div class="text-2xl font-bold text-green-600">7h 30m</div>
+        <p class="text-gray-500">Sleep (avg)</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Goal Progress -->
+  <div class="bg-white rounded-lg shadow p-6 mb-8">
+    <h2
+      class="text-xl font-semibold flex items-center gap-2 mb-4 text-gray-800"
+    >
+      <i class="fas fa-bullseye"></i> Goal Progress
+    </h2>
+    <div class="space-y-4">
+      <div>
+        <div class="flex justify-between mb-1">
+          <span>Weight Loss</span>
+          <span class="text-gray-500">2.5kg/5kg</span>
         </div>
-        <div class="text-center">
-          <div class="text-2xl font-bold text-green-600">95 mg/dL</div>
-          <p class="text-gray-500">Glucose Level (avg)</p>
+        <div class="w-full bg-gray-200 rounded-full h-2">
+          <div class="bg-green-600 h-2 rounded-full w-1/2"></div>
         </div>
-        <div class="text-center">
-          <div class="text-2xl font-bold text-green-600">72 bpm</div>
-          <p class="text-gray-500">Heart Rate (avg)</p>
+      </div>
+      <div>
+        <div class="flex justify-between mb-1">
+          <span>Carbs Reduction</span>
+          <span class="text-gray-500">75%</span>
         </div>
-        <div class="text-center">
-          <div class="text-2xl font-bold text-green-600">7h 30m</div>
-          <p class="text-gray-500">Sleep (avg)</p>
+        <div class="w-full bg-gray-200 rounded-full h-2">
+          <div class="bg-yellow-500 h-2 rounded-full w-3/4"></div>
+        </div>
+      </div>
+      <div>
+        <div class="flex justify-between mb-1">
+          <span>Protein Intake</span>
+          <span class="text-gray-500">90%</span>
+        </div>
+        <div class="w-full bg-gray-200 rounded-full h-2">
+          <div class="bg-blue-500 h-2 rounded-full w-[90%]"></div>
         </div>
       </div>
     </div>
+  </div>
 
-    <!-- Goal Progress -->
-    <div class="bg-white rounded-lg shadow p-6 mb-8">
-      <h2 class="text-xl font-semibold flex items-center gap-2 mb-4 text-gray-800">
-        <i class="fas fa-bullseye"></i> Goal Progress
-      </h2>
-      <div class="space-y-4">
-        <div>
-          <div class="flex justify-between mb-1">
-            <span>Weight Loss</span>
-            <span class="text-gray-500">2.5kg/5kg</span>
-          </div>
-          <div class="w-full bg-gray-200 rounded-full h-2">
-            <div class="bg-green-600 h-2 rounded-full w-1/2"></div>
-          </div>
-        </div>
-        <div>
-          <div class="flex justify-between mb-1">
-            <span>Carbs Reduction</span>
-            <span class="text-gray-500">75%</span>
-          </div>
-          <div class="w-full bg-gray-200 rounded-full h-2">
-            <div class="bg-yellow-500 h-2 rounded-full w-3/4"></div>
-          </div>
-        </div>
-        <div>
-          <div class="flex justify-between mb-1">
-            <span>Protein Intake</span>
-            <span class="text-gray-500">90%</span>
-          </div>
-          <div class="w-full bg-gray-200 rounded-full h-2">
-            <div class="bg-blue-500 h-2 rounded-full w-[90%]"></div>
-          </div>
-        </div>
-      </div>
+  <!-- Weekly Comparison -->
+  <div class="bg-white rounded-lg shadow p-6 mb-8">
+    <h2
+      class="text-xl font-semibold flex items-center gap-2 mb-4 text-gray-800"
+    >
+      <i class="fas fa-balance-scale"></i> Weekly Comparison
+    </h2>
+    <div class="h-72">
+      <canvas id="comparisonChart"></canvas>
     </div>
+  </div>
 
-    <!-- Weekly Comparison -->
-    <div class="bg-white rounded-lg shadow p-6 mb-8">
-      <h2 class="text-xl font-semibold flex items-center gap-2 mb-4 text-gray-800">
-        <i class="fas fa-balance-scale"></i> Weekly Comparison
-      </h2>
-      <div class="h-72">
-        <canvas id="comparisonChart"></canvas>
-      </div>
-    </div>
+  <!-- Actionable Insights -->
+  <div class="bg-white rounded-lg shadow p-6">
+    <h2
+      class="text-xl font-semibold flex items-center gap-2 mb-4 text-gray-800"
+    >
+      <i class="fas fa-lightbulb"></i> Actionable Insights
+    </h2>
+    <ul class="space-y-3">
+      <li class="flex gap-2">
+        <i class="fas fa-check-circle text-green-600 mt-1"></i>
+        <p>Great job maintaining consistent protein intake this week!</p>
+      </li>
+      <li class="flex gap-2">
+        <i class="fas fa-exclamation-triangle text-yellow-500 mt-1"></i>
+        <p>
+          Your carbohydrate intake was above target by 8%. Consider reducing
+          portion sizes for starchy foods.
+        </p>
+      </li>
+      <li class="flex gap-2">
+        <i class="fas fa-arrow-down text-green-600 mt-1"></i>
+        <p>You lost 0.5kg this week — keep up the good work!</p>
+      </li>
+      <li class="flex gap-2">
+        <i class="fas fa-heart text-red-500 mt-1"></i>
+        <p>
+          Your average glucose level is within healthy range. Continue your
+          current plan.
+        </p>
+      </li>
+    </ul>
+  </div>
+</main>
 
-    <!-- Actionable Insights -->
-    <div class="bg-white rounded-lg shadow p-6">
-      <h2 class="text-xl font-semibold flex items-center gap-2 mb-4 text-gray-800">
-        <i class="fas fa-lightbulb"></i> Actionable Insights
-      </h2>
-      <ul class="space-y-3">
-        <li class="flex gap-2">
-          <i class="fas fa-check-circle text-green-600 mt-1"></i>
-          <p>Great job maintaining consistent protein intake this week!</p>
-        </li>
-        <li class="flex gap-2">
-          <i class="fas fa-exclamation-triangle text-yellow-500 mt-1"></i>
-          <p>Your carbohydrate intake was above target by 8%. Consider reducing portion sizes for starchy foods.</p>
-        </li>
-        <li class="flex gap-2">
-          <i class="fas fa-arrow-down text-green-600 mt-1"></i>
-          <p>You lost 0.5kg this week — keep up the good work!</p>
-        </li>
-        <li class="flex gap-2">
-          <i class="fas fa-heart text-red-500 mt-1"></i>
-          <p>Your average glucose level is within healthy range. Continue your current plan.</p>
-        </li>
-      </ul>
-    </div>
-  </main>
+<!-- Footer -->
+<footer class="bg-gray-900 text-white text-center py-6 mt-12">
+  <h3 class="text-xl font-semibold">NutriTrack</h3>
+  <p class="text-gray-400">Your intelligent nutrition companion</p>
+  <p class="text-gray-500 mt-2">&copy; 2024 NutriTrack. All rights reserved.</p>
+</footer>
 
-  <!-- Footer -->
-  <footer class="bg-gray-900 text-white text-center py-6 mt-12">
-    <h3 class="text-xl font-semibold">NutriTrack</h3>
-    <p class="text-gray-400">Your intelligent nutrition companion</p>
-    <p class="text-gray-500 mt-2">&copy; 2024 NutriTrack. All rights reserved.</p>
-  </footer>
-
-  <!-- Charts Script -->
-  <script>
-    const ctx1 = document.getElementById('nutritionChart').getContext('2d');
-    new Chart(ctx1, {
-      type: 'line',
-      data: {
-        labels: ['Mon','Tue','Wed','Thu','Fri','Sat','Sun'],
-        datasets: [{
-          label: 'Calories',
-          data: [2000,2100,1900,2200,2050,1950,2100],
-          borderColor: '#16a34a',
-          backgroundColor: 'rgba(22,163,74,0.2)',
+<!-- Charts Script -->
+<script>
+  const ctx1 = document.getElementById("nutritionChart").getContext("2d");
+  new Chart(ctx1, {
+    type: "line",
+    data: {
+      labels: ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"],
+      datasets: [
+        {
+          label: "Calories",
+          data: [2000, 2100, 1900, 2200, 2050, 1950, 2100],
+          borderColor: "#16a34a",
+          backgroundColor: "rgba(22,163,74,0.2)",
           fill: true,
-          tension: 0.3
-        }]
-      }
-    });
+          tension: 0.3,
+        },
+      ],
+    },
+  });
 
-    const ctx2 = document.getElementById('comparisonChart').getContext('2d');
-    new Chart(ctx2, {
-      type: 'bar',
-      data: {
-        labels: ['Calories','Carbs','Protein','Fat'],
-        datasets: [
-          {
-            label: 'This Week',
-            data: [14280,1540,980,600],
-            backgroundColor: '#16a34a'
-          },
-          {
-            label: 'Last Week',
-            data: [15000,1400,950,650],
-            backgroundColor: '#f59e0b'
-          }
-        ]
-      }
-    });
-  </script>
-
-
-
-
-
-
-
+  const ctx2 = document.getElementById("comparisonChart").getContext("2d");
+  new Chart(ctx2, {
+    type: "bar",
+    data: {
+      labels: ["Calories", "Carbs", "Protein", "Fat"],
+      datasets: [
+        {
+          label: "This Week",
+          data: [14280, 1540, 980, 600],
+          backgroundColor: "#16a34a",
+        },
+        {
+          label: "Last Week",
+          data: [15000, 1400, 950, 650],
+          backgroundColor: "#f59e0b",
+        },
+      ],
+    },
+  });
+</script>
 
 <%- include("../partials/footer") %>

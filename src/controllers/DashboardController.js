@@ -5,3 +5,4 @@ export const showDashboard = (req, res) => {
 export const showHome = (req, res) => {
   res.render("layouts/main", { error: null });
 };
+
