@@ -14,3 +14,8 @@ export const create = async (fullName, email, hash, profile_type) => {
   );
   return { id: result.insertId, email };
 };
+
+export const findById = async (id) => {
+  const [rows] = await pool.query("SELECT * FROM users WHERE id = ?", [id]);
+  return rows[0];
+};
