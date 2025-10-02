@@ -1,32 +1,63 @@
 <header class="bg-white shadow-md py-4 px-[5%]">
-    <nav class="flex justify-between items-center max-w-[1200px] mx-auto flex-wrap gap-4">
-        <a href="/" class="flex items-center gap-2 text-[#4CAF50] font-bold text-xl no-underline">
-            <i class="fas fa-apple-alt text-[#FF9800]"></i>
-            <span>NutriTrack</span>
-        </a>
-        <div class="flex gap-8">
-            <a href="/" class="text-[#2E3D32] font-medium" data-route="/">Home</a>
-            <a href="/dashboard" class="text-[#2E3D32] font-medium" data-route="/dashboard">Dashboard</a>
-            <a href="/meals" class="text-[#2E3D32] font-medium" data-route="/meals">Meals</a>
-            <a href="/reports" class="text-[#2E3D32] font-medium" data-route="/reports">Reports</a>
-            <a href="/recommendations" class="text-[#2E3D32] font-medium" data-route="/recommendations">Recommendations</a>
-            <a href="/profile" class="text-[#2E3D32] font-medium" data-route="/profile">Profile</a>
-        </div>
-        <div class="flex items-center gap-4">
-            <div class="w-10 h-10 rounded-full bg-[#4CAF50] flex items-center justify-center text-white font-bold">DE</div>
-            <span>Dounia Elgarrai</span>
-        </div>
-    </nav>
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const links = document.querySelectorAll('nav a[data-route]');
-            const currentPath = window.location.pathname;
+  <nav
+    class="flex justify-between items-center max-w-[1200px] mx-auto flex-wrap gap-4"
+  >
+    <a
+      href="/"
+      class="flex items-center gap-2 text-[#4CAF50] font-bold text-xl no-underline"
+    >
+      <i class="fas fa-apple-alt text-[#FF9800]"></i>
+      <span>NutriTrack</span>
+    </a>
+    <div class="flex gap-8">
+      <a href="/" class="text-[#2E3D32] font-medium" data-route="/">Home</a>
+      <a
+        href="/dashboard"
+        class="text-[#2E3D32] font-medium"
+        data-route="/dashboard"
+        >Dashboard</a
+      >
+      <a href="/meals" class="text-[#2E3D32] font-medium" data-route="/meals"
+        >Meals</a
+      >
+      <a
+        href="/reports"
+        class="text-[#2E3D32] font-medium"
+        data-route="/reports"
+        >Reports</a
+      >
+      <a
+        href="/recommendations"
+        class="text-[#2E3D32] font-medium"
+        data-route="/recommendations"
+        >Recommendations</a
+      >
+      <a
+        href="/profile"
+        class="text-[#2E3D32] font-medium"
+        data-route="/profile"
+        >Profile</a
+      >
+    </div>
+    <div class="flex items-center gap-4">
+      <div
+        class="w-10 h-10 rounded-full bg-[#4CAF50] flex items-center justify-center text-white font-bold"
+      >
+        DE
+      </div>
+      <span>Dounia Elgarrai</span>
+    </div>
+  </nav>
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const links = document.querySelectorAll("nav a[data-route]");
+      const currentPath = window.location.pathname;
 
-            links.forEach(link => {
-                if (link.dataset.route === currentPath) {
-                    link.classList.add('text-[#4CAF50]', 'font-bold');
-                }
-            });
-        });
-    </script>
+      links.forEach((link) => {
+        if (link.dataset.route === currentPath) {
+          link.classList.add("text-[#4CAF50]", "font-bold");
+        }
+      });
+    });
+  </script>
 </header>
