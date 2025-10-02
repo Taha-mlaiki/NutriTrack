@@ -1,3 +1,6 @@
+import { generateRecommendations } from "../services/recommendationsService.js";
+
+
 export const fakeRecommendations = [
   {
     id: 1,
@@ -92,7 +95,7 @@ export const listRecommendations = (req, res) => {
   res.json({ data: fakeRecommendations });
 };
 
-import { generateRecommendations } from "../services/recommendationsService.js";
+
 
 export const aiRecommendations = async (req, res, next) => {
   try {
