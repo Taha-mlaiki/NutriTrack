@@ -154,6 +154,40 @@
         const container = document.getElementById('recommendationsContainer');
         container.innerHTML = '<div class="text-center text-[#607D8B] py-8"><i class="fas fa-spinner fa-spin text-2xl mb-4"></i><p>Generating AI recommendations...</p></div>';
 
+        
+        const mealResponse = await fetch('/meals/history?userId=1');
+        if (!mealResponse.ok) {
+          throw new Error('Failed to fetch meal history');
+        }
+        
+        const meals = await mealResponse.json();
+        const latestMeal = meals && meals.length > 0 ? meals[0] : null;
+        
+        if (!latestMeal) {
+          throw new Error('No meals found. Please upload a meal first.');
+        }
+
+        
+        const mealAnalysis = {
+          totals: {
+            calories: latestMeal.calories || 0,
+            carbs: latestMeal.carbs || 0,
+            protein: latestMeal.proteins || 0,
+            fats: latestMeal.fats || 0,
+            sodium: latestMeal.sodium || 0,
+            fiber: latestMeal.fiber || 0
+          },
+          foods: latestMeal.foods ? latestMeal.foods.map(food => ({
+            name: food.name,
+            calories: food.calories,
+            carbs: food.carbs,
+            protein: food.proteins,
+            fats: food.fats,
+            sodium: food.sodium,
+            fiber: food.fiber
+          })) : []
+        };
+
         const response = await fetch('/recommendations/ai', {
           method: 'POST',
           headers: {
@@ -161,20 +195,7 @@
           },
           body: JSON.stringify({
             userId: 1,
-            meal: {
-              totals: {
-                calories: 600,
-                carbs: 70,
-                protein: 25,
-                fats: 20,
-                sodium: 1200,
-                fiber: 6
-              },
-              foods: [
-                { name: "Pasta", carbs: 50, calories: 400 },
-                { name: "Chicken", protein: 25, calories: 200 }
-              ]
-            }
+            meal: mealAnalysis
           })
         });
 
