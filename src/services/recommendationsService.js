@@ -83,7 +83,6 @@ Use types: medical, nutrition, workout, hydration, weight`;
       }),
     ]);
 
-    console.log("AI Response:", response.content);
 
     
     let jsonText = String(response.content);
@@ -95,7 +94,6 @@ Use types: medical, nutrition, workout, hydration, weight`;
     }
 
     const parsed = JSON.parse(jsonText);
-    console.log("Parsed recommendations:", parsed);
     
     return mapAiToCards(parsed);
     

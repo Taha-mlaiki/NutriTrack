@@ -15,7 +15,7 @@ export const handleLogin = async (req, res) => {
       name: user.name,
     };
     
-    return res.status(200).json({
+    res.status(200).json({
       success: true,
       message: "Connexion réussie",
     });
@@ -34,7 +34,7 @@ export const handleRegister = async (req, res) => {
   try {
     const { fullName, email, password, profile } = req.body;
     await authService.register(fullName, email, password, profile);
-    return res.status(201).json({ success: true, message: "User registered" });
+    res.status(201).json({ success: true, message: "User registered" });
   } catch (err) {
     console.log(err);
     res.status(400).json({ success: false, message: err.message });

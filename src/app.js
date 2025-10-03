@@ -12,8 +12,8 @@ import recommendationsRoutes from "./routes/recommendationsRoutes.js";
 import bodyParser from "body-parser";
 import session from "express-session";
 import { authMiddleware } from "./middlewares/authMiddleware.js";
-import { uuid } from "zod";
 import cookieParser from "cookie-parser";
+import { alreadyAuthMiddleware } from "./middlewares/alreadyAuthMiddleware.js";
 
 dotenv.config();
 
@@ -41,13 +41,18 @@ app.use(
   })
 );
 
-
-app.use("/auth", authRoutes);
+app.use("/auth", alreadyAuthMiddleware, authRoutes);
 app.use("/", authMiddleware, dashRoutes);
 app.use("/profile", authMiddleware, profileRoutes);
 app.use("/meals", authMiddleware, mealRoutes);
 app.use("/reports", authMiddleware, reportsRoutes);
 app.use("/recommendations", authMiddleware, recommendationsRoutes);
+// app.use("/auth", authRoutes);
+// app.use("/", dashRoutes);
+// app.use("/profile", profileRoutes);
+// app.use("/meals", mealRoutes);
+// app.use("/reports", reportsRoutes);
+// app.use("/recommendations", recommendationsRoutes);
 
 app.use(errorHandler);
 
