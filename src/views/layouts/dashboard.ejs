@@ -175,31 +175,31 @@
         <div class="space-y-4">
           <div class="flex items-center gap-3 border-b border-gray-200 pb-2">
             <img
-              src="https://images.unsplash.com/photo-1565958011703-44f9829ba187?auto=format&fit=crop&w=100&q=80"
+              src="<%= recentMeals[0].image_url %>"
               class="w-16 h-16 rounded-lg object-cover"
               alt="Lunch"
             />
             <div class="flex-1">
-              <h4 class="font-semibold">Lunch - Grilled Chicken Salad</h4>
-              <p class="text-sm text-gray-500">
-                12:30 PM • Carbs: 25g, Protein: 30g
-              </p>
+              <h4 class="font-semibold"><%= recentMeals[0].food_name %></h4>
+<p class="text-sm text-gray-500">
+  • Carbs: <%= recentMeals[0].carbs %> g, Protein: <%= recentMeals[0].proteins %> g
+</p>
             </div>
-            <span class="text-orange-500 font-bold">420 cal</span>
+            <span class="text-orange-500 font-bold"><%= recentMeals[0].calories %> cal</span>
           </div>
           <div class="flex items-center gap-3 border-b border-gray-200 pb-2">
             <img
-              src="https://images.unsplash.com/photo-1490818387583-1baba5e638af?auto=format&fit=crop&w=100&q=80"
+              src="<%= recentMeals[1].image_url %>"
               class="w-16 h-16 rounded-lg object-cover"
               alt="Breakfast"
             />
             <div class="flex-1">
-              <h4 class="font-semibold">Breakfast - Oatmeal with Fruits</h4>
-              <p class="text-sm text-gray-500">
-                8:15 AM • Carbs: 45g, Protein: 12g
-              </p>
+              <h4 class="font-semibold"><%= recentMeals[1].food_name %></h4>
+<p class="text-sm text-gray-500">
+  • Carbs: <%= recentMeals[1].carbs %> g, Protein: <%= recentMeals[1].proteins %> g
+</p>
             </div>
-            <span class="text-orange-500 font-bold">320 cal</span>
+            <span class="text-orange-500 font-bold"><%= recentMeals[1].calories %>cal</span>
           </div>
         </div>
       </section>
