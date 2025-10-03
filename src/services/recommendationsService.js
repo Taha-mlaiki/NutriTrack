@@ -36,7 +36,7 @@ export const generateRecommendations = async ({ userId, mealAnalysis }) => {
     calorie_target: profileSettings?.calorie_target ?? null,
   };
 
-  const prompt = `You are a clinical nutritionist. Generate 4 personalized recommendations based on this user profile and meal analysis.
+  const prompt = `You are a clinical nutritionist. Generate 8 personalized recommendations based on this user profile and meal analysis.
 
 USER PROFILE:
 - Name: ${profile.name}
