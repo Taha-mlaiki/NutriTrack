@@ -1,9 +1,10 @@
 
 import { Router } from "express";
-import { showRecommendations } from "../controllers/recommendationsController.js";
+import { showRecommendations, aiRecommendations } from "../controllers/recommendationsController.js";
 
 const router = Router ();
 
 router.get("/", showRecommendations);
+router.post("/ai", aiRecommendations);
 
 export default router;

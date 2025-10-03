@@ -72,7 +72,7 @@ export const uploadMeal = async (req, res) => {
     //   return res.status(401).json({ error: "Not authenticated" });
 
     // const userId = req.session.user.id;
-    const userId = 1;
+    const userId = req.body.userId || 1; 
     const { foods, totals } = req.body;
 
     // Parse if JSON strings
@@ -121,7 +121,8 @@ export const uploadMeal = async (req, res) => {
 
 export const getMealHistory = async (req, res) => {
   try {
-    const meals = await getMealsWFood(1);
+    const userId = req.query.userId || 1; 
+    const meals = await getMealsWFood(userId);
     res.json(meals);
   } catch (err) {
     console.error(err);
