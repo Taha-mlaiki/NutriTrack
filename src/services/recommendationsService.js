@@ -2,7 +2,6 @@ import { model } from "../config/gemini.js";
 import { findById, findProfileSettings } from "../repositories/userRepository.js";
 import { HumanMessage } from "@langchain/core/messages";
 
-
 const mapAiToCards = (ai) => {
   if (!Array.isArray(ai)) return [];
   return ai.map((r, idx) => ({
@@ -18,128 +17,103 @@ const mapAiToCards = (ai) => {
 };
 
 export const generateRecommendations = async ({ userId, mealAnalysis }) => {
-  try {
-    console.log("Generating recommendations for userId:", userId);
-    console.log("Meal analysis:", mealAnalysis);
-    
-    const user = await findById(userId);
-    if (!user) throw new Error("User not found");
-    console.log("User found:", user);
+  const user = await findById(userId);
+  if (!user) throw new Error("User not found");
 
-    const profileSettings = await findProfileSettings(userId);
-    console.log("Profile settings:", profileSettings);
+  const profileSettings = await findProfileSettings(userId);
 
-    const profile = {
-      id: user.id,
-      name: user.name,
-      profile_type: user.profile_type,
-      age: user.age ?? null,
-      gender: user.gender ?? null,
-      weight: user.weight ?? null,
-      height: user.height ?? null,
-      
-      max_carbs: profileSettings?.max_carbs ?? null,
-      max_sodium: profileSettings?.max_sodium ?? null,
-      min_proteins: profileSettings?.min_proteins ?? null,
-      calorie_target: profileSettings?.calorie_target ?? null,
-    };
-    
-    console.log("Profile object:", profile);
-
-  const prompt = `You are a clinical-nutrition assistant. Based on the user profile and the analyzed meal, produce 4-6 personalized recommendations.
-Return ONLY valid JSON inside a single \`\`\`json block with this exact schema:
-\n\n\n\n\n\n\n\n\n\n\n\n`;
-
-  const schema = {
-    example: [
-      {
-        id: 1,
-        type: "medical", 
-        title: "Blood Sugar Management",
-        subtitle: "Based on diabetes profile",
-        message: "Pair carbs with protein and fiber to slow absorption.",
-        meta: {
-          mealTime: "Lunch (12:30 PM)",
-          carbs: "65g",
-          suggestion: "Add lean protein next meal",
-        },
-        createdAt: "just now",
-        status: "new",
-      },
-    ],
+  const profile = {
+    id: user.id,
+    name: user.name,
+    profile_type: user.profile_type,
+    age: user.age ?? null,
+    gender: user.gender ?? null,
+    weight: user.weight ?? null,
+    height: user.height ?? null,
+    max_carbs: profileSettings?.max_carbs ?? null,
+    max_sodium: profileSettings?.max_sodium ?? null,
+    min_proteins: profileSettings?.min_proteins ?? null,
+    calorie_target: profileSettings?.calorie_target ?? null,
   };
 
-  const contentText = `USER_PROFILE:\n${JSON.stringify(profile)}\nMEAL_ANALYSIS:\n${JSON.stringify(
-    mealAnalysis
-  )}\n\nSCHEMA:\n${JSON.stringify(schema)}\n\nFollow the schema strictly. Return only JSON.`;
+  const prompt = `You are a clinical nutritionist. Generate 4 personalized recommendations based on this user profile and meal analysis.
 
-  const response = await model.invoke([
-    new HumanMessage({
-      content: [{ type: "text", text: contentText }],
-    }),
-  ]);
+USER PROFILE:
+- Name: ${profile.name}
+- Profile Type: ${profile.profile_type}
+- Age: ${profile.age}
+- Gender: ${profile.gender}
+- Weight: ${profile.weight}kg
+- Height: ${profile.height}cm
+- Max Carbs: ${profile.max_carbs}g
+- Max Sodium: ${profile.max_sodium}mg
+- Min Proteins: ${profile.min_proteins}g
+- Calorie Target: ${profile.calorie_target}cal
 
-  console.log("AI Response:", response.content);
+MEAL ANALYSIS:
+- Calories: ${mealAnalysis.totals?.calories || 0}
+- Carbs: ${mealAnalysis.totals?.carbs || 0}g
+- Protein: ${mealAnalysis.totals?.protein || 0}g
+- Fats: ${mealAnalysis.totals?.fats || 0}g
+- Sodium: ${mealAnalysis.totals?.sodium || 0}mg
+- Fiber: ${mealAnalysis.totals?.fiber || 0}g
 
-  const match = String(response.content).match(/```json\n([\s\S]*?)\n```/);
-  const json = match ? match[1] : String(response.content);
-  
-  console.log("Extracted JSON:", json);
-  
-  const parsed = JSON.parse(json);
-  console.log("Parsed recommendations:", parsed);
-  
-  return mapAiToCards(parsed);
-  
+Return ONLY a JSON array with exactly this format:
+[
+  {
+    "id": 1,
+    "type": "medical",
+    "title": "Recommendation Title",
+    "subtitle": "Brief subtitle",
+    "message": "Detailed recommendation message",
+    "meta": {
+      "key": "value"
+    },
+    "createdAt": "just now",
+    "status": "new"
+  }
+]
+
+Use types: medical, nutrition, workout, hydration, weight`;
+
+  try {
+    const response = await model.invoke([
+      new HumanMessage({
+        content: [{ type: "text", text: prompt }],
+      }),
+    ]);
+
+    console.log("AI Response:", response.content);
+
+    
+    let jsonText = String(response.content);
+    
+    
+    const jsonMatch = jsonText.match(/\[[\s\S]*\]/);
+    if (jsonMatch) {
+      jsonText = jsonMatch[0];
+    }
+
+    const parsed = JSON.parse(jsonText);
+    console.log("Parsed recommendations:", parsed);
+    
+    return mapAiToCards(parsed);
+    
   } catch (error) {
-    console.error("Error in generateRecommendations:", error);
+    console.error("AI Error:", error);
     
     
-    const fallbackRecommendations = [
+    return [
       {
         id: 1,
         type: "medical",
         title: "Blood Sugar Management",
         subtitle: "Based on your diabetes profile",
-        message: "Your meal contains 73g carbs. Consider pairing with protein and fiber to slow glucose absorption.",
-        meta: {
-          mealTime: "Recent meal",
-          carbs: "73g",
-          suggestion: "Add lean protein to next meal"
-        },
-        createdAt: "just now",
-        status: "new"
-      },
-      {
-        id: 2,
-        type: "nutrition",
-        title: "Protein Intake",
-        subtitle: "Good protein levels detected",
-        message: "Your meal has 41g protein. This is excellent for managing blood sugar and maintaining muscle mass.",
-        meta: {
-          protein: "41g",
-          status: "Good"
-        },
-        createdAt: "just now",
-        status: "new"
-      },
-      {
-        id: 3,
-        type: "workout",
-        title: "Post-Meal Activity",
-        subtitle: "Consider light exercise",
-        message: "Take a 15-minute walk after this meal to help regulate blood sugar levels.",
-        meta: {
-          duration: "15 min",
-          type: "Light walk"
-        },
+        message: `Your meal contains ${mealAnalysis.totals?.carbs || 0}g carbs. Consider pairing with protein and fiber to slow glucose absorption.`,
+        meta: { carbs: `${mealAnalysis.totals?.carbs || 0}g` },
         createdAt: "just now",
         status: "new"
       }
     ];
-    
-    return fallbackRecommendations;
   }
 };
-
-
