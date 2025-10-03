@@ -1,6 +1,6 @@
 
 import { Router } from "express";
-import { showRecommendations, listRecommendations, aiRecommendations } from "../controllers/recommendationsController.js";
+import { showRecommendations, aiRecommendations } from "../controllers/recommendationsController.js";
 
 const router = Router ();
 
