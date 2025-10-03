@@ -19,3 +19,8 @@ export const findById = async (id) => {
   const [rows] = await pool.query("SELECT * FROM users WHERE id = ?", [id]);
   return rows[0];
 };
+
+export const findProfileSettings = async (userId) => {
+  const [rows] = await pool.query("SELECT * FROM Profile_Settings WHERE user_id = ?", [userId]);
+  return rows[0];
+};
