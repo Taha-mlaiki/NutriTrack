@@ -157,4 +157,147 @@
   </footer>
 
   <%- include("../partials/footer") %>
+
+  <script>
+    
+    async function fetchAIRecommendations() {
+      try {
+       
+        const container = document.getElementById('recommendationsContainer');
+        container.innerHTML = '<div class="text-center text-[#607D8B] py-8"><i class="fas fa-spinner fa-spin text-2xl mb-4"></i><p>Generating AI recommendations...</p></div>';
+
+        const response = await fetch('/recommendations/ai', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            userId: 1,
+            meal: {
+              totals: {
+                calories: 600,
+                carbs: 70,
+                protein: 25,
+                fats: 20,
+                sodium: 1200,
+                fiber: 6
+              },
+              foods: [
+                { name: "Pasta", carbs: 50, calories: 400 },
+                { name: "Chicken", protein: 25, calories: 200 }
+              ]
+            }
+          })
+        });
+
+        if (!response.ok) {
+          throw new Error('Failed to fetch recommendations');
+        }
+
+        const data = await response.json();
+        renderRecommendations(data.data);
+
+      } catch (error) {
+        console.error('Error fetching recommendations:', error);
+        const container = document.getElementById('recommendationsContainer');
+        container.innerHTML = '<div class="text-center text-red-500 py-8"><i class="fas fa-exclamation-triangle text-2xl mb-4"></i><p>Failed to load recommendations. Please try again.</p></div>';
+      }
+    }
+
+    
+    function renderRecommendations(recommendations) {
+      const container = document.getElementById('recommendationsContainer');
+      
+      if (!recommendations || recommendations.length === 0) {
+        container.innerHTML = '<div class="text-center text-[#607D8B] py-8">No recommendations available. Try analyzing a meal first.</div>';
+        return;
+      }
+
+      const typeColors = {
+        medical: '#F44336',
+        workout: '#FF9800', 
+        nutrition: '#4CAF50',
+        hydration: '#2196F3',
+        weight: '#9C27B0'
+      };
+
+      const typeIcons = {
+        medical: 'fa-heartbeat',
+        workout: 'fa-running',
+        nutrition: 'fa-utensils', 
+        hydration: 'fa-tint',
+        weight: 'fa-weight'
+      };
+
+      const typeBgColors = {
+        medical: '#F9FBE7',
+        workout: '#FFF3E0',
+        nutrition: '#E8F5E9',
+        hydration: '#E3F2FD',
+        weight: '#F3E5F5'
+      };
+
+      container.innerHTML = recommendations.map(rec => `
+        <div class="recommendation-card bg-white rounded-xl p-6 shadow-md border-l-4"
+             data-type="${rec.type}"
+             style="border-left-color: ${typeColors[rec.type] || '#4CAF50'}">
+          <div class="flex justify-between items-start mb-4 flex-wrap gap-4">
+            <div>
+              <div class="flex items-center gap-2 mb-2">
+                <div class="w-8 h-8 rounded-full flex items-center justify-center text-white text-sm"
+                     style="background-color: ${typeColors[rec.type] || '#4CAF50'}">
+                  <i class="fas ${typeIcons[rec.type] || 'fa-utensils'}"></i>
+                </div>
+                <h3 class="font-semibold text-lg">${rec.title}</h3>
+              </div>
+              <p>${rec.subtitle}</p>
+            </div>
+            <div class="flex gap-2 self-end">
+              <button class="action-btn check-btn w-8 h-8 flex items-center justify-center rounded-full text-green-500 text-lg">
+                <i class="fas fa-check"></i>
+              </button>
+              <button class="action-btn dismiss-btn w-8 h-8 flex items-center justify-center rounded-full text-gray-500 text-lg">
+                <i class="fas fa-times"></i>
+              </button>
+            </div>
+          </div>
+          <div class="mb-6">
+            <p>${rec.message}</p>
+            <div class="rounded p-4 mt-4"
+                 style="background-color: ${typeBgColors[rec.type] || '#E8F5E9'}">
+              <div class="grid gap-2">
+                ${Object.keys(rec.meta || {}).map(key => `
+                  <div class="flex justify-between">
+                    <span>${key.replace(/([A-Z])/g,' $1').replace(/^./, s=>s.toUpperCase())}:</span>
+                    <span>${rec.meta[key]}</span>
+                  </div>
+                `).join('')}
+              </div>
+            </div>
+          </div>
+          <div class="flex justify-between items-center pt-4 border-t border-[#E0E0E0] text-sm text-[#607D8B]">
+            <div class="flex items-center gap-1">
+              <i class="fas fa-bolt"></i> AI Analysis
+            </div>
+            <div class="flex items-center gap-1">
+              <span class="status-badge px-3 py-1 rounded-full text-xs font-medium"
+                    style="background-color: rgba(76,175,80,0.1); color:#4CAF50;">New</span>
+              <span>Generated ${rec.createdAt}</span>
+            </div>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    
+    document.addEventListener('DOMContentLoaded', function() {
+      fetchAIRecommendations();
+    });
+
+   
+    document.getElementById('refreshBtn').addEventListener('click', function(e) {
+      e.preventDefault();
+      fetchAIRecommendations();
+    });
+  </script>
 </body>
