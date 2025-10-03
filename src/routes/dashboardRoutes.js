@@ -1,9 +1,9 @@
 import { Router } from "express";
-import { showDashboard, showHome } from "../controllers/DashboardController.js";
+import { getDashboardStats, showDashboard, showHome } from "../controllers/DashboardController.js";
 
 const router = Router();
 
 router.get("/", showHome);
-router.get("/dashboard", showDashboard);
+router.get("/dashboard", getDashboardStats);
 
 export default router;
