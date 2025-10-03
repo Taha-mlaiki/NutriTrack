@@ -18,25 +18,33 @@ const mapAiToCards = (ai) => {
 };
 
 export const generateRecommendations = async ({ userId, mealAnalysis }) => {
-  const user = await findById(userId);
-  if (!user) throw new Error("User not found");
-
-  const profileSettings = await findProfileSettings(userId);
-
-  const profile = {
-    id: user.id,
-    name: user.name,
-    profile_type: user.profile_type,
-    age: user.age ?? null,
-    gender: user.gender ?? null,
-    weight: user.weight ?? null,
-    height: user.height ?? null,
+  try {
+    console.log("Generating recommendations for userId:", userId);
+    console.log("Meal analysis:", mealAnalysis);
     
-    max_carbs: profileSettings?.max_carbs ?? null,
-    max_sodium: profileSettings?.max_sodium ?? null,
-    min_proteins: profileSettings?.min_proteins ?? null,
-    calorie_target: profileSettings?.calorie_target ?? null,
-  };
+    const user = await findById(userId);
+    if (!user) throw new Error("User not found");
+    console.log("User found:", user);
+
+    const profileSettings = await findProfileSettings(userId);
+    console.log("Profile settings:", profileSettings);
+
+    const profile = {
+      id: user.id,
+      name: user.name,
+      profile_type: user.profile_type,
+      age: user.age ?? null,
+      gender: user.gender ?? null,
+      weight: user.weight ?? null,
+      height: user.height ?? null,
+      
+      max_carbs: profileSettings?.max_carbs ?? null,
+      max_sodium: profileSettings?.max_sodium ?? null,
+      min_proteins: profileSettings?.min_proteins ?? null,
+      calorie_target: profileSettings?.calorie_target ?? null,
+    };
+    
+    console.log("Profile object:", profile);
 
   const prompt = `You are a clinical-nutrition assistant. Based on the user profile and the analyzed meal, produce 4-6 personalized recommendations.
 Return ONLY valid JSON inside a single \`\`\`json block with this exact schema:
@@ -71,10 +79,22 @@ Return ONLY valid JSON inside a single \`\`\`json block with this exact schema:
     }),
   ]);
 
+  console.log("AI Response:", response.content);
+
   const match = String(response.content).match(/```json\n([\s\S]*?)\n```/);
   const json = match ? match[1] : String(response.content);
+  
+  console.log("Extracted JSON:", json);
+  
   const parsed = JSON.parse(json);
+  console.log("Parsed recommendations:", parsed);
+  
   return mapAiToCards(parsed);
+  
+  } catch (error) {
+    console.error("Error in generateRecommendations:", error);
+    throw error;
+  }
 };
 
 
