@@ -9,7 +9,47 @@
 
 <body class="bg-lime-50 text-gray-800 font-sans">
   <!-- Header -->
+
   <%- include('../partials/navbar') %>
+
+  <!-- Toast Notification -->
+  <div
+    id="toast"
+    class="fixed top-4 right-4 p-4 rounded-lg shadow-lg z-50 hidden"
+  ></div>
+
+  <!-- Delete Confirmation Modal -->
+  <div
+    id="deleteModal"
+    class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 hidden"
+  >
+    <div class="bg-white rounded-xl p-6 max-w-sm mx-4">
+      <div class="text-center">
+        <i
+          class="fas fa-exclamation-triangle text-3xl text-yellow-500 mb-4"
+        ></i>
+        <h3 class="text-xl font-semibold mb-2">Delete Meal</h3>
+        <p class="text-gray-600 mb-6">
+          Are you sure you want to delete this meal? This action cannot be
+          undone.
+        </p>
+        <div class="flex gap-3 justify-center">
+          <button
+            id="cancelDelete"
+            class="px-4 py-2 rounded-md border-2 border-gray-300 text-gray-700 font-semibold hover:bg-gray-50 transition"
+          >
+            Cancel
+          </button>
+          <button
+            id="confirmDelete"
+            class="px-4 py-2 rounded-md bg-red-500 text-white font-semibold hover:bg-red-600 transition"
+          >
+            Delete
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
 
   <!-- Main Content -->
   <main class="max-w-5xl mx-auto px-4 my-8">
@@ -174,15 +214,6 @@
     </section>
   </main>
 
-
-  <footer class="bg-gray-900 text-white text-center py-6 mt-12">
-    <h3 class="text-xl font-bold">NutriTrack</h3>
-    <p class="text-gray-400">Your intelligent nutrition companion</p>
-    <div class="mt-4 text-gray-500 text-sm">
-      &copy; 2024 NutriTrack. All rights reserved.
-    </div>
-  </footer>
-
   <script>
     document.addEventListener("DOMContentLoaded", () => {
       // Elements
@@ -199,6 +230,10 @@
       const analysisSection = document.getElementById("analysisSection");
       const detectedFoods = document.getElementById("detectedFoods");
       const saveMealBtn = document.getElementById("saveMealBtn");
+      const toast = document.getElementById("toast");
+      const deleteModal = document.getElementById("deleteModal");
+      const cancelDelete = document.getElementById("cancelDelete");
+      const confirmDelete = document.getElementById("confirmDelete");
 
       // Loading elements
       const analyzeText = analyzeBtn.querySelector(".analyze-text");
@@ -213,6 +248,76 @@
       uploadArea.appendChild(previewImg);
 
       let selectedFile = null;
+      let mealData = {};
+      let mealToDelete = null;
+
+      // Toast notification function - FIXED
+      function showToast(message, type = "info") {
+        const toast = document.getElementById("toast");
+        if (!toast) return;
+
+        toast.textContent = message;
+        toast.className = `fixed top-4 right-4 p-4 rounded-lg shadow-lg z-50 transition-all duration-300 transform`;
+
+        // Set background color based on type
+        if (type === "success") {
+          toast.classList.add("bg-green-500", "text-white");
+        } else if (type === "error") {
+          toast.classList.add("bg-red-500", "text-white");
+        } else {
+          toast.classList.add("bg-blue-500", "text-white");
+        }
+
+        // Show toast with animation
+        setTimeout(() => {
+          toast.classList.remove("hidden", "opacity-0", "translate-y-[-100%]");
+          toast.classList.add("opacity-100", "translate-y-0");
+        }, 10);
+
+        // Hide toast after 3 seconds
+        setTimeout(() => {
+          toast.classList.add("opacity-0", "translate-y-[-100%]");
+          setTimeout(() => {
+            toast.classList.add("hidden");
+          }, 300);
+        }, 3000);
+      }
+
+      // Reset analysis area
+      function resetAnalysisArea() {
+        // Clear file input and preview
+        fileInput.value = "";
+        selectedFile = null;
+        previewImg.classList.add("hidden");
+        previewImg.src = "";
+
+        // Reset upload area text
+        uploadArea.querySelector("h3").textContent =
+          "Upload a Photo of Your Meal";
+
+        // Disable analyze button
+        analyzeBtn.disabled = true;
+
+        // Hide analysis section
+        analysisSection.classList.add("hidden");
+
+        // Clear detected foods
+        detectedFoods.innerHTML = "";
+
+        // Stop camera if active
+        if (video.srcObject) {
+          video.srcObject.getTracks().forEach((track) => track.stop());
+          video.srcObject = null;
+        }
+
+        // Reset camera preview
+        cameraPreview.classList.add("hidden");
+        video.classList.remove("hidden");
+        canvas.classList.add("hidden");
+        captureBtn.classList.remove("hidden");
+        retakeBtn.classList.add("hidden");
+        uploadArea.classList.remove("hidden");
+      }
 
       // Display image preview
       function showImagePreview(file) {
@@ -256,6 +361,10 @@
 
       // Camera handling
       useCameraBtn.addEventListener("click", async () => {
+        if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
+          showToast("Camera not supported by this browser", "error");
+          return;
+        }
         cameraPreview.classList.remove("hidden");
         uploadArea.classList.add("hidden");
         previewImg.classList.add("hidden");
@@ -266,7 +375,7 @@
           video.srcObject = stream;
         } catch (err) {
           console.error("Camera error:", err);
-          alert("Failed to access camera");
+          showToast("Failed to access camera", "error");
         }
       });
 
@@ -286,7 +395,7 @@
           showImagePreview(selectedFile);
           uploadArea.classList.remove("hidden");
           cameraPreview.classList.add("hidden");
-          video.srcObject.getTracks().forEach((track) => track.stop()); // Stop camera
+          video.srcObject?.getTracks().forEach((track) => track.stop());
         }, "image/jpeg");
       });
 
@@ -300,6 +409,10 @@
         previewImg.classList.add("hidden");
         uploadArea.classList.add("hidden");
         cameraPreview.classList.remove("hidden");
+        if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
+          showToast("Camera not supported by this browser", "error");
+          return;
+        }
         try {
           const stream = await navigator.mediaDevices.getUserMedia({
             video: true,
@@ -307,15 +420,17 @@
           video.srcObject = stream;
         } catch (err) {
           console.error("Camera error:", err);
-          alert("Failed to access camera");
+          showToast("Failed to access camera", "error");
         }
       });
 
       // Analyze meal
       analyzeBtn.addEventListener("click", async () => {
-        if (!selectedFile) return alert("Please select or capture an image");
+        if (!selectedFile) {
+          showToast("Please select or capture an image", "error");
+          return;
+        }
 
-        // Show loading state
         analyzeBtn.disabled = true;
         analyzeText.classList.add("hidden");
         analyzeLoading.classList.remove("hidden");
@@ -329,18 +444,18 @@
           console.log("Analysis data:", data);
 
           if (response.status === 200 && data.foods) {
+            mealData = data;
             displayAnalysis(data);
-            analysisSection.classList.remove("hidden"); // Show analysis section
+            analysisSection.classList.remove("hidden");
             saveMealBtn.disabled = false;
           } else {
             console.error("Invalid data:", data);
-            alert(data.error || "Invalid analysis data");
+            displayError(data.error || "Invalid analysis data");
           }
         } catch (err) {
           console.error("Error analyzing meal:", err);
-          alert("Error: " + err.message);
+          displayError("Error: " + err.message);
         } finally {
-          // Reset loading state
           analyzeBtn.disabled = false;
           analyzeText.classList.remove("hidden");
           analyzeLoading.classList.add("hidden");
@@ -349,10 +464,7 @@
 
       // Display analysis
       function displayAnalysis(data) {
-        // Clear previous content
         detectedFoods.innerHTML = "";
-
-        // Display foods with improved design
         data.foods.forEach((food) => {
           const foodDiv = document.createElement("div");
           foodDiv.className =
@@ -365,7 +477,7 @@
         <div class="grid grid-cols-2 gap-2 text-sm">
           <div class="flex items-center gap-1">
             <i class="fas fa-fire text-orange-500"></i>
-            <span>Calories: ${food.calories} cal</span>
+            <span>Calories: ${food.calories_per_unit} cal</span>
           </div>
           <div class="flex items-center gap-1">
             <i class="fas fa-bread-slice text-green-600"></i>
@@ -393,79 +505,308 @@
         });
       }
 
-      // Save meal to log
-      saveMealBtn.addEventListener("click", async () => {
-        if (!selectedFile) return alert("No meal to save");
+      // Display error in analysis section
+      function displayError(message) {
+        detectedFoods.innerHTML = `
+      <div class="bg-red-100 border-l-4 border-red-500 p-4 rounded-md text-red-700">
+        <i class="fas fa-exclamation-triangle mr-2"></i> ${message}
+      </div>
+    `;
+        analysisSection.classList.remove("hidden");
+      }
 
-        // Show loading state
+      // Save meal to log - KEEPING ORIGINAL DATA FORMAT
+      saveMealBtn.addEventListener("click", async () => {
+        if (!selectedFile || !mealData.foods) {
+          showToast("No meal to save", "error");
+          return;
+        }
+
         saveMealBtn.disabled = true;
         saveText.classList.add("hidden");
         saveLoading.classList.remove("hidden");
 
+        // KEEPING THE ORIGINAL DATA FORMAT
         const formData = new FormData();
         formData.append("image", selectedFile);
+        formData.append("totals", JSON.stringify(mealData.totals));
+        formData.append("foods", JSON.stringify(mealData.foods));
 
         try {
           const response = await axios.post("/meals", formData);
           if (response.status === 200) {
-            alert("Meal saved to log!");
-            loadMealHistory(); // Refresh history
+            showToast("Meal saved successfully!", "success");
+            resetAnalysisArea(); // Clear the analysis area
+            loadMealHistory(); // Reload meal history
           } else {
-            alert("Failed to save meal");
+            showToast("Failed to save meal", "error");
           }
         } catch (err) {
-          alert("Error saving meal: " + err.message);
+          showToast("Error saving meal: " + err.message, "error");
         } finally {
-          // Reset loading state
           saveMealBtn.disabled = false;
           saveText.classList.remove("hidden");
           saveLoading.classList.add("hidden");
         }
       });
 
+      // Delete confirmation modal handlers
+      cancelDelete.addEventListener("click", () => {
+        deleteModal.classList.add("hidden");
+        mealToDelete = null;
+      });
+
+      confirmDelete.addEventListener("click", async () => {
+        if (!mealToDelete) return;
+
+        try {
+          const response = await axios.delete(`/meals/${mealToDelete}`);
+          if (response.status === 200) {
+            // Remove the meal from the DOM
+            const mealElement = document
+              .querySelector(`[data-id="${mealToDelete}"]`)
+              ?.closest(".bg-lime-50");
+            if (mealElement) {
+              mealElement.remove();
+            }
+            showToast("Meal deleted successfully!", "success");
+            loadMealHistory(); // Reload to refresh the grid
+          } else {
+            showToast("Failed to delete meal", "error");
+          }
+        } catch (err) {
+          console.error("Failed to delete meal:", err);
+          showToast("Error deleting meal: " + err.message, "error");
+        } finally {
+          deleteModal.classList.add("hidden");
+          mealToDelete = null;
+        }
+      });
+
+      // Toggle food details dropdown
+      function toggleFoodDetails(button) {
+        const details = button.nextElementSibling;
+        const icon = button.querySelector("i");
+
+        if (details.classList.contains("hidden")) {
+          details.classList.remove("hidden");
+          icon.classList.remove("fa-chevron-down");
+          icon.classList.add("fa-chevron-up");
+        } else {
+          details.classList.add("hidden");
+          icon.classList.remove("fa-chevron-up");
+          icon.classList.add("fa-chevron-down");
+        }
+      }
+
       // Fetch and display meal history
       async function loadMealHistory() {
         try {
           const response = await axios.get("/meals/history");
           const meals = response.data;
+
+          // Remove existing history section if it exists
+          const existingHistory = document.getElementById("mealHistory");
+          if (existingHistory) existingHistory.parentElement.remove();
+
           const historySection = document.createElement("section");
           historySection.className = "bg-white rounded-xl p-6 shadow mb-8";
           historySection.innerHTML = `
         <h2 class="flex items-center gap-2 text-xl font-semibold mb-6 text-gray-800">
           <i class="fas fa-history text-green-600"></i> Meal History
         </h2>
-        <div id="mealHistory" class="grid grid-cols-1 gap-4"></div>
+        <div id="mealHistory" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4"></div>
       `;
           document
             .querySelector("#analysisSection")
             .insertAdjacentElement("afterend", historySection);
 
-
           const mealHistory = document.getElementById("mealHistory");
+
+          if (meals.length === 0) {
+            mealHistory.innerHTML = `
+              <div class="col-span-full text-center py-8 text-gray-500">
+                <i class="fas fa-utensils text-4xl mb-4 text-gray-300"></i>
+                <p>No meals logged yet. Upload your first meal to get started!</p>
+              </div>
+            `;
+            return;
+          }
+
           meals.forEach((meal, index) => {
             const mealDiv = document.createElement("div");
-            mealDiv.className = "bg-lime-50 p-4 rounded-lg shadow-sm";
+            mealDiv.className =
+              "bg-lime-50 p-4 rounded-lg shadow-sm hover:shadow-md transition duration-200 border border-gray-200";
+
             mealDiv.innerHTML = `
-          <h4 class="font-semibold text-lg">Meal ${
-            index + 1
-          } (Logged: ${new Date().toLocaleDateString()})</h4>
-          <p class="text-sm">Foods: ${meal.foods
-            .map((f) => f.name)
-            .join(", ")}</p>
-          ${meal.foods
-            .map(
-              (food) => `
-            <div class="text-sm pl-4">
-              <p>${food.name}: ${food.calories} cal, ${food.carbs}g carbs, ${food.protein}g protein, ${food.fats}g fats, ${food.sodium}mg sodium, ${food.fiber}g fiber</p>
+          <div class="flex items-center justify-between mb-3">
+            <h4 class="font-semibold text-lg text-gray-800">Meal ${
+              index + 1
+            }</h4>
+            <span class="text-xs text-gray-500">${new Date(
+              meal.timestamp
+            ).toLocaleDateString()}</span>
+          </div>
+          
+          <!-- Meal Image -->
+          <div class="mb-3">
+            <div class="relative group">
+              ${meal.image_url ? `
+                 <img 
+                src="${meal.image_url || "/images/meal-placeholder.jpg"}" 
+                alt="Meal ${index + 1}"
+                class="w-full h-72 object-cover rounded-lg border border-gray-200 group-hover:shadow-md transition duration-200"
+                onerror="this.src='/images/meal-placeholder.jpg'"
+              >
+              
+              ` : `<div class="absolute inset-0 bg-gray-100 flex items-center justify-center rounded-lg border border-gray-200"><i class="fas fa-image text-gray-300 text-6xl"></i></div>`}
+           
             </div>
-          `
-            )
-            .join("")}
+          </div>
+          
+          <!-- Food Count Dropdown -->
+          <div class="mb-3">
+            <button class="food-dropdown-btn w-full flex items-center justify-between p-2 bg-green-100 text-green-800 rounded-lg hover:bg-green-200 transition duration-200">
+              <span class="font-medium">
+                <i class="fas fa-utensils mr-2"></i>
+                ${meal.foods.length} Food${
+              meal.foods.length > 1 ? "s" : ""
+            } Detected
+              </span>
+              <i class="fas fa-chevron-down text-sm transition-transform duration-200"></i>
+            </button>
+            <div class="food-details hidden mt-2 space-y-2">
+              ${meal.foods
+                .map(
+                  (food) => `
+                <div class="bg-white p-2 rounded border text-sm">
+                  <div class="font-medium text-gray-800">${food.name}</div>
+                </div>
+              `
+                )
+                .join("")}
+            </div>
+          </div>
+          
+          <!-- Total Nutrition Summary -->
+          <div class="bg-white p-3 rounded-lg border mb-3">
+            <h5 class="font-semibold text-gray-800 mb-2 text-sm flex items-center gap-1">
+              <i class="fas fa-chart-pie text-green-600"></i>
+              Total Nutrition
+            </h5>
+            <div class="grid grid-cols-2 gap-1 text-xs text-gray-600">
+              <div class="flex items-center gap-1">
+                <i class="fas fa-fire text-orange-500"></i>
+                <span>Calories: ${Math.round(
+                  meal.calories
+                )} cal</span>
+              </div>
+              <div class="flex items-center gap-1">
+                <i class="fas fa-bread-slice text-green-600"></i>
+                <span>Carbs: ${meal.carbs} g</span>
+              </div>
+              <div class="flex items-center gap-1">
+                <i class="fas fa-dumbbell text-yellow-500"></i>
+                <span>Protein: ${meal.proteins} g</span>
+              </div>
+              <div class="flex items-center gap-1">
+                <i class="fas fa-oil-can text-purple-600"></i>
+                <span>Fats: ${meal.fats} g</span>
+              </div>
+              <div class="flex items-center gap-1">
+                <i class="fas fa-tint text-blue-500"></i>
+                <span>Sodium: ${meal.sodium} mg</span>
+              </div>
+              <div class="flex items-center gap-1">
+                <i class="fas fa-leaf text-teal-500"></i>
+                <span>Fiber: ${meal.fiber} g</span>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Detailed Food Breakdown -->
+          <div class="mb-3">
+            <button class="nutrition-dropdown-btn w-full flex items-center justify-between p-2 bg-blue-100 text-blue-800 rounded-lg hover:bg-blue-200 transition duration-200">
+              <span class="font-medium">
+                <i class="fas fa-chart-bar mr-2"></i>
+                Detailed Breakdown
+              </span>
+              <i class="fas fa-chevron-down text-sm transition-transform duration-200"></i>
+            </button>
+            <div class="nutrition-details hidden mt-2 space-y-2">
+              ${meal.foods
+                .map(
+                  (food) => `
+                <div class="bg-white p-3 rounded border text-xs">
+                  <div class="font-semibold text-gray-800 mb-2 flex items-center gap-1">
+                    <i class="fas fa-utensils text-green-600"></i>
+                    ${food.name}
+                  </div>
+                  <div class="grid grid-cols-2 gap-1 text-gray-600">
+                    <div class="flex items-center gap-1">
+                      <i class="fas fa-fire text-orange-500"></i>
+                      <span>${food.calories_per_unit || 0} cal</span>
+                    </div>
+                    <div class="flex items-center gap-1">
+                      <i class="fas fa-bread-slice text-green-600"></i>
+                      <span>${food.carbs || 0} g carbs</span>
+                    </div>
+                    <div class="flex items-center gap-1">
+                      <i class="fas fa-dumbbell text-yellow-500"></i>
+                      <span>${food.protein || 0} g protein</span>
+                    </div>
+                    <div class="flex items-center gap-1">
+                      <i class="fas fa-oil-can text-purple-600"></i>
+                      <span>${food.fats || 0} g fats</span>
+                    </div>
+                    <div class="flex items-center gap-1">
+                      <i class="fas fa-tint text-blue-500"></i>
+                      <span>${food.sodium || 0} mg sodium</span>
+                    </div>
+                    <div class="flex items-center gap-1">
+                      <i class="fas fa-leaf text-teal-500"></i>
+                      <span>${food.fiber || 0} g fiber</span>
+                    </div>
+                  </div>
+                </div>
+              `
+                )
+                .join("")}
+            </div>
+          </div>
+          
+          <button class="mt-2 w-full bg-red-500 text-white px-3 py-2 rounded-lg text-sm flex items-center justify-center gap-2 hover:bg-red-600 transition deleteMealBtn" data-id="${
+            meal.meal_id
+          }">
+            <i class="fas fa-trash"></i> Delete Meal
+          </button>
         `;
             mealHistory.appendChild(mealDiv);
+
+            // Add event listeners for dropdowns
+            const foodDropdownBtn = mealDiv.querySelector(".food-dropdown-btn");
+            const nutritionDropdownBtn = mealDiv.querySelector(
+              ".nutrition-dropdown-btn"
+            );
+
+            foodDropdownBtn.addEventListener("click", () =>
+              toggleFoodDetails(foodDropdownBtn)
+            );
+            nutritionDropdownBtn.addEventListener("click", () =>
+              toggleFoodDetails(nutritionDropdownBtn)
+            );
+          });
+
+          // Attach delete button listeners
+          document.querySelectorAll(".deleteMealBtn").forEach((btn) => {
+            btn.addEventListener("click", (e) => {
+              mealToDelete = e.target.closest("button").dataset.id;
+              deleteModal.classList.remove("hidden");
+            });
           });
         } catch (err) {
           console.error("Error loading meal history:", err);
+          showToast("Error loading meal history", "error");
         }
       }
 
@@ -474,5 +815,4 @@
     });
   </script>
 </body>
-
 <%- include("../partials/footer") %>

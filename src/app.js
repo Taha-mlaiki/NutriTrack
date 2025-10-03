@@ -27,6 +27,7 @@ app.use(bodyParser.urlencoded());
 
 // Static files
 app.use(express.static(path.join(__dirname, "..", "public")));
+app.use(express.static(path.join(process.cwd(), "public")));
 
 // Routes
 
