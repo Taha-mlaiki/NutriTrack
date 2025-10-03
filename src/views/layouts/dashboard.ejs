@@ -41,8 +41,8 @@
             class="bg-orange-50 p-4 rounded-lg border-t-4 border-orange-500 text-center"
           >
             <i class="fas fa-fire text-orange-500"></i>
-            <div class="text-2xl font-bold">1,650</div>
-            <p class="text-gray-500 text-sm">of 2,000 calories</p>
+            <div class="text-2xl font-bold"> <%= goal[0].calorie_target %></div>
+            <p class="text-gray-500 text-sm"> <%= totalCalories[0].total %> </p>
             <div class="w-full h-2 bg-gray-200 rounded mt-2">
               <div class="h-2 bg-orange-500 rounded" style="width: 65%"></div>
             </div>
@@ -51,8 +51,8 @@
             class="bg-green-50 p-4 rounded-lg border-t-4 border-green-600 text-center"
           >
             <i class="fas fa-bread-slice text-green-600"></i>
-            <div class="text-2xl font-bold">185g</div>
-            <p class="text-gray-500 text-sm">of 230g carbs</p>
+            <div class="text-2xl font-bold"><%=all[0].totalCarbs %> </div>
+            <p class="text-gray-500 text-sm">of <%= goal[0].max_carbs %>g carbs</p>
             <div class="w-full h-2 bg-gray-200 rounded mt-2">
               <div class="h-2 bg-green-600 rounded" style="width: 80%"></div>
             </div>
@@ -61,8 +61,8 @@
             class="bg-yellow-50 p-4 rounded-lg border-t-4 border-yellow-500 text-center"
           >
             <i class="fas fa-dumbbell text-yellow-500"></i>
-            <div class="text-2xl font-bold">65g</div>
-            <p class="text-gray-500 text-sm">of 140g protein</p>
+            <div class="text-2xl font-bold"><%= all[0].totalProtein %> </div>
+            <p class="text-gray-500 text-sm">of <%= goal[0].min_proteins %>g protein</p>
             <div class="w-full h-2 bg-gray-200 rounded mt-2">
               <div class="h-2 bg-yellow-500 rounded" style="width: 45%"></div>
             </div>
@@ -71,8 +71,8 @@
             class="bg-purple-50 p-4 rounded-lg border-t-4 border-purple-600 text-center"
           >
             <i class="fas fa-oil-can text-purple-600"></i>
-            <div class="text-2xl font-bold">42g</div>
-            <p class="text-gray-500 text-sm">of 70g fats</p>
+            <div class="text-2xl font-bold"><%= all[0].totalFats %></div>
+            <p class="text-gray-500 text-sm">of <%= goal[0].max_sodium %>g soduim</p>
             <div class="w-full h-2 bg-gray-200 rounded mt-2">
               <div class="h-2 bg-purple-600 rounded" style="width: 60%"></div>
             </div>
@@ -175,31 +175,31 @@
         <div class="space-y-4">
           <div class="flex items-center gap-3 border-b border-gray-200 pb-2">
             <img
-              src="https://images.unsplash.com/photo-1565958011703-44f9829ba187?auto=format&fit=crop&w=100&q=80"
+              src="<%= recentMeals[0].image_url %>"
               class="w-16 h-16 rounded-lg object-cover"
               alt="Lunch"
             />
             <div class="flex-1">
-              <h4 class="font-semibold">Lunch - Grilled Chicken Salad</h4>
-              <p class="text-sm text-gray-500">
-                12:30 PM • Carbs: 25g, Protein: 30g
-              </p>
+              <h4 class="font-semibold"><%= recentMeals[0].food_name %></h4>
+<p class="text-sm text-gray-500">
+  • Carbs: <%= recentMeals[0].carbs %> g, Protein: <%= recentMeals[0].proteins %> g
+</p>
             </div>
-            <span class="text-orange-500 font-bold">420 cal</span>
+            <span class="text-orange-500 font-bold"><%= recentMeals[0].calories %> cal</span>
           </div>
           <div class="flex items-center gap-3 border-b border-gray-200 pb-2">
             <img
-              src="https://images.unsplash.com/photo-1490818387583-1baba5e638af?auto=format&fit=crop&w=100&q=80"
+              src="<%= recentMeals[1].image_url %>"
               class="w-16 h-16 rounded-lg object-cover"
               alt="Breakfast"
             />
             <div class="flex-1">
-              <h4 class="font-semibold">Breakfast - Oatmeal with Fruits</h4>
-              <p class="text-sm text-gray-500">
-                8:15 AM • Carbs: 45g, Protein: 12g
-              </p>
+              <h4 class="font-semibold"><%= recentMeals[1].food_name %></h4>
+<p class="text-sm text-gray-500">
+  • Carbs: <%= recentMeals[1].carbs %> g, Protein: <%= recentMeals[1].proteins %> g
+</p>
             </div>
-            <span class="text-orange-500 font-bold">320 cal</span>
+            <span class="text-orange-500 font-bold"><%= recentMeals[1].calories %>cal</span>
           </div>
         </div>
       </section>
