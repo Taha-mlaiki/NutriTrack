@@ -1,5 +1,5 @@
 import { model } from "../config/gemini.js";
-import { findById } from "../repositories/userRepository.js";
+import { findById, findProfileSettings } from "../repositories/userRepository.js";
 import { HumanMessage } from "@langchain/core/messages";
 
 
@@ -21,6 +21,8 @@ export const generateRecommendations = async ({ userId, mealAnalysis }) => {
   const user = await findById(userId);
   if (!user) throw new Error("User not found");
 
+  const profileSettings = await findProfileSettings(userId);
+
   const profile = {
     id: user.id,
     name: user.name,
@@ -29,7 +31,11 @@ export const generateRecommendations = async ({ userId, mealAnalysis }) => {
     gender: user.gender ?? null,
     weight: user.weight ?? null,
     height: user.height ?? null,
-    goals: user.goals ?? null,
+    
+    max_carbs: profileSettings?.max_carbs ?? null,
+    max_sodium: profileSettings?.max_sodium ?? null,
+    min_proteins: profileSettings?.min_proteins ?? null,
+    calorie_target: profileSettings?.calorie_target ?? null,
   };
 
   const prompt = `You are a clinical-nutrition assistant. Based on the user profile and the analyzed meal, produce 4-6 personalized recommendations.
