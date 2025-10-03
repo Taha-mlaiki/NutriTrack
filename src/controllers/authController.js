@@ -8,12 +8,14 @@ export const handleLogin = async (req, res) => {
   try {
     const { email, password } = req.body;
     const user = await authService.login(email, password);
-    if (!req.session) {
-      req.session = {};
-    }
-    req.session.user = user;
 
-    return res.json({
+    req.session.user = {
+      id: user.id,
+      email: user.email,
+      name: user.name,
+    };
+    
+    res.status(200).json({
       success: true,
       message: "Connexion réussie",
     });
@@ -32,7 +34,7 @@ export const handleRegister = async (req, res) => {
   try {
     const { fullName, email, password, profile } = req.body;
     await authService.register(fullName, email, password, profile);
-    return res.status(201).json({ success: true, message: "User registered" });
+    res.status(201).json({ success: true, message: "User registered" });
   } catch (err) {
     console.log(err);
     res.status(400).json({ success: false, message: err.message });
