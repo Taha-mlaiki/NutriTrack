@@ -18,6 +18,10 @@ export const analyzeMeal = async (req, res) => {
     throw new Error("No Image is detected");
   }
 
+  const user = req.session.user;
+
+  console.log(user);
+
   try {
     const imageBase64 = fs.readFileSync(req.file.path, "base64");
     const prompt = `

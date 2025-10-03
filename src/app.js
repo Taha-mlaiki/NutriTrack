@@ -10,6 +10,10 @@ import mealRoutes from "./routes/mealRoutes.js";
 import reportsRoutes from "./routes/reportsRoutes.js";
 import recommendationsRoutes from "./routes/recommendationsRoutes.js";
 import bodyParser from "body-parser";
+import session from "express-session";
+import { authMiddleware } from "./middlewares/authMiddleware.js";
+import { uuid } from "zod";
+import cookieParser from "cookie-parser";
 
 dotenv.config();
 
@@ -22,21 +26,28 @@ app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "views"));
 
 // Middleware
-app.use(bodyParser.json({extended:true}));
+app.use(bodyParser.json({ extended: true }));
 app.use(bodyParser.urlencoded());
-
+app.use(cookieParser());
 // Static files
 app.use(express.static(path.join(__dirname, "..", "public")));
 app.use(express.static(path.join(process.cwd(), "public")));
 
-// Routes
+app.use(
+  session({
+    secret: process.env.SESSION_SECRET || "fallback-secret", // Add fallback for development
+    resave: false,
+    saveUninitialized: true,
+  })
+);
 
-app.use("/", dashRoutes);
+
 app.use("/auth", authRoutes);
-app.use("/profile", profileRoutes);
-app.use("/meals", mealRoutes);
-app.use("/reports", reportsRoutes);
-app.use("/recommendations", recommendationsRoutes);
+app.use("/", authMiddleware, dashRoutes);
+app.use("/profile", authMiddleware, profileRoutes);
+app.use("/meals", authMiddleware, mealRoutes);
+app.use("/reports", authMiddleware, reportsRoutes);
+app.use("/recommendations", authMiddleware, recommendationsRoutes);
 
 app.use(errorHandler);
 

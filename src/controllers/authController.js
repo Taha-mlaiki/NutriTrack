@@ -8,12 +8,14 @@ export const handleLogin = async (req, res) => {
   try {
     const { email, password } = req.body;
     const user = await authService.login(email, password);
-    if (!req.session) {
-      req.session = {};
-    }
-    req.session.user = user;
 
-    return res.json({
+    req.session.user = {
+      id: user.id,
+      email: user.email,
+      name: user.name,
+    };
+    
+    return res.status(200).json({
       success: true,
       message: "Connexion réussie",
     });
