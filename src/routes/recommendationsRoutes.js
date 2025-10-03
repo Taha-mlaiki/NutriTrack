@@ -5,7 +5,6 @@ import { showRecommendations, listRecommendations, aiRecommendations } from "../
 const router = Router ();
 
 router.get("/", showRecommendations);
-router.get("/api", listRecommendations);
 router.post("/ai", aiRecommendations);
 
 export default router;
